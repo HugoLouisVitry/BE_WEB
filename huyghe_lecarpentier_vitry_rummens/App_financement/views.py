@@ -9,3 +9,11 @@ app.config.from_object('App_financement.config')
 @app.route("/")
 def index():
     return render_template("index.html",title="Acueil")
+
+@app.route("/about")
+def about():
+    return render_template("about.html") 
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
