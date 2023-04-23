@@ -7,26 +7,10 @@
 <body class="seo_version">
 
 	<!-- LOADER -->
-	<div id="preloader">
-		<div id="cupcake" class="box">
-			<span class="letter">L</span>
-			<div class="cupcakeCircle box">
-				<div class="cupcakeInner box">
-					<div class="cupcakeCore box"></div>
-				</div>
-			</div>
-			<span class="letter box">A</span>
-			<span class="letter box">D</span>
-			<span class="letter box">I</span>
-			<span class="letter box">N</span>
-			<span class="letter box">G</span>
-		</div>
-	</div>
+    {% include('layout/loader.html') %}
 	<!-- END LOADER -->
-	
-    <nav>
-        {% include("layout/nav.html") %}
-    </nav>
+    {% include("layout/nav.html") %}
+
 
     <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('static/uploads/parallax_12.jpg');">
         <div class="container">

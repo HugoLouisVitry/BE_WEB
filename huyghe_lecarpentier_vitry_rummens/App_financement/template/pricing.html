@@ -6,26 +6,10 @@
 <body class="seo_version">
 
     <!-- LOADER -->
-	<div id="preloader">
-		<div id="cupcake" class="box">
-			<span class="letter">L</span>
-			<div class="cupcakeCircle box">
-				<div class="cupcakeInner box">
-					<div class="cupcakeCore box"></div>
-				</div>
-			</div>
-			<span class="letter box">A</span>
-			<span class="letter box">D</span>
-			<span class="letter box">I</span>
-			<span class="letter box">N</span>
-			<span class="letter box">G</span>
-		</div>
-	</div>
+    {% include('layout/loader.html') %}
 	<!-- END LOADER -->
-
-    <nav>
-        {% include("layout/nav.html") %}
-    </nav>
+    {% include("layout/nav.html") %}
+    
 
     <div class="all-page-title" style="background-image:url(images/pattern-4.png);">
         <div class="container text-center">
@@ -37,7 +21,7 @@
             	<div class="inner-container">
                     <ul class="bread-crumb">
                         <li><a href="/">Home</a></li>
-                        <li><span>Pricing</span></li>
+                        <li><span>Pricing</span></li> <br>
                     </ul>
                 </div>
             </div>
@@ -299,7 +283,9 @@
         </path>
     </svg>
 
+ 
     {% include("layout/footer.html")%}
+
 	
     <div class="copyrights">
         <div class="container">

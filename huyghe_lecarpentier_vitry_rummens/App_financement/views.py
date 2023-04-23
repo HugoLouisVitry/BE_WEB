@@ -29,3 +29,7 @@ def services():
 @app.route("/case-study")
 def case_study():
     return render_template("case-study.html")
+
+@app.route("/webmaster")
+def webmaster():
+    return render_template("webmaster.html")
