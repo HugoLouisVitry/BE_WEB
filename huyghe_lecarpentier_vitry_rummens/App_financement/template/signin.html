@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include("layout/head.html") %}
+    </head>
+    <body class="seo_version">
+
+        <!-- LOADER -->
+        {% include('layout/loader.html') %}
+        <!-- END LOADER -->
+        {% include("layout/nav.html") %}
+
+        <div class="all-page-title"
+            style="background-image:url(static/images/pattern-4.png);">
+            <!--Page -->
+            <div id="support" class="section wb">
+                <div class="container">
+                    <div class="section-title text-center">
+                        <h3>S'Inscrire</h3>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="contact_form">
+                                    <div id="message"></div>
+                                    <form method="post" action="/addMembre">
+                                        <h4 class="card-title text-center mb-2 fw-light">S'enregistrer</h4>
+                          
+                                        <div class="form-floating mb-3">
+                                            <label for="nom">Nom</label>
+                                          <input type="text" class="form-control" id="nom" name="nom" placeholder="Nom" required autofocus>
+                                        </div>
+                          
+                                        <div class="form-floating mb-3">
+                                            <label for="prenom">Prénom</label>
+                                          <input type="text" class="form-control" id="prenom" name="prenom" placeholder="Prénom" required>
+                                        </div>
+                          
+                                        <div class="form-floating mb-3">
+                                            <label for="mail">E-mail</label>
+                                          <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com" required>
+                                        </div>
+                          
+                                        <hr>
+                          
+                                        <div class="form-floating mb-3">
+                                            <label for="nom">Login</label>
+                                          <input type="text" class="form-control" id="login" name="login" placeholder="login" required>
+                                        </div>
+                          
+                                        <div class="form-floating mb-3">
+                                            <label for="mdp">Mot de passe</label>
+                                          <input type="text" class="form-control" id="mdp" name="mdp" placeholder="Mot de passe" required>
+                                        </div>
+
+                                        <br>
+                        
+                          
+                          
+                                        <div class="d-grid mb-2 mt-5">
+                                          <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
+                                        </div>
+                          
+                                      </form>
+                                </div>
+                            </div><!-- end col -->
+                            <div class="col-md-6">
+                                <div class="map-box">
+                                    <div id="custom-places" class="small-map"></div>
+                                </div>
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div>
+                </div><!-- end title -->
+                <!--End Page-->
+            </div><!-- end section -->
+            <br>
+
+            <div id="support" class="section db">
+                <div class="container">
+                    <div class="section-title text-center">
+                        <h3>Clients Logo</h3>
+                    </div><!-- end title -->
+
+                    <div class="row">
+                        <div id="logo-carousel" class="owl-carousel">
+                            <div> <img src="static/uploads/logo_01.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_02.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_03.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_04.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_05.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_06.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_01.png" alt="">
+                            </div>
+                            <div> <img src="static/uploads/logo_02.png" alt="">
+                            </div>
+                        </div>
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div><!-- end section -->
+
+
+
+            {% include("layout/footer.html")%}
+
+            <div class="copyrights">
+                <div class="container">
+                    <div class="footer-distributed">
+                        <div class="footer-left">
+                            <p class="footer-company-name">All Rights Reserved.
+                                &copy; 2018 <a href="#">FlaxSEO</a> Design By :
+                                <a
+                                    href="https://html.design/">html design</a></p>
+                        </div>
+
+
+                    </div>
+                </div><!-- end container -->
+            </div><!-- end copyrights -->
+
+            <a href="#" id="scroll-to-top" class="dmtop global-radius"><i
+                    class="fa
+                    fa-angle-up"></i></a>
+
+            <!-- ALL JS FILES -->
+            <script src="static/js/all.js"></script>
+            <script
+                src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
+            <!-- Mapsed JavaScript -->
+            <script src="static/js/mapsed.js"></script>
+            <script src="static/js/01-custom-places-example.js"></script>
+            <!-- ALL PLUGINS -->
+            <script src="static/js/custom.js"></script>
+
+        </body>
+    </html>
