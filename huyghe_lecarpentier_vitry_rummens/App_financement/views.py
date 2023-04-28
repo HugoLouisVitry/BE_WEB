@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session,request,redirect
 from .model import bdd as bdd
+from .controller import function as f
 
 
 app=Flask(__name__)
@@ -109,3 +110,11 @@ def logout():
     session.clear()
     session["infoBleu"]="Merci de votre visite"
     return redirect("/login")
+
+#page sgbd
+@app.route("/sgbd")
+def sgbd():
+    listeMembres = bdd.get_membresData()
+    params ={'liste':listeMembres}
+    params = f.messageInfo(params)
+    return render_template("sgbd.html", **params)
