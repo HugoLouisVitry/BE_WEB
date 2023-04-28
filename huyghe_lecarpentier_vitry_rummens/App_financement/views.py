@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-from flask import Flask, render_template, request, session
-=======
 from flask import Flask, render_template, session,request,redirect
 from .model import bdd as bdd
->>>>>>> 4a839783d9a0e2fe2590ec4d26c8d120a87964c0
 
 app=Flask(__name__)
 app.template_folder = "template"
@@ -52,7 +48,6 @@ def webmaster():
     return render_template("webmaster.html")
 
 
-=======
 @app.route("/addMembre", methods=['POST'])
 def addMembre():
     # réception des données du formulaire
@@ -93,4 +88,3 @@ def messageInfo(params):
         params["successDB"] = session['successDB']
         session.pop("successDB", None)
     return params
->>>>>>> 4a839783d9a0e2fe2590ec4d26c8d120a87964c0
