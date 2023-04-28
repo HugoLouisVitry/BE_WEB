@@ -1,4 +1,5 @@
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session,request,redirect
+from .model import bdd as bdd
 
 app=Flask(__name__)
 app.template_folder = "template"
@@ -38,3 +39,44 @@ def case_study():
 @app.route("/webmaster")
 def webmaster():
     return render_template("webmaster.html")
+
+@app.route("/addMembre", methods=['POST'])
+def addMembre():
+    # réception des données du formulaire
+    nom = request.form['nom']
+    prenom = request.form['prenom']
+    mail = request.form['mail']
+    login = request.form['login']
+    motPasse = request.form['mdp']
+    statut = request.form['statut']
+    lastId = bdd.add_membreData(nom, prenom, mail,
+    login, motPasse, statut)
+    print(lastId) # dernier id créé par la BDD
+    if "errorDB" not in session:
+        session["infoVert"]="Nouveau membre inséré"
+    else:
+        session["infoRouge"]="Problème ajout utilisateur"
+    return redirect("/sgbd")
+
+# passe les messages d'info en paramètres
+def messageInfo(params):
+    if params is None:
+        params = {}
+    #messages d'infos du views.py
+    if "infoVert" in session:
+        params["infoVert"] = session['infoVert']
+        session.pop("infoVert", None)
+    if "infoRouge" in session:
+        params["infoRouge"] = session['infoRouge']
+        session.pop("infoRouge", None)
+    if "infoBleu" in session:
+        params["infoBleu"] = session['infoBleu']
+        session.pop("infoBleu", None)
+    #messages d'info du bdd.py
+    if "errorDB" in session:
+        params["errorDB"] = session['errorDB']
+        session.pop("errorDB", None)
+    if "successDB" in session:
+        params["successDB"] = session['successDB']
+        session.pop("successDB", None)
+    return params

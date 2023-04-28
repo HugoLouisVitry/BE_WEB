@@ -1,6 +1,7 @@
 import mysql.connector
 from flask import session
 from ..config import DB_SERVER
+import hashlib
 
 ###################################################################################
 # connexion au serveur de la base de données
@@ -102,13 +103,15 @@ def update_membreData(champ, idUser, newvalue):
 #################################################################################
 #authentification des utilisateurs
 def verifAuthData(login, mdp):
+    mdp=hashlib.sha256(mdp.encode())
+    mdpC=mdp.hexdigest()
     cnx = connexion() 
     if cnx is None: 
         return None
     try:
         cursor = cnx.cursor(dictionary=True)
         sql = "SELECT * FROM identification WHERE login=%s and motPasse=%s"
-        param=(login, mdp)
+        param=(login, mdpC)
         cursor.execute(sql, param)
         user = cursor.fetchone()
         close_bd(cursor, cnx)
