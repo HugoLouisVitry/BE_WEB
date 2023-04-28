@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session,request,redirect
 from .model import bdd as bdd
 
+
 app=Flask(__name__)
 app.template_folder = "template"
 app.static_folder = "static"
@@ -14,7 +15,6 @@ def index():
     session["prenom"]="Louis"
     session["nom"]="Blériot"
     session["mail"]="louis.bleriot@enac.fr"
-    session["avatar"]="8.png"
     print(session) # affichage des sessions dans le terminal
     return render_template("index.html",title="Acueil")
 
@@ -47,7 +47,10 @@ def case_study():
 def webmaster():
     return render_template("webmaster.html")
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> c60a6f5340f546458209eb5003863acd67d223a6
 @app.route("/addMembre", methods=['POST'])
 def addMembre():
     # réception des données du formulaire
@@ -88,3 +91,7 @@ def messageInfo(params):
         params["successDB"] = session['successDB']
         session.pop("successDB", None)
     return params
+<<<<<<< HEAD
+=======
+
+>>>>>>> c60a6f5340f546458209eb5003863acd67d223a6
