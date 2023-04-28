@@ -13,6 +13,6 @@ DB_SERVER = {
 "password": "mysql",
 "host": "localhost",
 "port": 3306, #8889 si MAC
-"database": "Financement", #nom de la BDD
+"database": "financement", #nom de la BDD
 "raise_on_warnings": True
 }
