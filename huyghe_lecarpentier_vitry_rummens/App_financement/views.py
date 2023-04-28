@@ -66,6 +66,7 @@ def connect():
     login = request.form['login']
     mdp = request.form['mdp']
     user = bdd.verifAuthData(login, mdp)
+    print (user)
     try:
         # Authentification réussie
         session["idUser"] = user["idUser"]
@@ -80,6 +81,12 @@ def connect():
         # Authentification refusée
         session["infoRouge"]="Authentification refusée"
         return redirect("/login")
+    
+@app.route("/logout")
+def logout():
+    session.clear()
+    session["infoBleu"]="Merci de votre visite"
+    return redirect("/login")
 
 #page sgbd
 @app.route("/sgbd")

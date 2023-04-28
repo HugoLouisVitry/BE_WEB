@@ -26,6 +26,7 @@
                     <li><a href="/login">Log In</a></li>
                     <li><a href="/signin">Sign In</a></li>
                     {% else %}
+                    <li><a href="/logout">logout</a></li>
                     <!-- <img class="rounded-circle mr-3" src="/static/img/avatar/{{ session['avatar'] }}" alt="User Avatar"> -->
                     <h5 class=" pt-2"> {{ session['prenom'] }} {{ session['nom'] }}</h5>
                   {% endif %}
