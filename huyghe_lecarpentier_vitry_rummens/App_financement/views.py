@@ -73,9 +73,8 @@ def connect():
         session["idUser"] = user["idUser"]
         session["nom"] = user["nom"]
         session["prenom"] = user["prenom"]
-        session["mail"] = user["mail"]
+        # session["mail"] = user["mail"]
         session["statut"] = user["statut"]
-        session["avatar"] = user["avatar"]
         session["infoVert"]="Authentification réussie"
         return redirect("/")
     except TypeError as err:
