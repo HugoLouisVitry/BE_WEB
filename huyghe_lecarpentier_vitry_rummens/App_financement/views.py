@@ -47,10 +47,6 @@ def case_study():
 def webmaster():
     return render_template("webmaster.html")
 
-<<<<<<< HEAD
-
-=======
->>>>>>> c60a6f5340f546458209eb5003863acd67d223a6
 @app.route("/addMembre", methods=['POST'])
 def addMembre():
     # réception des données du formulaire
@@ -91,7 +87,3 @@ def messageInfo(params):
         params["successDB"] = session['successDB']
         session.pop("successDB", None)
     return params
-<<<<<<< HEAD
-=======
-
->>>>>>> c60a6f5340f546458209eb5003863acd67d223a6
