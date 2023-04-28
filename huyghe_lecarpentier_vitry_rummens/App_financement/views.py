@@ -10,12 +10,6 @@ app.config.from_object('App_financement.config')
 #page accueil
 @app.route("/")
 def index():
-    # déclaration des variables de sessions
-    session["idUser"]=2
-    session["prenom"]="Louis"
-    session["nom"]="Blériot"
-    session["mail"]="louis.bleriot@enac.fr"
-    print(session) # affichage des sessions dans le terminal
     return render_template("index.html",title="Acueil")
 
 @app.route("/about")
@@ -87,3 +81,24 @@ def messageInfo(params):
         params["successDB"] = session['successDB']
         session.pop("successDB", None)
     return params
+
+# authentification
+@app.route("/connecter", methods=["POST"])
+def connect():
+    login = request.form['login']
+    mdp = request.form['mdp']
+    user = bdd.verifAuthData(login, mdp)
+    try:
+        # Authentification réussie
+        session["idUser"] = user["idUser"]
+        session["nom"] = user["nom"]
+        session["prenom"] = user["prenom"]
+        session["mail"] = user["mail"]
+        session["statut"] = user["statut"]
+        session["avatar"] = user["avatar"]
+        session["infoVert"]="Authentification réussie"
+        return redirect("/")
+    except TypeError as err:
+        # Authentification refusée
+        session["infoRouge"]="Authentification refusée"
+        return redirect("/login")
