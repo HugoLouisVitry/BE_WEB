@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 28 avr. 2023 à 15:15
+-- Généré le : ven. 28 avr. 2023 à 16:45
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -63,18 +63,19 @@ CREATE TABLE `user` (
   `isAdmin` tinyint(1) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
   `prenom` varchar(20) DEFAULT NULL,
-  `reponse` varchar(40) DEFAULT NULL
+  `reponse` varchar(40) DEFAULT NULL,
+  `mail` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`) VALUES
-(1, 'huyghema', 'huyghema', 1, 'Huyghe', 'Mathias', NULL),
-(2, 'lecarpma', 'lecarpma', 1, 'Le Carpentier', 'Marie', NULL),
-(3, 'rummenspa', 'rummenspa', 1, 'Rummens', 'Paul', NULL),
-(4, 'vitryhu', 'vitryhu', 1, 'Vitry', 'Hugo', NULL);
+INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`, `mail`) VALUES
+(1, 'huyghema', 'huyghema', 1, 'Huyghe', 'Mathias', NULL, 'mathias.huyghe@alumni.enac.fr'),
+(2, 'lecarpma', 'lecarpma', 1, 'Le Carpentier', 'Marie', NULL, 'marie.le-carpentier@alumni.enac.fr'),
+(3, 'rummenspa', 'rummenspa', 1, 'Rummens', 'Paul', NULL, 'paul.rummens@alumni.enac.fr'),
+(4, 'vitryhu', 'vitryhu', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr');
 
 --
 -- Index pour les tables déchargées
