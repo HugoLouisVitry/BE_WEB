@@ -66,6 +66,7 @@ def connect():
     login = request.form['login']
     mdp = request.form['mdp']
     user = bdd.verifAuthData(login, mdp)
+    print("ok")
     print (user)
     try:
         # Authentification réussie
