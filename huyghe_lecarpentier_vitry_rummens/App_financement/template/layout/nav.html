@@ -22,10 +22,18 @@
                     <li><a href="/case-study">Case Study</a></li>
                     <li><a href="/pricing">Pricing</a></li>
                     <li><a href="/webmaster">Web Master</a></li>
+                    {% if not session['idUser'] %}
                     <li><a href="/login">Log In</a></li>
                     <li><a href="/signin">Sign In</a></li>
+                    {% else %}
+                    <!-- <img class="rounded-circle mr-3" src="/static/img/avatar/{{ session['avatar'] }}" alt="User Avatar"> -->
+                    <h5 class=" pt-2"> {{ session['prenom'] }} {{ session['nom'] }}</h5>
+                  {% endif %}
                 </ul>
             </div>
+            <div class="logo d-flex">
+                
+              </div>
         </div>
     </nav>
 </header>
