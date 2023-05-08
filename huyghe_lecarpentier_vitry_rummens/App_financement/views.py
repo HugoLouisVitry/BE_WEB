@@ -63,6 +63,7 @@ def addMembre():
 # authentification
 @app.route("/connecter", methods=["POST"])
 def connect():
+    print("here")
     login = request.form['login']
     mdp = request.form['mdp']
     user = bdd.verifAuthData(login, mdp)
@@ -74,7 +75,7 @@ def connect():
         session["nom"] = user["nom"]
         session["prenom"] = user["prenom"]
         # session["mail"] = user["mail"]
-        session["statut"] = user["statut"]
+        session["isAdmin"] = user["isAdmin"]
         session["infoVert"]="Authentification réussie"
         return redirect("/")
     except TypeError as err:
