@@ -1,7 +1,7 @@
 import mysql.connector
 from flask import session
 from ..config import DB_SERVER
-from controller import function
+from ..controller import function
 ###################################################################################
 # connexion au serveur de la base de données
 
