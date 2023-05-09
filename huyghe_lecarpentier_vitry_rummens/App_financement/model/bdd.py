@@ -12,6 +12,7 @@ def connexion():
         return cnx
     except mysql.connector.Error as err:
         session['errorDB'] = format(err)
+        
         print(session['errorDB']) #le problème s'affiche dans le terminal
         return None
     
@@ -112,12 +113,12 @@ def verifAuthData(login, mdp):
         param=(login, mdp)
         cursor.execute(sql, param)
         user = cursor.fetchone()
-        close_bd(cursor, cnx)
+        close_bd(cursor, cnx)       
         #session['successDB'] = "OK verifAuthData"
     except mysql.connector.Error as err:
         user = None
         session['errorDB'] = "Failed verif Auth data : {}".format(err)
-        print(session['errorDB']) #le problème s'affiche dans le terminal
+        print(session['errorDB'],2) #le problème s'affiche dans le terminal
     return user
 
 ##########################################################################
