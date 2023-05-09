@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 28 avr. 2023 à 16:45
--- Version du serveur : 10.4.28-MariaDB
--- Version de PHP : 8.2.4
+-- Généré le : mar. 09 mai 2023 à 09:31
+-- Version du serveur : 10.4.27-MariaDB
+-- Version de PHP : 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -59,23 +59,22 @@ CREATE TABLE `project` (
 CREATE TABLE `user` (
   `idUser` int(11) NOT NULL,
   `login` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
+  `password` varchar(90) NOT NULL,
   `isAdmin` tinyint(1) DEFAULT NULL,
   `nom` varchar(20) DEFAULT NULL,
   `prenom` varchar(20) DEFAULT NULL,
-  `reponse` varchar(40) DEFAULT NULL,
-  `mail` varchar(40) DEFAULT NULL
+  `reponse` varchar(40) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`, `mail`) VALUES
-(1, 'huyghema', 'huyghema', 1, 'Huyghe', 'Mathias', NULL, 'mathias.huyghe@alumni.enac.fr'),
-(2, 'lecarpma', 'lecarpma', 1, 'Le Carpentier', 'Marie', NULL, 'marie.le-carpentier@alumni.enac.fr'),
-(3, 'rummenspa', 'rummenspa', 1, 'Rummens', 'Paul', NULL, 'paul.rummens@alumni.enac.fr'),
-(4, 'vitryhu', 'vitryhu', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr');
+INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`) VALUES
+(1, 'huyghema', '203ed44b778fa1a55ffd9cf3dc4407c710a787625d5f2cf365a4e3ad9232fa3f', 1, 'Huyghe', 'Mathias', NULL),
+(2, 'lecarpma', '1ee3bcb7aff31f0e8d12da84deaf85b1a471731d4ed334189954e52c4b5fcdc1', 1, 'Le Carpentier', 'Marie', NULL),
+(3, 'rummenspa', '6f73aaf7bffa8141aa7c7607566063bbcf9993a1efdf79c94a9ba3ad2187595a', 1, 'Rummens', 'Paul', NULL),
+(4, 'vitryhu', 'ec1a405c52aee12ec05e9785d83d89b9fdc1adad1fbe38f7c7904e3e09f6686e', 1, 'Vitry', 'Hugo', NULL);
 
 --
 -- Index pour les tables déchargées

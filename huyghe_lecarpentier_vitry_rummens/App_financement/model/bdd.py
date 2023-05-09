@@ -1,8 +1,7 @@
 import mysql.connector
 from flask import session
 from ..config import DB_SERVER
-import hashlib
-
+from controller import function
 ###################################################################################
 # connexion au serveur de la base de données
 
@@ -12,6 +11,7 @@ def connexion():
         return cnx
     except mysql.connector.Error as err:
         session['errorDB'] = format(err)
+        
         print(session['errorDB']) #le problème s'affiche dans le terminal
         return None
     
@@ -112,12 +112,12 @@ def verifAuthData(login, mdp):
         param=(login, mdp)
         cursor.execute(sql, param)
         user = cursor.fetchone()
-        close_bd(cursor, cnx)
+        close_bd(cursor, cnx)       
         #session['successDB'] = "OK verifAuthData"
     except mysql.connector.Error as err:
         user = None
         session['errorDB'] = "Failed verif Auth data : {}".format(err)
-        print(session['errorDB']) #le problème s'affiche dans le terminal
+        print(session['errorDB'],2) #le problème s'affiche dans le terminal
     return user
 
 ##########################################################################
@@ -148,9 +148,10 @@ def add_membreData(idUser, nom, prenom, mail, login, password, isAdmin, reponse)
     cnx = connexion()
     if cnx is None: return None
     try:
+        encrypted_password = function.chiffrement_mdp(password)
         cursor = cnx.cursor()
         sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
-        param = (idUser, nom, prenom, mail, login, password, isAdmin, reponse)
+        param = (idUser, nom, prenom, mail, login, encrypted_password, isAdmin, reponse)
         cursor.execute(sql, param)
         lastId = cursor.lastrowid # dernier idUser généré
         cnx.commit()

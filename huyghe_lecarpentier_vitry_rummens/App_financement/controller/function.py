@@ -1,4 +1,5 @@
 from flask import session
+import hashlib
 # passe les messages d'info en paramètres
 def messageInfo(params):
     if params is None:
@@ -9,11 +10,16 @@ def messageInfo(params):
         params["infoVert"] = session['infoVert']
         session.pop("infoVert", None)
     if "infoRouge" in session:
+        
+        
         params["infoRouge"] = session['infoRouge']
+        print(params['infoRouge'])
         session.pop("infoRouge", None)
     if "infoBleu" in session:
         params["infoBleu"] = session['infoBleu']
+        
         session.pop("infoBleu", None)
+        
     
     #messages d'info du bdd.py
     if "errorDB" in session:
@@ -23,3 +29,9 @@ def messageInfo(params):
         params["successDB"] = session['successDB']
         session.pop("successDB", None)
     return params
+
+def chiffrement_mdp(mdp):
+    mdp = hashlib.sha256(mdp.encode())
+    mdpC = mdp.hexdigest()
+    return mdpC
+    
