@@ -101,3 +101,8 @@ def sgbd():
     params ={'liste':listeMembres}
     params = f.messageInfo(params)
     return render_template("sgbd.html", **params)
+
+@app.route("/profil")
+def profil():
+    
+    return render_template("profil.html") 
