@@ -11,18 +11,24 @@ app.config.from_object('App_financement.config')
 #page accueil
 @app.route("/")
 def index():
+    
+    params=f.messageInfo(None)
+    
     return render_template("index.html",title="Acueil")
 
 @app.route("/about")
 def about():
+    
     return render_template("about.html") 
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    params=f.messageInfo(None)
+    return render_template("login.html",**params)
 
 @app.route("/signin")
 def signin():
+    params=f.messageInfo(None)
     return render_template("signin.html")
 
 
@@ -63,12 +69,9 @@ def addMembre():
 # authentification
 @app.route("/connecter", methods=["POST"])
 def connect():
-    print("here")
     login = request.form['login']
     mdp = request.form['mdp']
     user = bdd.verifAuthData(login, mdp)
-    print("ok")
-    print (user)
     try:
         # Authentification réussie
         session["idUser"] = user["idUser"]
@@ -80,6 +83,8 @@ def connect():
         return redirect("/")
     except TypeError as err:
         # Authentification refusée
+        print("bah fréro tu es cringe")
+        
         session["infoRouge"]="Authentification refusée"
         return redirect("/login")
     
