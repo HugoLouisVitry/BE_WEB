@@ -1,4 +1,5 @@
 from flask import session
+import hashlib
 # passe les messages d'info en paramètres
 def messageInfo(params):
     if params is None:
@@ -23,3 +24,9 @@ def messageInfo(params):
         params["successDB"] = session['successDB']
         session.pop("successDB", None)
     return params
+
+def chiffrement_mdp(mdp):
+    mdp = hashlib.sha256(mdp.encode())
+    mdpC = mdp.hexdigest()
+    return mdpC
+    
