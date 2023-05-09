@@ -1,8 +1,7 @@
 import mysql.connector
 from flask import session
 from ..config import DB_SERVER
-import hashlib
-
+from controller import function
 ###################################################################################
 # connexion au serveur de la base de données
 
@@ -149,9 +148,10 @@ def add_membreData(idUser, nom, prenom, mail, login, password, isAdmin, reponse)
     cnx = connexion()
     if cnx is None: return None
     try:
+        encrypted_password = function.chiffrement_mdp(password)
         cursor = cnx.cursor()
         sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
-        param = (idUser, nom, prenom, mail, login, password, isAdmin, reponse)
+        param = (idUser, nom, prenom, mail, login, encrypted_password, isAdmin, reponse)
         cursor.execute(sql, param)
         lastId = cursor.lastrowid # dernier idUser généré
         cnx.commit()
