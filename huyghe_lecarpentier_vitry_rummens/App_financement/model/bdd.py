@@ -169,7 +169,7 @@ def update_mdp(idUser, newvalue):
     
     try:
         cursor = cnx.cursor()
-        sql = "UPDATE user SET "+champ+" = %s WHERE idUser = %s;"
+        sql = "UPDATE user SET password = %s WHERE idUser = %s;"
         param = (newvalue, idUser)
         cursor.execute(sql, param)
         cnx.commit()
