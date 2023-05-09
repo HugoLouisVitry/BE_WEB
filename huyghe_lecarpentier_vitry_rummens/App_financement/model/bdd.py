@@ -144,3 +144,35 @@ def saveDataFromFile(data):
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
     
+def add_membreData(nom, prenom, mail, login, motPasse, statut, avatar):
+    cnx = connexion()
+    if cnx is None: return None
+    try:
+        cursor = cnx.cursor()
+        sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+        param = (nom, prenom, mail, login, motPasse, statut, avatar)
+        cursor.execute(sql, param)
+        lastId = cursor.lastrowid # dernier idUser généré
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK add_membreData"
+    except mysql.connector.Error as err:
+        lastId = None
+        session['errorDB'] = "Failed add membres data : {}".format(err)
+    return lastId
+
+#modification d'une donnée dans la table identification
+def update_membreData(champ, idUser, newvalue):
+    cnx = connexion()
+    if cnx is None: return None
+    try:
+        cursor = cnx.cursor()
+        sql = "UPDATE identification SET "+champ+" = %s WHERE idUser = %s;"
+        param = (newvalue, idUser)
+        cursor.execute(sql, param)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK update_membreData"
+    except mysql.connector.Error as err:
+        session['errorDB'] = "Failed update membres data : {}".format(err)
+    return 1
