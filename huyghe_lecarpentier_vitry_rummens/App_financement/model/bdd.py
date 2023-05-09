@@ -31,7 +31,7 @@ def get_membresData():
     
     try:
         cursor = cnx.cursor(dictionary=True)
-        sql = "SELECT * FROM identification"
+        sql = "SELECT * FROM user"
         cursor.execute(sql)
         listeMembres = cursor.fetchall()
         close_bd(cursor, cnx)
@@ -49,7 +49,7 @@ def del_membreData(idUser):
     if cnx is None: return None
     try:
         cursor = cnx.cursor()
-        sql = "DELETE FROM identification WHERE idUser=%s;"
+        sql = "DELETE FROM user WHERE idUser=%s;"
         param = (idUser,)
         cursor.execute(sql, param)
         cnx.commit()
@@ -89,7 +89,7 @@ def update_membreData(champ, idUser, newvalue):
     
     try:
         cursor = cnx.cursor()
-        sql = "UPDATE identification SET "+champ+" = %s WHERE idUser = %s;"
+        sql = "UPDATE user SET "+champ+" = %s WHERE idUser = %s;"
         param = (newvalue, idUser)
         cursor.execute(sql, param)
         cnx.commit()
@@ -133,7 +133,7 @@ def saveDataFromFile(data):
         cursor.execute(sql1)
         # insertion des nouvelles données
         for d in data:
-            sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+            sql = "INSERT INTO user (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
             param = (d['nom'], d['prenom'], d['mail'], d['login'], d['motPasse'], d['statut'], d['avatar'])
             cursor.execute(sql, param)
             cnx.commit()
@@ -150,7 +150,7 @@ def add_membreData(idUser, nom, prenom, mail, login, password, isAdmin, reponse)
     try:
         encrypted_password = function.chiffrement_mdp(password)
         cursor = cnx.cursor()
-        sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+        sql = "INSERT INTO user (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
         param = (idUser, nom, prenom, mail, login, encrypted_password, isAdmin, reponse)
         cursor.execute(sql, param)
         lastId = cursor.lastrowid # dernier idUser généré
@@ -162,3 +162,20 @@ def add_membreData(idUser, nom, prenom, mail, login, password, isAdmin, reponse)
         session['errorDB'] = "Failed add membres data : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return lastId
+
+def update_mdp(idUser, newvalue):
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor()
+        sql = "UPDATE user SET password = %s WHERE idUser = %s;"
+        param = (newvalue, idUser)
+        cursor.execute(sql, param)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK update_membreData"
+    except mysql.connector.Error as err:
+        session['errorDB'] = "Failed update membres data : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return 1
