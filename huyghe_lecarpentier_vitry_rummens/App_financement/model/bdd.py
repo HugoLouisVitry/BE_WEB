@@ -62,25 +62,25 @@ def del_membreData(idUser):
     return 1
 
 #################################################################################
-#ajout d'un membre
-def add_membreData(nom, prenom, mail, login, motPasse, statut, avatar):
-    cnx = connexion() 
-    if cnx is None: 
-        return None
-    try:
-        cursor = cnx.cursor()
-        sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
-        param = (nom, prenom, mail, login, motPasse, statut, avatar)
-        cursor.execute(sql, param)
-        lastId = cursor.lastrowid  # récupère le dernier idUser, généré par le serveur sql
-        cnx.commit()
-        close_bd(cursor, cnx)
-        #session['successDB'] = "OK add_membreData"
-    except mysql.connector.Error as err:
-        lastId = None
-        session['errorDB'] = "Failed add membres data : {}".format(err)
-        print(session['errorDB']) #le problème s'affiche dans le terminal
-    return lastId
+# #ajout d'un membre
+# def add_membreData(nom, prenom, mail, login, motPasse, statut, avatar):
+#     cnx = connexion() 
+#     if cnx is None: 
+#         return None
+#     try:
+#         cursor = cnx.cursor()
+#         sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+#         param = (nom, prenom, mail, login, motPasse, statut, avatar)
+#         cursor.execute(sql, param)
+#         lastId = cursor.lastrowid  # récupère le dernier idUser, généré par le serveur sql
+#         cnx.commit()
+#         close_bd(cursor, cnx)
+#         #session['successDB'] = "OK add_membreData"
+#     except mysql.connector.Error as err:
+#         lastId = None
+#         session['errorDB'] = "Failed add membres data : {}".format(err)
+#         print(session['errorDB']) #le problème s'affiche dans le terminal
+#     return lastId
 
 #################################################################################
 #modification d'une donnée dans la table identification
@@ -145,3 +145,20 @@ def saveDataFromFile(data):
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
     
+def add_membreData(idUser, nom, prenom, mail, login, password, isAdmin, reponse):
+    cnx = connexion()
+    if cnx is None: return None
+    try:
+        cursor = cnx.cursor()
+        sql = "INSERT INTO identification (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+        param = (idUser, nom, prenom, mail, login, password, isAdmin, reponse)
+        cursor.execute(sql, param)
+        lastId = cursor.lastrowid # dernier idUser généré
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK add_membreData"
+    except mysql.connector.Error as err:
+        lastId = None
+        session['errorDB'] = "Failed add membres data : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return lastId
