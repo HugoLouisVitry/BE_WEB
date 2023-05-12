@@ -55,9 +55,10 @@ def addMembre():
     mail = request.form['mail']
     login = request.form['login']
     motPasse = request.form['mdp']
+    avatar = request.form['avatar']
     statut=0 
     bdd.add_membreData(nom, prenom, mail,
-    login, motPasse, statut)
+    login, motPasse, statut, avatar)
     
     # dernier id créé par la BDD
     if "errorDB" not in session:
@@ -84,6 +85,7 @@ def connect():
         session["infoVert"]="Authentification réussie"
         session["login"] = login
         session["password"] = f.chiffrement_mdp(mdp)
+        session["avatar"] = user["avatar"]
         return redirect("/")
     except TypeError as err:
         # Authentification refusée
