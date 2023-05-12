@@ -2,6 +2,7 @@ import mysql.connector
 from flask import session
 from ..config import DB_SERVER
 from ..controller import function
+import hashlib
 ###################################################################################
 # connexion au serveur de la base de données
 
@@ -103,6 +104,8 @@ def update_membreData(champ, idUser, newvalue):
 #################################################################################
 #authentification des utilisateurs
 def verifAuthData(login, mdp):
+    mdp=hashlib.sha256(mdp.encode())
+    mdpC=mdp.hexdigest()
     cnx = connexion() 
     if cnx is None: 
         return None
