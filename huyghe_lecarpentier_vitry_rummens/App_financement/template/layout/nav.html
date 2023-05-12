@@ -1,5 +1,27 @@
+<style>
+    #user{
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin-top: 10px;
+        margin-right: 10px;
+        font-size: 20px;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    #avatar{
+        float:left;
+        margin-right: 10px;
+        height: 50px;
+        width: 50px;
+
+    }
+</style>
 <header>
     <nav class="megamenu navbar navbar-default">
+        <a class="navbar-brand" href="/">
+            <img src="static/images/logos/logo-seo.png" alt="image">
+        </a>
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed"
@@ -10,12 +32,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"><img
-                        src="static/images/logos/logo-seo.png" alt="image"></a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
-                
-                <ul class="nav navbar-nav navbar-right menu-top">
+
+            <ul class="nav navbar-nav">
                     <li><a class="active" href="/">Home</a></li>
                     <li><a href="/about">About Us </a></li>
                     <li><a href="/services">Services</a></li>
@@ -28,17 +48,21 @@
                     {% else %}
                     <li><a href="/logout">Logout</a></li>
                     <li><a href="/profil">Profil</a></li>
-                    <!-- <img class="rounded-circle mr-3" src="/static/img/avatar/{{ session['avatar'] }}" alt="User Avatar"> -->
-                    <h5 class=" pt-2"> {{ session['prenom'] }} {{ session['nom'] }}</h5>
+                    {% endif %}
                     {% if session['isAdmin'] %}
                     <li><a href="/sgbd">SGBD</a></li>
                     {% endif %}
-                  {% endif %}
-                </ul>
+            </ul>
             </div>
-            <div class="logo d-flex">
                 
-              </div>
-        </div>
+<!--                 
+                <div class="logo d-flex"></div>
+            </div> -->
+        <ul>
+            {% if session['idUser'] %}
+            <img id="avatar" src="static/images/avatar/{{session['avatar']}}" alt="User Avatar">
+            <h5 id="user" class=" pt-2"> {{ session['prenom'] }} {{ session['nom'] }}</h5>
+            {% endif %}
+        </ul>
     </nav>
 </header>
