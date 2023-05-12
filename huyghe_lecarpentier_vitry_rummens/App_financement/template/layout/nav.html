@@ -26,10 +26,13 @@
                     <li><a href="/login">Log In</a></li>
                     <li><a href="/signin">Sign In</a></li>
                     {% else %}
-                    <li><a href="/logout">logout</a></li>
+                    <li><a href="/logout">Logout</a></li>
                     <li><a href="/profil">Profil</a></li>
                     <!-- <img class="rounded-circle mr-3" src="/static/img/avatar/{{ session['avatar'] }}" alt="User Avatar"> -->
                     <h5 class=" pt-2"> {{ session['prenom'] }} {{ session['nom'] }}</h5>
+                    {% if session['isAdmin'] %}
+                    <li><a href="/sgbd">SGBD</a></li>
+                    {% endif %}
                   {% endif %}
                 </ul>
             </div>
