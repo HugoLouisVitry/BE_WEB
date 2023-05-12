@@ -17,7 +17,8 @@
 
         <section id="connecter" class="contact">
             <div class="container">
-
+                <div class="section-title text-center">
+                    <h3>Base de données</h3>
                 {% include("layout/info.html") %}
 
                 <div class="row">
@@ -30,7 +31,7 @@
                             <thead>
                                 <tr>
                                     <th data-field="supp" data-align="center">Supp</th>
-                                    <!-- <th data-field="avatar" data-sortable="true">Avatar</th> -->
+                                    <th data-field="avatar" data-sortable="true">Avatar</th>
                                     <th data-field="nom" data-sortable="true">Nom</th>
                                     <th data-field="prenom" data-sortable="true">Prénom</th>
                                     <th data-field="mail" data-sortable="true">Mail</th>
@@ -47,7 +48,7 @@
                                             <img src='static/images/prettyPhoto/trashcan.png' height="30px" width="30px">
                                         </a>
                                     </td>
-                                    <!-- <td><img src="/static/img/avatar/{{ user.avatar }}" class="avatar" /></td> -->
+                                    <td><img src="/static/images/avatar/{{ user.avatar }}" class="avatar" height="30px" width="30px"/></td>
                                     <td class='modif' data-url='/updateMembre/N' data-pk='{{user.idUser}}'> {{ user.nom
                                         }}
                                     </td>
@@ -58,7 +59,7 @@
                                         {% if user.isAdmin %}
                                         Administrateur
                                         {% else %}
-                                        Non administrateur
+                                        Visiteur
                                         {% endif %}
                                     </td>
                                 </tr>

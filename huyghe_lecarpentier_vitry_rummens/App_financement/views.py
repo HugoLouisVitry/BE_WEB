@@ -91,6 +91,7 @@ def connect():
         session["infoVert"]="Authentification réussie"
         session["login"] = login
         session["password"] = f.chiffrement_mdp(mdp)
+        session["avatar"] = user["avatar"]
         return redirect("/")
     except TypeError as err:
         # Authentification refusée
