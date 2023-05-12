@@ -14,11 +14,10 @@ def index():
     
     params=f.messageInfo(None)
     
-    return render_template("index.html",title="Acueil")
+    return render_template("index.html",title="Acueil",**params)
 
 @app.route("/about")
 def about():
-    
     return render_template("about.html") 
 
 @app.route("/login")
@@ -57,7 +56,7 @@ def addMembre():
     login = request.form['login']
     motPasse = request.form['mdp']
     statut=0 
-    lastId = bdd.add_membreData(nom, prenom, mail,
+    bdd.add_membreData(nom, prenom, mail,
     login, motPasse, statut)
     
     # dernier id créé par la BDD
@@ -80,7 +79,7 @@ def connect():
         session["idUser"] = user["idUser"]
         session["nom"] = user["nom"]
         session["prenom"] = user["prenom"]
-        # session["mail"] = user["mail"]
+        session["mail"] = user["mail"]
         session["isAdmin"] = user["isAdmin"]
         session["infoVert"]="Authentification réussie"
         session["login"] = login
@@ -130,17 +129,13 @@ def update_mdp():
         return redirect("/profil")
     try : 
         MDP = f.chiffrement_mdp(new_mdp)
-        lastId = bdd.update_mdp(idUser=session["idUser"],newvalue=MDP)
+        bdd.update_mdp(idUser=session["idUser"],newvalue=MDP)
         session["password"]=MDP
         
         if "errorDB" not in session:
             session["infoVert"]="Le mot de passe a été mis à jour"
         else:
             session["infoRouge"]="Problème maj utilisateur"
-        
-        
     except:
-        
         pass    
-    
     return redirect("/profil")
