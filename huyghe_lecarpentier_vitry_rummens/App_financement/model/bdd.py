@@ -104,8 +104,7 @@ def update_membreData(champ, idUser, newvalue):
 #################################################################################
 #authentification des utilisateurs
 def verifAuthData(login, mdp):
-    mdp=hashlib.sha256(mdp.encode())
-    mdpC=mdp.hexdigest()
+    mdpC=function.chiffrement_mdp(mdp)
     cnx = connexion() 
     if cnx is None: 
         return None
