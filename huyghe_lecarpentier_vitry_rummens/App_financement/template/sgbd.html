@@ -19,61 +19,68 @@
             <div class="container">
                 <div class="section-title text-center">
                     <h3>Base de données</h3>
-                {% include("layout/info.html") %}
+                    {% include("layout/info.html") %}
 
-                <div class="row">
-                    <div class="col-8">
-                        {# liste #}
+                    <div class="row">
+                        <div class="col-8">
+                            {# liste #}
 
-                        <a href="/exportToExcel" class="btn btn-success">Exporter les données</a>
-                        <table class="table" data-toggle="table" data-search="true" data-pagination="true"
-                            data-page-size="8" data-page-list="[10, 25, 50, all]">
-                            <thead>
-                                <tr>
-                                    <th data-field="supp" data-align="center">Supp</th>
-                                    <th data-field="avatar" data-sortable="true">Avatar</th>
-                                    <th data-field="nom" data-sortable="true">Nom</th>
-                                    <th data-field="prenom" data-sortable="true">Prénom</th>
-                                    <th data-field="mail" data-sortable="true">Mail</th>
-                                    <th data-field="login" data-sortable="true">Login</th>
-                                    <th data-field="isAdmin" data-sortable="true">Administrateur</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% if liste and liste is not none %}
-                                {% for user in liste %}
-                                <tr>
-                                    <td>
-                                        <a href="/suppMembre?userDel={{user.idUser}}">
-                                            <img src='static/images/prettyPhoto/trashcan.png' height="30px" width="30px">
-                                        </a>
-                                    </td>
-                                    <td><img src="/static/images/avatar/{{ user.avatar }}" class="avatar" height="30px" width="30px"/></td>
-                                    <td class='modif' data-url='/updateMembre/N' data-pk='{{user.idUser}}'> {{ user.nom
-                                        }}
-                                    </td>
-                                    <td>{{ user.prenom }}</td>
-                                    <td>{{ user.mail }}</td>
-                                    <td>{{ user.login }}</td>
-                                    <td class='modifSelect' data-url='/updateMembre/S' data-pk='{{user.idUser}}'>
-                                        {% if user.isAdmin %}
-                                        Administrateur
-                                        {% else %}
-                                        Visiteur
-                                        {% endif %}
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                                {% endif %}
-                            </tbody>
-                        </table>
+                            <!-- <a href="/exportToExcel" class="btn btn-success">Exporter les données</a> -->
+                            <br>
+                            <table class="table">
+                                <br>
+                                <thead data-align="center">
+
+                                    <tr>
+                                        
+                                            <td textalign="center"><b><font size="4pt">Supp</font></b></td>
+                                            <td textalign="center"><b><font size="4pt">Avatar</font></b></td>
+                                            <td textalign="center"><b><font size="4pt">Nom</font></b></td>
+                                            <td textalign="center"><b><font size="4pt">Prénom</font></b></td>
+                                            <td textalign="center"><b><font size="4pt">Mail</font></b></td>
+                                            <td textalign="center"><b><font size="4pt">Login</font></b></td>
+                                            <td textalign="center"><b><font size="4pt">Administrateur</font></b></td>
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    {% if liste and liste is not none %}
+                                    {% for user in liste %}
+                                    <tr>
+                                        <td>
+                                            <a href="/suppMembre?userDel={{user.idUser}}">
+                                                <img src='static/images/prettyPhoto/trashcan.png' height="30px"
+                                                    width="30px">
+                                            </a>
+                                        </td>
+                                        <td><img src="/static/images/avatar/{{ user.avatar }}" class="avatar"
+                                                height="30px" width="30px" /></td>
+                                        <td class='modif' data-url='/updateMembre/N' data-pk='{{user.idUser}}'> {{
+                                            user.nom
+                                            }}
+                                        </td>
+                                        <td>{{ user.prenom }}</td>
+                                        <td>{{ user.mail }}</td>
+                                        <td>{{ user.login }}</td>
+                                        <td class='modifSelect' data-url='/updateMembre/S' data-pk='{{user.idUser}}'>
+                                            {% if user.isAdmin %}
+                                            Administrateur
+                                            {% else %}
+                                            Visiteur
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
+                                </tbody>
+                            </table>
+
+                        </div>
 
                     </div>
 
                 </div>
-
-            </div>
-    </div><!-- end col -->
+            </div><!-- end col -->
     </div><!-- end row -->
     </div>
     </div><!-- end title -->
@@ -109,7 +116,6 @@
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
-
 
 
     {% include("layout/footer.html")%}
