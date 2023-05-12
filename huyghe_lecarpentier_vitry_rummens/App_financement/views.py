@@ -88,7 +88,7 @@ def connect():
         return redirect("/")
     except TypeError as err:
         # Authentification refusée
-        print("bah fréro tu es cringe")
+        
         
         session["infoRouge"]="Authentification refusée"
         return redirect("/login")
@@ -131,13 +131,16 @@ def update_mdp():
     try : 
         MDP = f.chiffrement_mdp(new_mdp)
         lastId = bdd.update_mdp(idUser=session["idUser"],newvalue=MDP)
-        print(lastId) # dernier id modifié par la BDD       
+        session["password"]=MDP
         
         if "errorDB" not in session:
             session["infoVert"]="Le mot de passe a été mis à jour"
         else:
             session["infoRouge"]="Problème maj utilisateur"
         
-        return redirect("/")
-    except:    
-        return redirect("/webmaster")
+        
+    except:
+        
+        pass    
+    
+    return redirect("/profil")
