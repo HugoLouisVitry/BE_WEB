@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 12 mai 2023 à 13:45
+-- Généré le : ven. 12 mai 2023 à 16:13
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -64,18 +64,20 @@ CREATE TABLE `user` (
   `nom` varchar(20) DEFAULT NULL,
   `prenom` varchar(20) DEFAULT NULL,
   `reponse` varchar(40) DEFAULT NULL,
-  `mail` varchar(40) DEFAULT NULL
+  `mail` varchar(40) DEFAULT NULL,
+  `avatar` varchar(60) NOT NULL DEFAULT 'default_user.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`, `mail`) VALUES
-(1, 'huyghema', '203ed44b778fa1a55ffd9cf3dc4407c710a787625d5f2cf365a4e3ad9232fa3f', 1, 'Huyghe', 'Mathias', NULL, 'mathias.huyghe@alumni.enac.fr'),
-(2, 'lecarpma', '1ee3bcb7aff31f0e8d12da84deaf85b1a471731d4ed334189954e52c4b5fcdc1', 1, 'Le Carpentier', 'Marie', NULL, 'marie.le-carpentier@alumni.enac.fr'),
-(3, 'rummenspa', '6f73aaf7bffa8141aa7c7607566063bbcf9993a1efdf79c94a9ba3ad2187595a', 1, 'Rummens', 'Paul', NULL, 'paul.rummens@alumni.enac.fr'),
-(4, 'vitryhu', 'ec1a405c52aee12ec05e9785d83d89b9fdc1adad1fbe38f7c7904e3e09f6686e', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr');
+INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`, `mail`, `avatar`) VALUES
+(1, 'huyghema', '203ed44b778fa1a55ffd9cf3dc4407c710a787625d5f2cf365a4e3ad9232fa3f', 1, 'Huyghe', 'Mathias', NULL, 'mathias.huyghe@alumni.enac.fr', 'default_user.png'),
+(2, 'lecarpma', '1ee3bcb7aff31f0e8d12da84deaf85b1a471731d4ed334189954e52c4b5fcdc1', 1, 'Le Carpentier', 'Marie', NULL, 'marie.le-carpentier@alumni.enac.fr', 'default_user.png'),
+(3, 'rummenspa', '6f73aaf7bffa8141aa7c7607566063bbcf9993a1efdf79c94a9ba3ad2187595a', 1, 'Rummens', 'Paul', NULL, 'paul.rummens@alumni.enac.fr', 'default_user.png'),
+(4, 'vitryhu', 'ec1a405c52aee12ec05e9785d83d89b9fdc1adad1fbe38f7c7904e3e09f6686e', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr', 'default_user.png'),
+(5, 'michauxre', 'c614fa5efe21551e29b100f529f7cc35dff1b955fda72df4dd168fa571bcd0bc', 0, 'Michaux', 'Rémi', 'Null', 'remi.michaux@alumni.enac.fr', 'default_user.png');
 
 --
 -- Index pour les tables déchargées
@@ -115,7 +117,7 @@ ALTER TABLE `project`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Contraintes pour les tables déchargées
