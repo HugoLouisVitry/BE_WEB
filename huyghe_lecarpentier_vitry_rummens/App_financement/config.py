@@ -9,8 +9,8 @@ WEB_SERVER = {
 }
 #Configuration du serveur de BDD
 DB_SERVER = {
-"user": "ienac",
-"password": "ienac",
+"user": "phpmyadmin",
+"password": "mysql",
 "host": "localhost",
 "port": 3306, #8889 si MAC
 "database": "financement", #nom de la BDD

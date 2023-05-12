@@ -83,6 +83,8 @@ def connect():
         # session["mail"] = user["mail"]
         session["isAdmin"] = user["isAdmin"]
         session["infoVert"]="Authentification réussie"
+        session["login"] = login
+        session["password"] = f.chiffrement_mdp(mdp)
         return redirect("/")
     except TypeError as err:
         # Authentification refusée
@@ -107,5 +109,35 @@ def sgbd():
 
 @app.route("/profil")
 def profil():
+    params=f.messageInfo(None)
+    return render_template("profil.html",**params) 
+
+@app.route("/update_mdp", methods=['POST'])
+def update_mdp():
+
+    # réception des données du formulaire
+    crt_mdp = request.form['old_mdp']
+    new_mdp = request.form['new_mdp']
+    confirm_mdp = request.form['confirm_mdp']  
     
-    return render_template("profil.html") 
+    
+    if f.chiffrement_mdp(crt_mdp) != session["password"] :
+        session["infoRouge"]="Votre ancien mot de passe est faux"
+        return redirect("/profil")
+    
+    if new_mdp != confirm_mdp : 
+        session["infoRouge"]="Les mots de passe ne correspondent pas"
+        return redirect("/profil")
+    try : 
+        MDP = f.chiffrement_mdp(new_mdp)
+        lastId = bdd.update_mdp(idUser=session["idUser"],newvalue=MDP)
+        print(lastId) # dernier id modifié par la BDD       
+        
+        if "errorDB" not in session:
+            session["infoVert"]="Le mot de passe a été mis à jour"
+        else:
+            session["infoRouge"]="Problème maj utilisateur"
+        
+        return redirect("/")
+    except:    
+        return redirect("/webmaster")
