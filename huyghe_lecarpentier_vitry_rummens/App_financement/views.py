@@ -29,7 +29,7 @@ def login():
 @app.route("/signin")
 def signin():
     params=f.messageInfo(None)
-    return render_template("signin.html")
+    return render_template("signin.html", **params)
 
 
 @app.route("/pricing")
@@ -56,15 +56,18 @@ def addMembre():
     mail = request.form['mail']
     login = request.form['login']
     motPasse = request.form['mdp']
-    statut = request.form['statut']
+    statut=0 
     lastId = bdd.add_membreData(nom, prenom, mail,
     login, motPasse, statut)
-    print(lastId) # dernier id créé par la BDD
+    
+    # dernier id créé par la BDD
     if "errorDB" not in session:
         session["infoVert"]="Nouveau membre inséré"
+        return redirect("/login")
     else:
         session["infoRouge"]="Problème ajout utilisateur"
-    return redirect("/sgbd")
+        return redirect("/signin")
+    
 
 # authentification
 @app.route("/connecter", methods=["POST"])

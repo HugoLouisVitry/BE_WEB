@@ -146,14 +146,14 @@ def saveDataFromFile(data):
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
     
-def add_membreData(idUser, nom, prenom, mail, login, password, isAdmin, reponse):
+def add_membreData(nom, prenom, mail, login, password, isAdmin=1, reponse="Null"):
     cnx = connexion()
     if cnx is None: return None
     try:
         encrypted_password = function.chiffrement_mdp(password)
         cursor = cnx.cursor()
-        sql = "INSERT INTO user (nom, prenom, mail, login, motPasse, statut, avatar) VALUES (%s, %s, %s, %s, %s, %s, %s);"
-        param = (idUser, nom, prenom, mail, login, encrypted_password, isAdmin, reponse)
+        sql = "INSERT INTO user (nom, prenom, mail, login, password, isAdmin, reponse) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+        param = (nom, prenom, mail, login, encrypted_password, isAdmin, reponse)
         cursor.execute(sql, param)
         lastId = cursor.lastrowid # dernier idUser généré
         cnx.commit()
