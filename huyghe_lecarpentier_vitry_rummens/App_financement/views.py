@@ -1,6 +1,9 @@
 from flask import Flask, render_template, session,request,redirect
 from .model import bdd as bdd
 from .controller import function as f
+from werkzeug.utils import secure_filename
+import pandas, os 
+Upload_avatar=os.path.dirname(__file__)+"\\static\\images\\avatar" 
 
 
 app=Flask(__name__)
@@ -55,9 +58,13 @@ def addMembre():
     mail = request.form['mail']
     login = request.form['login']
     motPasse = request.form['mdp']
+    avatar=request.files['avatar']
+    nom_avatar=secure_filename(avatar.filename)
+    avatar.save(os.path.join(Upload_avatar, nom_avatar))
+    
     statut=0 
     bdd.add_membreData(nom, prenom, mail,
-    login, motPasse, statut)
+    login, motPasse,nom_avatar, statut, )
     
     # dernier id créé par la BDD
     if "errorDB" not in session:
