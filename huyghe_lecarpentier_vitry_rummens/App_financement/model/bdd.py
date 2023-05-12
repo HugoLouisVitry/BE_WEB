@@ -112,7 +112,7 @@ def verifAuthData(login, mdp):
     try:
         cursor = cnx.cursor(dictionary=True)
         sql = "SELECT * FROM user WHERE login=%s and password=%s"
-        param=(login, mdp)
+        param=(login, mdpC)
         cursor.execute(sql, param)
         user = cursor.fetchone()
         close_bd(cursor, cnx)       
