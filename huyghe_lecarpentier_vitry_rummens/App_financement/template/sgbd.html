@@ -30,12 +30,12 @@
                             <thead>
                                 <tr>
                                     <th data-field="supp" data-align="center">Supp</th>
-                                    <th data-field="avatar" data-sortable="true">Avatar</th>
+                                    <!-- <th data-field="avatar" data-sortable="true">Avatar</th> -->
                                     <th data-field="nom" data-sortable="true">Nom</th>
                                     <th data-field="prenom" data-sortable="true">Prénom</th>
                                     <th data-field="mail" data-sortable="true">Mail</th>
                                     <th data-field="login" data-sortable="true">Login</th>
-                                    <th data-field="statut" data-sortable="true">Statut</th>
+                                    <th data-field="isAdmin" data-sortable="true">Administrateur</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,10 +44,10 @@
                                 <tr>
                                     <td>
                                         <a href="/suppMembre?userDel={{user.idUser}}">
-                                            <i class='fa-solid fa-trash-can text-danger fs-4'></i>
+                                            <img src='static/images/prettyPhoto/trashcan.png' height="30px" width="30px">
                                         </a>
                                     </td>
-                                    <td><img src="/static/img/avatar/{{ user.avatar }}" class="avatar" /></td>
+                                    <!-- <td><img src="/static/img/avatar/{{ user.avatar }}" class="avatar" /></td> -->
                                     <td class='modif' data-url='/updateMembre/N' data-pk='{{user.idUser}}'> {{ user.nom
                                         }}
                                     </td>
@@ -55,10 +55,10 @@
                                     <td>{{ user.mail }}</td>
                                     <td>{{ user.login }}</td>
                                     <td class='modifSelect' data-url='/updateMembre/S' data-pk='{{user.idUser}}'>
-                                        {% if user.statut == 0 %}
+                                        {% if user.isAdmin %}
                                         Administrateur
                                         {% else %}
-                                        Gestionnaire
+                                        Non administrateur
                                         {% endif %}
                                     </td>
                                 </tr>
