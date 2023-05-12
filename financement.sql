@@ -65,7 +65,7 @@ CREATE TABLE `user` (
   `prenom` varchar(20) DEFAULT NULL,
   `reponse` varchar(40) DEFAULT NULL,
   `mail` varchar(40) DEFAULT NULL,
-  `avatar` varchar(60) NOT NULL DEFAULT 'static/images/default_user.png'
+  `avatar` varchar(60) NOT NULL DEFAULT 'default_user.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
