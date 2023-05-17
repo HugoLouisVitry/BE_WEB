@@ -147,3 +147,26 @@ def update_mdp():
     except:
         pass    
     return redirect("/profil")
+
+# suppression d'un membre
+@app.route("/suppMembre/<idUser>")
+def suppMembre(idUser=None):
+    bdd.del_membreData(idUser)
+    # la suppression a bien fonctionné
+    if "errorDB" not in session:
+        session["infoVert"] = "L'utilisateur a bien été supprimé"
+    else:
+        session["infoRouge"] = "Problème suppression utilisateur"
+    return redirect("/sgbd")
+
+# Mise à jour du nom et du statut d'un membre
+@app.route("/updateMembre/<champ>", methods=['POST'])
+def updateMembre(champ=None):
+    # réception des données du formulaire
+    idUser = request.form['pk']
+    newvalue = request.form['value']
+    if champ == "N":
+        bdd.update_membreData("nom", idUser, newvalue)
+    if champ == "S":
+        bdd.update_membreData("statut", idUser, newvalue)
+    return "1"
