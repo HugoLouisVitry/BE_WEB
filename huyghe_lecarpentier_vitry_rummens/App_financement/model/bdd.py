@@ -181,3 +181,22 @@ def update_mdp(idUser, newvalue):
         session['errorDB'] = "Failed update membres data : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
+
+def add_projectData(name, description, target, endDate, isOpen, idUser):
+    cnx = connexion()
+    if cnx is None: return None
+    try:
+        # encrypted_password = function.chiffrement_mdp(password)
+        cursor = cnx.cursor()
+        sql = "INSERT INTO project (name, description, target, endDate, isOpen, idUser) VALUES (%s, %s, %s, %s, %s, %s);"
+        param = (name, description, target, endDate, isOpen, idUser)
+        cursor.execute(sql, param)
+        lastId = cursor.lastrowid # dernier idUser généré
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK add_projectData"
+    except mysql.connector.Error as err:
+        lastId = None
+        session['errorDB'] = "Failed add project data : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return lastId

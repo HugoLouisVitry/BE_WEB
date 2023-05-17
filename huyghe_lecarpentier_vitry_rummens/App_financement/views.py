@@ -17,7 +17,7 @@ def index():
     
     params=f.messageInfo(None)
     
-    return render_template("index.html",title="Acueil",**params)
+    return render_template("index.html",title="Accueil",**params)
 
 @app.route("/about")
 def about():
@@ -49,6 +49,11 @@ def case_study():
 @app.route("/webmaster")
 def webmaster():
     return render_template("webmaster.html")
+
+@app.route("/new-project")
+def new_project():
+    params = f.messageInfo(None)
+    return render_template("new-project.html", **params)
 
 @app.route("/addMembre", methods=['POST'])
 def addMembre():
@@ -170,3 +175,27 @@ def updateMembre(champ=None):
     if champ == "S":
         bdd.update_membreData("statut", idUser, newvalue)
     return "1"
+
+@app.route("/addProject", methods=['POST'])
+def addProject():
+    # réception des données du formulaire
+    name = request.form['name']
+    description = request.form['description']
+    target = request.form['target']
+    endDate = request.form['endDate']
+    isOpen = 1
+    idUser = session['idUser']
+    # avatar=request.files['avatar']
+    # nom_avatar=secure_filename(avatar.filename)
+    # avatar.save(os.path.join(Upload_avatar, nom_avatar))
+    
+    statut=0 
+    bdd.add_projectData(name, description, target, endDate, isOpen, idUser)
+    
+    # dernier id créé par la BDD
+    if "errorDB" not in session:
+        session["infoVert"]="Nouveau projet inséré"
+        return redirect("/login")
+    else:
+        session["infoRouge"]="Problème ajout projet"
+        return redirect("/new-project")
