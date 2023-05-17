@@ -16,10 +16,50 @@
         width: 50px;
 
     }
+
+    #menu {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: rgb(236,236,236);
+        height: 70px;
+        text-align: center;
+        z-index : 100 ;
+        margin: 0;
+    }
+
+    #menu li {
+        position: relative;
+        left: 10%;
+        top: 15%;
+    }
+
+
+    #image_marque { 
+        z-index: 100;
+        position: fixed;
+        height: 70px;
+        background-color: rgb(236,236,236);
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;}
+    
+    #image_marque img{
+        height: 50px;
+        width: auto;
+        position: relative ;
+        left: 65px;
+        top: 10px;
+
+
+
+
+    }
 </style>
 <header>
-    <nav class="megamenu navbar navbar-default">
-        <a class="navbar-brand" href="/">
+    <nav class="megamenu navbar navbar-default" >
+        <a class="navbar-brand" href="/" id="image_marque">
             <img src="static/images/logos/logo-seo.png" alt="image">
         </a>
         <div class="container">
@@ -35,7 +75,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
 
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" id="menu">
                     <li><a class="active" href="/">Home</a></li>
                     <li><a href="/about">About Us </a></li>
                     <li><a href="/services">Services</a></li>
