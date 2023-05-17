@@ -4,10 +4,17 @@
     {% include("layout/head.html") %}
 
 </head>
-<body class="seo_version">
+<body class="seo_version" onload="setTimeout(cacherDiv,5000)">
 
 	<!-- END LOADER -->
     {% include("layout/nav.html") %}
+
+
+    <SCRIPT language="JavaScript">
+        function cacherDiv() {
+             document.getElementById("messageInfo").style.display ="none";
+        }
+        </SCRIPT>
 
 
     {% include ("layout/info.html") %}

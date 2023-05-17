@@ -1,31 +1,36 @@
 {% if errorDB %}
-<div class="alert alert-danger text-center">
+<div class="alert alert-danger text-center" id="messageInfo">
+    <br>
     <h5 class="text-danger">Problème BDD</h5>
     {{ errorDB }}
 </div>
 {% endif %}
 
 {% if successDB %}
-<div class="alert alert-warning text-center">
+<div class="alert alert-warning text-center" id="messageInfo">
+    <br>
     <h5>Succès BDD</h5>
     {{ successDB }}
 </div>
 {% endif %}
 
     {% if infoRouge  %}
-    <div class="alert alert-danger text-center">
+    <div class="alert alert-danger text-center" id="messageInfo">
+        <br>
         {{ infoRouge }}
     </div>
     {% endif %}
 
 {% if infoVert %}
-<div class="alert alert-success text-center">
+<div class="alert alert-success text-center" id="messageInfo">
+    <br>
     {{ infoVert }}
 </div>
 {% endif %}
 
 {% if infoBleu %}
-<div class="alert alert-primary text-center">
+<div class="alert alert-primary text-center" id="messageInfo">
+    <br>
     {{ infoBleu }}
 </div>
 {% endif %}
