@@ -1,19 +1,23 @@
 <style>
     #user{
-        position: absolute;
-        top: 0;
+        position: fixed;
+        top: 14px;
         right: 0;
         margin-top: 10px;
         margin-right: 10px;
         font-size: 20px;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: 'FontAwesome';
+        z-index: 100;
     }
     
     #avatar{
-        float:left;
+        position: fixed;
         margin-right: 10px;
-        height: 50px;
-        width: 50px;
+        height: 40px;
+        width: auto;
+        z-index: 150;
+        right: 150px;
+        top: 14px;
 
     }
 
@@ -38,6 +42,7 @@
     #image_marque { 
         z-index: 100;
         position: fixed;
+        top: 0px;
         height: 70px;
         background-color: rgb(236,236,236);
         width: 100%;
@@ -46,11 +51,11 @@
         border: 0;}
     
     #image_marque img{
-        height: 50px;
+        height: 70px;
         width: auto;
         position: relative ;
-        left: 65px;
-        top: 10px;
+        left: 59px;
+        top: 30 px;
 
 
 
