@@ -200,3 +200,38 @@ def add_projectData(name, description, target, endDate, isOpen, idUser):
         session['errorDB'] = "Failed add project data : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return lastId
+
+#fermeture d'un projet
+def close_projectData(idProject):
+    cnx = connexion()
+    if cnx is None: return None
+    try:
+        cursor = cnx.cursor()
+        sql = "UPDATE client SET isOpen = 0 WHERE idProject=%s;"
+        param = (idProject,)
+        cursor.execute(sql, param)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK close_projectData"
+    except mysql.connector.Error as err:
+        session['errorDB'] = "Failed close project : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return 1
+
+#modification d'une donnée dans la table project
+def update_projectData(champ, idProject, newvalue):
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor()
+        sql = "UPDATE project SET "+champ+" = %s WHERE idProject = %s;"
+        param = (newvalue, idProject)
+        cursor.execute(sql, param)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK update_projectData"
+    except mysql.connector.Error as err:
+        session['errorDB'] = "Failed update projet : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return 1

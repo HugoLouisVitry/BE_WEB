@@ -195,7 +195,30 @@ def addProject():
     # dernier id créé par la BDD
     if "errorDB" not in session:
         session["infoVert"]="Nouveau projet inséré"
-        return redirect("/login")
+        return redirect("/new-project")
     else:
         session["infoRouge"]="Problème ajout projet"
         return redirect("/new-project")
+
+# fermeture d'un projet
+@app.route("/closeProject/<idProject>")
+def closeProject(idProject=None):
+    bdd.close_projectData(idProject)
+    # la fermeture a bien fonctionné
+    if "errorDB" not in session:
+        session["infoVert"] = "Le projet a bien été fermé"
+    else:
+        session["infoRouge"] = "Problème fermeture projet"
+    return redirect("/new-project")
+
+# Mise à jour du projet
+@app.route("/updateProject/<champ>", methods=['POST'])
+def updateProject(champ=None):
+    # réception des données du formulaire
+    idProject = request.form['pk']
+    newvalue = request.form['value']
+    if champ == "N":
+        bdd.update_projectData("nom", idProject, newvalue)
+    if champ == "S":
+        bdd.update_membreData("statut", idProject, newvalue)
+    return "1"
