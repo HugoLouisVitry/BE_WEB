@@ -50,10 +50,10 @@ def case_study():
 def webmaster():
     return render_template("webmaster.html")
 
-@app.route("/new-project")
-def new_project():
-    params = f.messageInfo(None)
-    return render_template("new-project.html", **params)
+# @app.route("/new-project")
+# def new_project():
+#     params = f.messageInfo(None)
+#     return render_template("new-project.html", **params)
 
 @app.route("/addMembre", methods=['POST'])
 def addMembre():
@@ -175,6 +175,14 @@ def updateMembre(champ=None):
     if champ == "S":
         bdd.update_membreData("statut", idUser, newvalue)
     return "1"
+
+#page new-project
+@app.route("/new-project")
+def new_project():
+    listeProjets = bdd.get_projectData()
+    params ={'liste':listeProjets}
+    params = f.messageInfo(params)
+    return render_template("new-project.html", **params)
 
 @app.route("/addProject", methods=['POST'])
 def addProject():

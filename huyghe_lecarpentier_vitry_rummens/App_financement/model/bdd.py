@@ -235,3 +235,21 @@ def update_projectData(champ, idProject, newvalue):
         session['errorDB'] = "Failed update projet : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
+
+# Retourne les données de la table project
+def get_projectData():
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT * FROM project"
+        cursor.execute(sql)
+        listeProjets = cursor.fetchall()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK get_projectData"
+    except mysql.connector.Error as err:
+        listeProjets = None
+        session['errorDB'] = "Failed get projets data : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return listeProjets
