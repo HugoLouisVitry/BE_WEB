@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 12 mai 2023 à 16:13
+-- Généré le : lun. 22 mai 2023 à 11:35
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -50,6 +50,15 @@ CREATE TABLE `project` (
   `idUser` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Déchargement des données de la table `project`
+--
+
+INSERT INTO `project` (`idProject`, `name`, `description`, `target`, `endDate`, `isOpen`, `idUser`) VALUES
+(1, 'Sauver le groupe huyghe_lecarpentier_vitry_rummens', 'Le groupe se noie sous les projets de BE. Alors que Hugo nous a quittés pour remporter haut la main la Coupe de Robotique, Paul est perdu dans les recoins les plus sombres de Blériot.', 1000000, '2023-07-29', 1, 2),
+(2, 'Goûter', 'Prendre un goûter savoureux chez Mathias', 1000000, '2023-05-23', 1, 2),
+(3, 'test', 'test', 1, '2023-05-23', 1, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -65,7 +74,7 @@ CREATE TABLE `user` (
   `prenom` varchar(20) DEFAULT NULL,
   `reponse` varchar(40) DEFAULT NULL,
   `mail` varchar(40) DEFAULT NULL,
-  `avatar` varchar(60) NOT NULL DEFAULT 'default_user.png'
+  `avatar` varchar(60) NOT NULL DEFAULT 'static/images/avatar/default_user.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -76,8 +85,7 @@ INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `
 (1, 'huyghema', '203ed44b778fa1a55ffd9cf3dc4407c710a787625d5f2cf365a4e3ad9232fa3f', 1, 'Huyghe', 'Mathias', NULL, 'mathias.huyghe@alumni.enac.fr', 'default_user.png'),
 (2, 'lecarpma', '1ee3bcb7aff31f0e8d12da84deaf85b1a471731d4ed334189954e52c4b5fcdc1', 1, 'Le Carpentier', 'Marie', NULL, 'marie.le-carpentier@alumni.enac.fr', 'default_user.png'),
 (3, 'rummenspa', '6f73aaf7bffa8141aa7c7607566063bbcf9993a1efdf79c94a9ba3ad2187595a', 1, 'Rummens', 'Paul', NULL, 'paul.rummens@alumni.enac.fr', 'default_user.png'),
-(4, 'vitryhu', 'ec1a405c52aee12ec05e9785d83d89b9fdc1adad1fbe38f7c7904e3e09f6686e', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr', 'default_user.png'),
-(5, 'michauxre', 'c614fa5efe21551e29b100f529f7cc35dff1b955fda72df4dd168fa571bcd0bc', 0, 'Michaux', 'Rémi', 'Null', 'remi.michaux@alumni.enac.fr', 'default_user.png');
+(4, 'vitryhu', 'ec1a405c52aee12ec05e9785d83d89b9fdc1adad1fbe38f7c7904e3e09f6686e', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr', 'default_user.png');
 
 --
 -- Index pour les tables déchargées
@@ -111,7 +119,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
-  MODIFY `idProject` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idProject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `user`
