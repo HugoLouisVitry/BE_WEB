@@ -40,7 +40,10 @@ def pricing():
 
 @app.route("/services")
 def services():
-    return render_template("services.html")
+    Projets = bdd.get_projectData()
+    params ={'liste':Projets}
+    params = f.messageInfo(params)
+    return render_template("services.html",**params)
 
 @app.route("/case-study")
 def case_study():
