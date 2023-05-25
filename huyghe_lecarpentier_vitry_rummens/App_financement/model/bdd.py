@@ -186,12 +186,11 @@ def add_projectData(name, description, target, endDate, isOpen, idUser):
     cnx = connexion()
     if cnx is None: return None
     try:
-        # encrypted_password = function.chiffrement_mdp(password)
         cursor = cnx.cursor()
         sql = "INSERT INTO project (name, description, target, endDate, isOpen, idUser) VALUES (%s, %s, %s, %s, %s, %s);"
         param = (name, description, target, endDate, isOpen, idUser)
         cursor.execute(sql, param)
-        lastId = cursor.lastrowid # dernier idUser généré
+        lastId = cursor.lastrowid # dernier idProject généré
         cnx.commit()
         close_bd(cursor, cnx)
         #session['successDB'] = "OK add_projectData"
@@ -207,7 +206,7 @@ def close_projectData(idProject):
     if cnx is None: return None
     try:
         cursor = cnx.cursor()
-        sql = "UPDATE client SET isOpen = 0 WHERE idProject=%s;"
+        sql = "UPDATE project SET isOpen = 0 WHERE idProject=%s;"
         param = (idProject,)
         cursor.execute(sql, param)
         cnx.commit()
