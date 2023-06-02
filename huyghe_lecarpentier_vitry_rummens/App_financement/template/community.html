@@ -2,6 +2,75 @@
 <html lang="en">
     <head>
         {% include("layout/head.html") %}
+        <style>
+            body {
+              margin: 0;
+              padding: 0;
+              overflow-y: scroll;
+              scroll-snap-type: y mandatory;
+            }
+      
+            .slider {
+              height: 100vh;
+              scroll-snap-align: start;
+              transition: opacity 0.3s ease;
+            }
+      
+            .slider:nth-child(odd) {
+              background-color: #c8ea5b;
+            }
+      
+            .slider:nth-child(even) {
+              background-color: #ccc;
+            }
+      
+            .slider:hover {
+              opacity: 0.8;
+            }
+      
+            .slider:not(:hover) {
+              opacity: 0.5;
+            }
+
+            .project_pic{
+                float: left;
+                margin-right: 10px;
+                height: 200px;
+                width: 200px;             
+            }
+
+
+        
+
+        
+            .name {
+              font-size: 70px;
+              text-align: center;
+              font-weight: bold;
+              margin-bottom: 10px;
+            }
+    
+            .description {
+                font-size: 40px;
+                text-align: center;
+            }
+            .target {
+                font-size: 30px;
+                text-align: center;
+                font-weight: bold;
+                bottom: 30px;
+                margin-bottom: 10px;
+              }
+            .isOpen {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                font-size: 12px;
+                color: #999;
+
+              }
+
+        </style>
     </head>
 <body class="seo_version">
 
@@ -33,27 +102,31 @@
                             <br>
                             
                                 <br>
-
+                                
                                 <div>
                                     {% if liste and liste is not none %}
                                     {% for project in liste %}
                                     <div>
-                                        <div>
-                                            <img src="/static/images/avatar/{{ project.picture }}" class="avatar"
-                                                height="30px" width="30px" />
+                                        <div class="slider">
+                                        
+                                                <img src="/static/images/projects/{{ project.picture }}" class="project_pic" />
+                                            
+                                                <div class='name'data-pk='{{project}}'> {{project.name}}</div>
+                                                <br>
+                                                
+                                                <div class="description">{{ project.description }}</div>
+                                                <br>
+                                                <div class="target"> Objectif : {{ project.target }} € </div>
+                                                <br>
+                                                <div> (progress bar de l'objectif WIP)  </div>
+                                                <br>
+                                                <div class="isOpen">{{ project.isOpen }}</div>
+                                                <br>
                                         </div>
-                                        <div data-pk='{{project}}'> 
-                                            {{project.name}}
-                                        </div>
-
-                                        <div>{{ project.description }}
-                                        <div> {{ project.target }}</div>
-                                        <div>{{ project.isOpen }}</div>
                                     </div>
-                                    {% endfor %}
-                                    {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
                                 </div>
-                            
 
                         </div>
 

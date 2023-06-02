@@ -38,12 +38,12 @@ def signin():
 def pricing():
     return render_template("pricing.html")
 
-@app.route("/services")
-def services():
+@app.route("/community")
+def community():
     Projets = bdd.get_projectData()
     params ={'liste':Projets}
     params = f.messageInfo(params)
-    return render_template("services.html",**params)
+    return render_template("community.html",**params)
 
 @app.route("/case-study")
 def case_study():
