@@ -209,13 +209,14 @@ def close_projectData(idProject):
         sql = "UPDATE project SET isOpen = 0 WHERE idProject=%s;"
         param = (idProject,)
         cursor.execute(sql, param)
+        lastId = cursor.lastrowid # dernier idProject généré
         cnx.commit()
         close_bd(cursor, cnx)
         #session['successDB'] = "OK close_projectData"
     except mysql.connector.Error as err:
         session['errorDB'] = "Failed close project : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
-    return 1
+    return lastId
 
 #modification d'une donnée dans la table project
 def update_projectData(champ, idProject, newvalue):
@@ -243,10 +244,13 @@ def get_projectData():
     try:
         cursor = cnx.cursor(dictionary=True)
         sql = "SELECT * FROM project"
+        is_open = "SELECT isOpen FROM project WHERE idProject = 3"
+        print("isOpen =", is_open)
         cursor.execute(sql)
         listeProjets = cursor.fetchall()
+        cnx.commit()
         close_bd(cursor, cnx)
-        #session['successDB'] = "OK get_projectData"
+        # session['successDB'] = "OK get_projectData"
     except mysql.connector.Error as err:
         listeProjets = None
         session['errorDB'] = "Failed get projets data : {}".format(err)

@@ -2,6 +2,75 @@
 <html lang="en">
     <head>
         {% include("layout/head.html") %}
+        <style>
+            body {
+              margin: 0;
+              padding: 0;
+              overflow-y: scroll;
+              scroll-snap-type: y mandatory;
+            }
+      
+            .slider {
+                position: relative;
+                width: 1500px;
+                height: 1000px;
+                scroll-snap-align: start;
+                transition: opacity 0.3s ease;
+            }
+      
+            .slider:nth-child(odd) {
+              background-color: #c8ea5b;
+            }
+      
+            .slider:nth-child(even) {
+              background-color: #ccc;
+            }
+      
+            .slider:hover {
+              opacity: 0.8;
+            }
+      
+            .slider:not(:hover) {
+              opacity: 0.5;
+            }
+
+            .project_pic{
+                float: left;
+                margin-right: 10px;
+                            }
+
+
+        
+
+        
+            .name {
+              font-size: 70px;
+              text-align: center;
+              font-weight: bold;
+              margin-bottom: 10px;
+            }
+    
+            .description {
+                font-size: 40px;
+                text-align: center;
+            }
+            .target {
+                font-size: 30px;
+                text-align: center;
+                font-weight: bold;
+                bottom: 30px;
+                margin-bottom: 10px;
+              }
+            .isOpen {
+                position: relative;
+                bottom: 0;
+                right: 0;
+                font-size: 12px;
+                color: #999;
+
+              }
+
+        </style>
     </head>
 <body class="seo_version">
 
@@ -14,6 +83,7 @@
         <div class="container text-center">
             <h1>Projets de la communauté</h1>
         </div>
+        <br>
 		<!--Page -->
 
         <!--End Page-->
@@ -27,33 +97,37 @@
                     <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
                     {% include("layout/info.html") %}
 
-                    <div class="row">
-                        <div class="col-8">
+                    <div>
+                        <div >
                             {# liste #}
                             <br>
                             
                                 <br>
-
+                                
                                 <div>
                                     {% if liste and liste is not none %}
                                     {% for project in liste %}
                                     <div>
-                                        <div>
-                                            <img src="/static/images/avatar/{{ project.picture }}" class="avatar"
-                                                height="30px" width="30px" />
+                                        <div class="slider">
+                                        
+                                                <img src="{{ project.picture }}" class="project_pic" />
+                                            
+                                                <div class='name'data-pk='{{project}}'> {{project.name}}</div>
+                                                <br>
+                                                
+                                                <div class="description">{{ project.description }}</div>
+                                                <br>
+                                                <div class="target"> Objectif : {{ project.target }} € </div>
+                                                <br>
+                                                <div> (progress bar de l'objectif WIP)  </div>
+                                                <br>
+                                                <div class="isOpen">{{ project.isOpen }}</div>
+                                                <br>
                                         </div>
-                                        <div data-pk='{{project}}'> 
-                                            {{project.name}}
-                                        </div>
-
-                                        <div>{{ project.description }}
-                                        <div> {{ project.target }}</div>
-                                        <div>{{ project.isOpen }}</div>
                                     </div>
-                                    {% endfor %}
-                                    {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
                                 </div>
-                            
 
                         </div>
 

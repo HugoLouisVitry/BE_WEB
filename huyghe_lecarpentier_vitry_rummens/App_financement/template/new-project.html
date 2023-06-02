@@ -27,7 +27,7 @@
                                 <thead>
                                     <tr>
                                         <th data-field="close" data-align="center">Fermer</th>
-                                        <th data-field="idProject" data-sortable="true">Identifiant</th>
+                                        <th data-field="picture" data-sortable="true">Image</th>
                                         <th data-field="name" data-sortable="true">Nom</th>
                                         <th data-field="description" data-sortable="true">Description</th>
                                         <th data-field="target" data-sortable="true">Objectif</th>
@@ -46,7 +46,9 @@
                                                     width="30px">
                                             </a>
                                         </td>
-                                        <td>{{ project.idProject }}</td>
+                                        <!-- <td>{{ project.idProject }}</td> -->
+                                        <td><img src="{{ project.picture }}" class="picture"
+                                            height="30px" width="30px" /></td>
                                         <td class='modif' data-url='/updateProject/N' data-pk='{{project.idProject}}'> {{
                                             project.name }}
                                         </td>
@@ -54,7 +56,7 @@
                                         <td>{{ project.target }}</td>
                                         <td>{{ project.endDate }}</td>
                                         <td class='modifSelect' data-url='/closeProject/S' data-pk='{{project.idProject}}'>
-                                            {% if project.idOpen == 0 %}
+                                            {% if project.isOpen == 0 %}
                                             Fermé
                                             {% else %}
                                             Ouvert
