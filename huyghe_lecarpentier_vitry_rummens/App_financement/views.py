@@ -212,7 +212,7 @@ def addProject():
         return redirect("/new-project")
 
 # fermeture d'un projet
-@app.route("/closeProject/<idProject>", methods=['POST'])
+@app.route("/closeProject/<idProject>")
 def closeProject(idProject=None):
     bdd.close_projectData(idProject)
     # la fermeture a bien fonctionné
