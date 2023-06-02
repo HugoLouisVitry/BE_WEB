@@ -38,19 +38,24 @@
 <style>
 #Cadre{
   position: relative;
-  height: 100px;
-  width: 1000px ;
+  height: 200;
+  width: 1200px ;
   border-radius: 10px ;
   z-index: 100000;
   background-color: chartreuse;
+  column-count: 2;
 }
 
 </style>
 <div class="container" id="Cadre">
-
-SALUT
-
+<p>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/Yd7BcAkH8iY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</p>
+<p>
+  Faut du mettre du texte
+</p>
 </div>
+
 
     
 
@@ -102,8 +107,9 @@ SALUT
       margin: 0;
       font-size: 18px;
       margin-bottom: 10px;
+      white-space: pre-wrap;
       z-index: 99990;
-    }
+  }
 
     .slide p {
       margin: 0;
@@ -138,69 +144,29 @@ SALUT
 <br>
   <div class="slider">
     <div class="slide-container">
+      {% if liste and liste is not none %}
+      {% for project in liste %}
       <div class="slide">
-        <img src="static\images\webmaster\mathias.jpg" alt="Image 1">
+        <img src="{{ project.picture }}" alt="Image">
         <div class="slide-content">
-          <h3>Slide 1</h3>
-          <p>Description du slide 1</p>
+          <h3>{{ project.name }}</h3>
+          <p>{{ project.description }}</p>
         </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\paul.jpg" alt="Image 2">
-        <div class="slide-content">
-          <h3>Slide 2</h3>
-          <p>Description du slide 2</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\marie.jpg" alt="Image 3">
-        <div class="slide-content">
-          <h3>Slide 3</h3>
-          <p>Description du slide 3</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\hugo.jpg" alt="Image 4">
-        <div class="slide-content">
-          <h3>Slide 4</h3>
-          <p>Description du slide 4</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\mathias.jpg" alt="Image 5">
-        <div class="slide-content">
-          <h3>Slide 5</h3>
-          <p>Description du slide 5</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\marie.jpg" alt="Image 6">
-        <div class="slide-content">
-          <h3>Slide 6</h3>
-          <p>Description du slide 6</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\paul.jpg" alt="Image 7">
-        <div class="slide-content">
-          <h3>Slide 7</h3>
-          <p>Description du slide 7</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\hugo.jpg" alt="Image 8">
-        <div class="slide-content">
-          <h3>Slide 8</h3>
-          <p>Description du slide 8</p>
-        </div>
-      </div>
-      <div class="slide">
-        <img src="static\images\webmaster\marie.jpg" alt="Image 9">
-        <div class="slide-content">
-          <h3>Slide 9</h3>
-          <p>Description du slide 9</p>
-        </div>
-      </div>
+    </div>
+    {% endfor %}
+    {% if liste|length < 9 %}
+            {% set remainingSlides = 9 - liste|length %}
+            {% for _ in range(remainingSlides) %}
+                <div class="slide">
+                    <img src="mathias.jpg" alt="Image par défaut">
+                    <div class="slide-content">
+                        <h3>Coming Soon</h3>
+                        <p></p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+      {% endif %}
     </div>
   </div>
 

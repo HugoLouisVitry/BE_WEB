@@ -16,6 +16,8 @@ app.config.from_object('App_financement.config')
 def index():
     
     params=f.messageInfo(None)
+    liste_projets=bdd.get_project_index()
+    params={'liste':liste_projets}
     
     return render_template("index.html",title="Accueil",**params)
 
