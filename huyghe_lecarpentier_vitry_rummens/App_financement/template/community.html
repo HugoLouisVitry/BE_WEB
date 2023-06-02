@@ -11,9 +11,11 @@
             }
       
             .slider {
-              height: 100vh;
-              scroll-snap-align: start;
-              transition: opacity 0.3s ease;
+                position: relative;
+                width: 1500px;
+                height: 1000px;
+                scroll-snap-align: start;
+                transition: opacity 0.3s ease;
             }
       
             .slider:nth-child(odd) {
@@ -35,9 +37,7 @@
             .project_pic{
                 float: left;
                 margin-right: 10px;
-                height: 200px;
-                width: 200px;             
-            }
+                            }
 
 
         
@@ -83,6 +83,7 @@
         <div class="container text-center">
             <h1>Projets de la communauté</h1>
         </div>
+        <br>
 		<!--Page -->
 
         <!--End Page-->
@@ -96,8 +97,8 @@
                     <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
                     {% include("layout/info.html") %}
 
-                    <div class="row">
-                        <div class="col-8">
+                    <div>
+                        <div >
                             {# liste #}
                             <br>
                             
@@ -109,7 +110,7 @@
                                     <div>
                                         <div class="slider">
                                         
-                                                <img src="/static/images/projects/{{ project.picture }}" class="project_pic" />
+                                                <img src="{{ project.picture }}" class="project_pic" />
                                             
                                                 <div class='name'data-pk='{{project}}'> {{project.name}}</div>
                                                 <br>
