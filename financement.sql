@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 22 mai 2023 à 11:35
+-- Généré le : ven. 02 juin 2023 à 09:31
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -47,17 +47,19 @@ CREATE TABLE `project` (
   `target` int(11) NOT NULL,
   `endDate` date NOT NULL,
   `isOpen` tinyint(1) NOT NULL,
-  `idUser` int(11) NOT NULL
+  `idUser` int(11) NOT NULL,
+  `picture` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Déchargement des données de la table `project`
 --
 
-INSERT INTO `project` (`idProject`, `name`, `description`, `target`, `endDate`, `isOpen`, `idUser`) VALUES
-(1, 'Sauver le groupe huyghe_lecarpentier_vitry_rummens', 'Le groupe se noie sous les projets de BE. Alors que Hugo nous a quittés pour remporter haut la main la Coupe de Robotique, Paul est perdu dans les recoins les plus sombres de Blériot.', 1000000, '2023-07-29', 1, 2),
-(2, 'Goûter', 'Prendre un goûter savoureux chez Mathias', 1000000, '2023-05-23', 1, 2),
-(3, 'test', 'test', 1, '2023-05-23', 1, 2);
+INSERT INTO `project` (`idProject`, `name`, `description`, `target`, `endDate`, `isOpen`, `idUser`, `picture`) VALUES
+(1, 'Sauver le groupe huyghe_lecarpentier_vitry_rummens', 'Le groupe se noie sous les projets de BE. Alors que Hugo nous a quittés pour remporter haut la main la Coupe de Robotique, Paul est perdu dans les recoins les plus sombres de Blériot.', 1000000, '2023-07-29', 1, 2, 'static/images/default_picture.png'),
+(2, 'Goûter', 'Prendre un goûter savoureux chez Mathias', 1000000, '2023-05-23', 1, 2, 'static/images/default_picture.png'),
+(3, 'test', 'test', 1, '2023-05-23', 0, 2, 'static/images/default_picture.png'),
+(4, 'test2', 'test2', 50, '2023-06-22', 0, 2, 'static/images/default_picture.png');
 
 -- --------------------------------------------------------
 
@@ -119,13 +121,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `project`
 --
 ALTER TABLE `project`
-  MODIFY `idProject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idProject` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idUser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Contraintes pour les tables déchargées
