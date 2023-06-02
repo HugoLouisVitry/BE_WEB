@@ -232,7 +232,7 @@ def update_projectData(champ, idProject, newvalue):
         close_bd(cursor, cnx)
         #session['successDB'] = "OK update_projectData"
     except mysql.connector.Error as err:
-        session['errorDB'] = "Failed update projet : {}".format(err)
+        session['errorDB'] = "Failed update project : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
 
@@ -244,8 +244,6 @@ def get_projectData():
     try:
         cursor = cnx.cursor(dictionary=True)
         sql = "SELECT * FROM project"
-        is_open = "SELECT isOpen FROM project WHERE idProject = 3"
-        print("isOpen =", is_open)
         cursor.execute(sql)
         listeProjets = cursor.fetchall()
         cnx.commit()

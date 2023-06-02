@@ -58,8 +58,8 @@ CREATE TABLE `project` (
 INSERT INTO `project` (`idProject`, `name`, `description`, `target`, `endDate`, `isOpen`, `idUser`, `picture`) VALUES
 (1, 'Sauver le groupe huyghe_lecarpentier_vitry_rummens', 'Le groupe se noie sous les projets de BE. Alors que Hugo nous a quittés pour remporter haut la main la Coupe de Robotique, Paul est perdu dans les recoins les plus sombres de Blériot.', 1000000, '2023-07-29', 1, 2, 'static/images/default_picture.png'),
 (2, 'Goûter', 'Prendre un goûter savoureux chez Mathias', 1000000, '2023-05-23', 1, 2, 'static/images/default_picture.png'),
-(3, 'test', 'test', 1, '2023-05-23', 0, 2, 'static/images/default_picture.png'),
-(4, 'test2', 'test2', 50, '2023-06-22', 0, 2, 'static/images/default_picture.png');
+(3, 'test', 'test', 1, '2023-05-23', 0, 2, 'static/images/pictures/default_picture.png'),
+(4, 'test2', 'test2', 50, '2023-06-22', 0, 2, 'static/images/pictures/default_picture.png');
 
 -- --------------------------------------------------------
 
