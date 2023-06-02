@@ -252,3 +252,20 @@ def get_projectData():
         session['errorDB'] = "Failed get projets data : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return listeProjets
+
+def get_project_index():
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT * FROM project LIMIT 9"
+        cursor.execute(sql)
+        listeProjets = cursor.fetchall()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK get_projectData"
+    except mysql.connector.Error as err:
+        listeProjets = None
+        session['errorDB'] = "Failed get projets data : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return listeProjets
