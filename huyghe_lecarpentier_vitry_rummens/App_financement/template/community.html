@@ -3,23 +3,26 @@
     <head>
         {% include("layout/head.html") %}
         <style>
-            body {
-              margin: 0;
-              padding: 0;
-              overflow-y: scroll;
-              scroll-snap-type: y mandatory;
+
+        
+            .slider-container {
+                align-items: center;
+                justify-content: center;
+                max-height: 80vh;
+                overflow-y: scroll;
+                scroll-snap-type: y mandatory;
             }
-      
+        
             .slider {
-                position: relative;
-                width: 1500px;
-                height: 1000px;
+                height: 600px;
+                width: 1300px;
                 scroll-snap-align: start;
                 transition: opacity 0.3s ease;
+                margin-bottom: 30px;
             }
-      
+              
             .slider:nth-child(odd) {
-              background-color: #c8ea5b;
+                background-color: #c8ea5b;
             }
       
             .slider:nth-child(even) {
@@ -38,24 +41,20 @@
                 float: left;
                 margin-right: 10px;
                             }
-
-
-        
-
         
             .name {
-              font-size: 70px;
+              font-size: 30px;
               text-align: center;
               font-weight: bold;
               margin-bottom: 10px;
             }
     
             .description {
-                font-size: 40px;
+                font-size: 20px;
                 text-align: center;
             }
             .target {
-                font-size: 30px;
+                font-size: 20px;
                 text-align: center;
                 font-weight: bold;
                 bottom: 30px;
@@ -72,37 +71,25 @@
 
         </style>
     </head>
-<body class="seo_version">
 
-
-	<!-- END LOADER -->
     {% include("layout/nav.html") %}
-    
+<body class="seo_version">
+	<!-- END LOADER -->
+
     
     <div class="all-page-title" style="background-image:url(static/images/pattern-4.png);">
         <div class="container text-center">
             <h1>Projets de la communauté</h1>
+            <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
+            {% include("layout/info.html") %}
         </div>
         <br>
-		<!--Page -->
-
-        <!--End Page-->
-    </div><!-- end section -->
+    </div>
+    
     <div class="all-page-title" style="background-image:url(static/images/pattern-4.png);">
-        <!--Page -->
 
-        <section id="connecter" class="contact">
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
-                    {% include("layout/info.html") %}
-
-                    <div>
-                        <div >
-                            {# liste #}
-                            <br>
-                            
-                                <br>
+        <section style="justify-content: center;">
+            <div class="slider-container">
                                 
                                  <div>
                                     {% if liste and liste is not none %}
@@ -110,9 +97,9 @@
                                     <div>
                                         <div class="slider">
                                         
-                                                <img src="static/images/projectsPictures/{{project.picture}}" class="project_pic" />
+                                                <img src="static/images/projectsPictures/{{project.picture}}"  />
                                             
-                                                <div class='name'data-pk='{{project}}'> {{project.name}}</div>
+                                                <div class='name'> {{project.name}}</div>
                                                 <br>
                                                 
                                                 <div class="description">{{ project.description }}</div>
@@ -127,13 +114,7 @@
                                     </div>
                                         {% endfor %}
                                         {% endif %}
-                                </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                                </div>                
             </div><!-- end col -->
     </div><!-- end row -->
     </div>
