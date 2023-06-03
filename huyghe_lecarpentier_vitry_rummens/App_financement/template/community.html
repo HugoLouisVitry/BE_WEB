@@ -104,13 +104,13 @@
                             
                                 <br>
                                 
-                                <div>
+                                 <div>
                                     {% if liste and liste is not none %}
                                     {% for project in liste %}
                                     <div>
                                         <div class="slider">
                                         
-                                                <img src="{{ project.picture }}" class="project_pic" />
+                                                <img src="static/images/projectsPictures/{{project.picture}}" class="project_pic" />
                                             
                                                 <div class='name'data-pk='{{project}}'> {{project.name}}</div>
                                                 <br>

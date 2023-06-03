@@ -182,13 +182,13 @@ def update_mdp(idUser, newvalue):
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return 1
 
-def add_projectData(name, description, target, endDate, isOpen, idUser):
+def add_projectData(name, description, target, endDate, isOpen, idUser,picture):
     cnx = connexion()
     if cnx is None: return None
     try:
         cursor = cnx.cursor()
-        sql = "INSERT INTO project (name, description, target, endDate, isOpen, idUser) VALUES (%s, %s, %s, %s, %s, %s);"
-        param = (name, description, target, endDate, isOpen, idUser)
+        sql = "INSERT INTO project (name, description, target, endDate, isOpen, idUser, picture) VALUES (%s, %s, %s, %s, %s, %s,%s);"
+        param = (name, description, target, endDate, isOpen, idUser,picture)
         cursor.execute(sql, param)
         lastId = cursor.lastrowid # dernier idProject généré
         cnx.commit()

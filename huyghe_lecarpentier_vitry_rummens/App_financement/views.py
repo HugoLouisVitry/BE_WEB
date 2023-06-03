@@ -3,7 +3,8 @@ from .model import bdd as bdd
 from .controller import function as f
 from werkzeug.utils import secure_filename
 import pandas, os 
-Upload_avatar=os.path.dirname(__file__)+"\\static\\images\\avatar" 
+Upload_avatar_picture=os.path.dirname(__file__)+"/static/images/avatar" 
+Upload_project_picture=os.path.dirname(__file__)+"/static/images/projectsPictures"
 
 
 app=Flask(__name__)
@@ -70,7 +71,7 @@ def addMembre():
     motPasse = request.form['mdp']
     avatar=request.files['avatar']
     nom_avatar=secure_filename(avatar.filename)
-    avatar.save(os.path.join(Upload_avatar, nom_avatar))
+    avatar.save(os.path.join(Upload_avatar_picture, nom_avatar))
     
     statut=0 
     bdd.add_membreData(nom, prenom, mail,
@@ -198,12 +199,15 @@ def addProject():
     endDate = request.form['endDate']
     isOpen = 1
     idUser = session['idUser']
-    # avatar=request.files['avatar']
-    # nom_avatar=secure_filename(avatar.filename)
-    # avatar.save(os.path.join(Upload_avatar, nom_avatar))
+    picture = request.files['picture']
+    if picture.filename :
+        nom_picture=secure_filename(picture.filename)
+        picture.save(os.path.join(Upload_project_picture, nom_picture))
+    else:
+        nom_picture="default_picture.png"
+    bdd.add_projectData(name, description, target, endDate, isOpen, idUser, nom_picture) 
+            
     
-    statut=0 
-    bdd.add_projectData(name, description, target, endDate, isOpen, idUser)
     
     # dernier id créé par la BDD
     if "errorDB" not in session:
