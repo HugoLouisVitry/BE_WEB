@@ -1,23 +1,22 @@
 <style>
     #user{
+        font-size: 20px;
+        font-family: 'FontAwesome';
+        
+    }
+    #table_user{
         position: fixed;
-        top: 14px;
+        top: 0;
         right: 0;
         margin-top: 10px;
         margin-right: 10px;
-        font-size: 20px;
-        font-family: 'FontAwesome';
         z-index: 100;
+        
     }
-    
     #avatar{
-        position: fixed;
         margin-right: 10px;
         height: 40px;
         width: auto;
-        z-index: 150;
-        right: 150px;
-        top: 14px;
 
     }
 
@@ -98,17 +97,20 @@
                     {% if session['isAdmin'] %}
                     <li><a href="/sgbd">SGBD</a></li>
                     {% endif %}
-            </ul>
+                    {% if session['idUser'] %}
+                    <table id="table_user">
+                        <tbody>
+                            <tr>
+
+                                <td><img id="avatar" src="static/images/avatar/{{session['avatar']}}" alt="User Avatar"></td>
+                                <td><h5 id="user"> {{ session['nom'] }} <br> {{ session['prenom'] }}</h5></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    
+                    {% endif %}
+                </ul>
             </div>
-                
-<!--                 
-                <div class="logo d-flex"></div>
-            </div> -->
-        <ul>
-            {% if session['idUser'] %}
-            <img id="avatar" src="static/images/avatar/{{session['avatar']}}" alt="User Avatar">
-            <h5 id="user" class=" pt-2"> {{ session['prenom'] }} {{ session['nom'] }}</h5>
-            {% endif %}
-        </ul>
     </nav>
 </header>
