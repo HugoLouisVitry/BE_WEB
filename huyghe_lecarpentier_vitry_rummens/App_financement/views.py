@@ -41,6 +41,10 @@ def signin():
 def pricing():
     return render_template("pricing.html")
 
+@app.route("/visual")
+def visual():
+    return render_template("visual_test.html")
+
 @app.route("/community")
 def community():
     Projets = bdd.get_projectData()
@@ -183,12 +187,21 @@ def updateMembre(champ=None):
     return "1"
 
 #page new-project
-@app.route("/new-project")
-def new_project():
+@app.route("/myProjects")
+def myProjects():
     listeProjets = bdd.get_projectData()
     params ={'liste':listeProjets}
     params = f.messageInfo(params)
-    return render_template("new-project.html", **params)
+    return render_template("myProjects.html", **params)
+
+@app.route("/seeProject")
+def seeProject():
+    listeProjets = bdd.get_projectData()
+    params ={'liste':listeProjets}
+    print()
+    params = f.messageInfo(params)
+    return render_template("seeProject.html", **params)
+
 
 @app.route("/addProject", methods=['POST'])
 def addProject():
@@ -212,10 +225,10 @@ def addProject():
     # dernier id créé par la BDD
     if "errorDB" not in session:
         session["infoVert"]="Nouveau projet inséré"
-        return redirect("/new-project")
+        return redirect("/myProjects")
     else:
         session["infoRouge"]="Problème ajout projet"
-        return redirect("/new-project")
+        return redirect("/myProjects")
 
 # fermeture d'un projet
 @app.route("/closeProject/<idProject>")
@@ -226,7 +239,7 @@ def closeProject(idProject=None):
         session["infoVert"] = "Le projet a bien été fermé"
     else:
         session["infoRouge"] = "Problème fermeture projet"
-    return redirect("/new-project")
+    return redirect("/myProjects")
 
 # Mise à jour du projet
 @app.route("/updateProject/<champ>", methods=['POST'])

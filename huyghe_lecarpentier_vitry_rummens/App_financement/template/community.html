@@ -1,137 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        {% include("layout/head.html") %}
-        <style>
+  <head>
+    {% include("layout/head.html") %}
+    <style>
+        .project-container {
+            position:relative;
+            height: 600px;
+            width: 600px;
+        }
+        .project {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #c8ea5b;
 
-        
-            .slider-container {
-                align-items: center;
-                justify-content: center;
-                max-height: 80vh;
-                overflow-y: scroll;
-                scroll-snap-type: y mandatory;
-            }
-        
-            .slider {
-                height: 600px;
-                width: 1300px;
-                scroll-snap-align: start;
-                transition: opacity 0.3s ease;
-                margin-bottom: 30px;
-            }
-              
-            .slider:nth-child(odd) {
-                background-color: #c8ea5b;
-            }
-      
-            .slider:nth-child(even) {
-              background-color: #ccc;
-            }
-      
-            .slider:hover {
-              opacity: 0.8;
-            }
-      
-            .slider:not(:hover) {
-              opacity: 0.5;
-            }
+        }
 
-            .project_pic{
-                float: left;
-                margin-right: 10px;
-                            }
-        
-            .name {
-              font-size: 30px;
-              text-align: center;
-              font-weight: bold;
-              margin-bottom: 10px;
-            }
+        .comu-link {
+            color: black;
+            text-decoration: none;
+        }
+        .comu-link:hover{
+            color: black;
+            text-decoration: none;            
+        }
+        .comu-link:focus {
+            text-decoration: none;
+        }
+
+        .clear{
+            clear: both;
+        }
+      .project-content {
+        top: 0;
+        right: 0;
+      }
+
+      .project-img {
+        float:left;
+        max-width: 300px;
+        margin-right: 20px;
+        margin-bottom: 0px;
+      }
+
+      .name {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .description {
+        font-size: 20px;
+      }
+
+      .target {
+        font-size: 20px;
+        font-weight: bold;
+        left: 0;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+
+  {% include("layout/nav.html") %}
+
+  <body >
+    <!-- END LOADER -->
     
-            .description {
-                font-size: 20px;
-                text-align: center;
-            }
-            .target {
-                font-size: 20px;
-                text-align: center;
-                font-weight: bold;
-                bottom: 30px;
-                margin-bottom: 10px;
-              }
-            .isOpen {
-                position: relative;
-                bottom: 0;
-                right: 0;
-                font-size: 12px;
-                color: #999;
-
-              }
-
-        </style>
-    </head>
-
-    {% include("layout/nav.html") %}
-<body class="seo_version">
-	<!-- END LOADER -->
-
-    
-    <div class="all-page-title" style="background-image:url(static/images/pattern-4.png);">
+    <div>
         <div class="container text-center">
             <h1>Projets de la communauté</h1>
             <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
             {% include("layout/info.html") %}
         </div>
-        <br>
     </div>
     
-    <div class="all-page-title" style="background-image:url(static/images/pattern-4.png);">
-
-        <section style="justify-content: center;">
-            <div class="slider-container">
-                                
-                                 <div>
-                                    {% if liste and liste is not none %}
-                                    {% for project in liste %}
-                                    <div>
-                                        <div class="slider">
-                                        
-                                                <img src="static/images/projectsPictures/{{project.picture}}"  />
-                                            
-                                                <div class='name'> {{project.name}}</div>
-                                                <br>
-                                                
-                                                <div class="description">{{ project.description }}</div>
-                                                <br>
-                                                <div class="target"> Objectif : {{ project.target }} € </div>
-                                                <br>
-                                                <div> (progress bar de l'objectif WIP)  </div>
-                                                <br>
-                                                <div class="isOpen">{{ project.isOpen }}</div>
-                                                <br>
-                                        </div>
-                                    </div>
-                                        {% endfor %}
-                                        {% endif %}
-                                </div>                
-            </div><!-- end col -->
-    </div><!-- end row -->
-    </div>
-    </div><!-- end title -->
-    <!--End Page-->
-    </div><!-- end section -->
     <br>
 
+    
+        <div>
+            <div>
+                {% if liste and liste is not none %}
+                {% for project in liste %}
+                <a class="comu-link" href="/seeProject?id={{project.idProject}}">
+
+                    <div class="project">
+                        <img class="project-img" src="static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
+                        <div class="project-content">
+                            <p class="name">{{project.name}}</p>
+                            <p class="description">{{project.description}}</p>
+                            <p class="target"> Récolte: (recolte WIP) / {{project.target}} €</p>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    
+
+    <br>
+    
+    <section>
     <div id="support" class="section db">
         <div class="container">
             <div class="row">
-                <div id="logo-carousel" class="owl-carousel">
-    
-				</div>
+                <div id="logo-carousel" class="owl-carousel"></div>
             </div><!-- end row -->
         </div><!-- end container -->
     </div><!-- end section -->
+    </section>
 
     {% include("layout/footer.html")%}
 	
