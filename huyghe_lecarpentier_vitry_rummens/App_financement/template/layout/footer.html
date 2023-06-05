@@ -42,12 +42,20 @@
                     </div>
 
                     <ul class="footer-links">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="/pricing">Pricing</a></li>
-                        <li><a href="#">About</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="/login">Contact</a></li>
+                        <li><a class="active" href="/">Accueil</a></li>
+                        <li><a href="/community">Communauté</a></li>
+                        <li><a href="/webmaster">À propos de nous</a></li>
+                        {% if not session['idUser'] %}
+                        <li><a href="/login">Log In</a></li>
+                        <li><a href="/signin">Sign In</a></li>
+                        {% else %}
+                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/profil">Profil</a></li>
+                        <li><a href="/myProjects">Mes projets</a></li>
+                        {% endif %}
+                        {% if session['isAdmin'] %}
+                        <li><a href="/sgbd">SGBD</a></li>
+                        {% endif %}
                     </ul><!-- end links -->
                 </div><!-- end clearfix -->
             </div><!-- end col -->
