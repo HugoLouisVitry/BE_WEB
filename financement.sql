@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:3306
--- Généré le : sam. 03 juin 2023 à 21:56
+-- Généré le : lun. 05 juin 2023 à 11:28
 -- Version du serveur : 8.0.33-0ubuntu0.22.04.2
 -- Version de PHP : 8.1.2-1ubuntu2.11
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `financement`
 --
+CREATE DATABASE IF NOT EXISTS `financement` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
+USE `financement`;
 
 -- --------------------------------------------------------
 
@@ -84,7 +86,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`idUser`, `login`, `password`, `isAdmin`, `nom`, `prenom`, `reponse`, `mail`, `avatar`) VALUES
 (1, 'huyghema', '203ed44b778fa1a55ffd9cf3dc4407c710a787625d5f2cf365a4e3ad9232fa3f', 1, 'Huyghe', 'Mathias', NULL, 'mathias.huyghe@alumni.enac.fr', 'default_user.png'),
-(2, 'lecarpma', '1ee3bcb7aff31f0e8d12da84deaf85b1a471731d4ed334189954e52c4b5fcdc1', 1, 'Le Carpentier', 'Marie', NULL, 'marie.le-carpentier@alumni.enac.fr', 'default_user.png'),
+(2, 'lecarpma', '1ee3bcb7aff31f0e8d12da84deaf85b1a471731d4ed334189954e52c4b5fcdc1', 1, 'Le Carpentier', 'Marie jeanne', NULL, 'marie.le-carpentier@alumni.enac.fr', 'default_user.png'),
 (3, 'rummenspa', '6f73aaf7bffa8141aa7c7607566063bbcf9993a1efdf79c94a9ba3ad2187595a', 1, 'Rummens', 'Paul', NULL, 'paul.rummens@alumni.enac.fr', 'default_user.png'),
 (4, 'vitryhu', 'ec1a405c52aee12ec05e9785d83d89b9fdc1adad1fbe38f7c7904e3e09f6686e', 1, 'Vitry', 'Hugo', NULL, 'hugo.vitry@alumni.enac.fr', 'default_user.png');
 
