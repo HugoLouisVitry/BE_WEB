@@ -18,7 +18,7 @@
 
 
     {% include ("layout/info.html") %}
-    <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('static/uploads/parallax_12.jpg');">
+    <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('/static/uploads/parallax_12.jpg');">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="app_iphone_02 wow slideInUp hidden-xs hidden-sm" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <img src="static/uploads/rocket.png" alt="" class="img-responsive">
+                    <img src="/static/uploads/rocket.png" alt="" class="img-responsive">
                 </div>
             </div><!-- end row -->
         </div><!-- end container -->
@@ -148,7 +148,7 @@
       {% for project in liste %}
       <div class="slide">
         
-        <img src="static/images/projectsPictures/{{project.picture}}" alt="Image">
+        <img src="/static/images/projectsPictures/{{project.picture}}" alt="Image">
         <div class="slide-content">
           <h3>{{ project.name }}</h3>
           <p>{{ project.description }}</p>
@@ -159,7 +159,7 @@
             {% set remainingSlides = 9 - liste|length %}
             {% for _ in range(remainingSlides) %}
                 <div class="slide">
-                    <img src="static/images/projectsPictures/comingSoon.jpg" alt="Image par défaut">
+                    <img src="/static/images/projectsPictures/comingSoon.jpg" alt="Image par défaut">
                     <div class="slide-content">
                         <h3>Coming Soon</h3>
                         <p></p>
@@ -267,9 +267,9 @@
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
     <!-- ALL JS FILES -->
-    <script src="static/js/all.js"></script>
+    <script src="/static/js/all.js"></script>
     <!-- ALL PLUGINS -->
-    <script src="static/js/custom.js"></script>
+    <script src="/static/js/custom.js"></script>
 
 </body>
 </html>
