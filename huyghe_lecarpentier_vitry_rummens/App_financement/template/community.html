@@ -4,23 +4,10 @@
     {% include("layout/head.html") %}
     <style>
         
-        .project-container {
-            max-width: 600px;
-            padding: 20px;
-            background-color: #f2f2f2;
-            border-radius: 8px;
-            position: absolute; /* postulat de départ */
-            top: 50%; left: 50%; /* à 50%/50% du parent référent */
-            transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
-      
-          }
         .project {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            color: black;
             background-color: #c8ea5b;
-
-        }
+          }
 
         .comu-link {
             color: black;
@@ -31,22 +18,18 @@
             text-decoration: none;            
         }
         .comu-link:focus {
+            color: black;
             text-decoration: none;
         }
 
         .clear{
             clear: both;
         }
-      .project-content {
-        top: 0;
-        right: 0;
-      }
+
 
       .project-img {
-        float:left;
-        max-width: 300px;
-        margin-right: 20px;
-        margin-bottom: 0px;
+        max-width: 500px;
+        max-height: 400px;
       }
 
       .name {
@@ -62,8 +45,9 @@
       .target {
         font-size: 20px;
         font-weight: bold;
-        left: 0;
         margin-top: 10px;
+        margin-right: 20px;
+        bottom: 0;
       }
     </style>
   </head>
@@ -88,14 +72,14 @@
             <div>
                 {% if liste and liste is not none %}
                 {% for project in liste %}
-                <a class="comu-link" href="/seeProject/{{project.idProject}}">
+                <a class="container comu-link" href="/seeProject/{{project.idProject}}">
 
                     <div class="project">
-                        <img class="project-img" src="/static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
-                        <div class="project-content">
+                        <img class="project-img alignleft" src="/static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
+                        <div>
                             <p class="name">{{project.name}}</p>
                             <p class="description">{{project.description}}</p>
-                            <p class="target"> Récolte: (recolte WIP) / {{project.target}} €</p>
+                            <p class="target alignright"> Récolte: (recolte WIP) / {{project.target}} €</p>
                             <div class="clear"></div>
                         </div>
                     </div>

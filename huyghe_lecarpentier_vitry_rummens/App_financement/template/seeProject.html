@@ -3,22 +3,21 @@
   <head>
     {% include("layout/head.html") %}
     <style>
-      .project-container {
-        position: absolute; /* postulat de départ */
-        top: 50%; left: 50%; /* à 50%/50% du parent référent */
-        transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
-        width: 1300px;
-        height: 800px;
-        background-color: #f2f2f2;
-      }
-    
 
       .project {
-        background-color: #c8ea5b;
+        color: black;
+        background-color: #e8f7b7;
+        height: 700px;
+        width: 1500px;
       }
       
       .project-img {
-        max-width: 300px;
+        
+
+        max-height: 500px;
+        
+
+        max-width: 700px;
       }
 
       .name {
@@ -34,8 +33,8 @@
       .target {
         font-size: 20px;
         font-weight: bold;
-        left: 0;
         margin-top: 10px;
+        margin-right: 20px;
       }
       
     </style>
@@ -48,15 +47,14 @@
   {% if currentProject and currentProject is not none %}
   <section>
 
-    <div class="project-container">
-      <div class="project">
-        <img class="project-img" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
+    <div class="container aligncenter project" style="margin-top:50px;">
+        <img class="project-img alignleft img-reponsive" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
         <div>
           <p class="name">{{currentProject.name}}</p>
           <p class="description">{{currentProject.description}}</p>
-          <p class="target"> Récolte: (recolte WIP) / {{currentProject.target}} €</p>
+          <p class="target alignright"> Récolte: (recolte WIP) / {{currentProject.target}} €</p>
+          <a href="/"><button class="alignright" href="/"> Participer ! </button></a>
         </div>
-      </div>  
     </div>
 
   </section>
