@@ -3,11 +3,17 @@
   <head>
     {% include("layout/head.html") %}
     <style>
+        
         .project-container {
-            position:relative;
-            height: 600px;
-            width: 600px;
-        }
+            max-width: 600px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 8px;
+            position: absolute; /* postulat de départ */
+            top: 50%; left: 50%; /* à 50%/50% du parent référent */
+            transform: translate(-50%, -50%); /* décalage de 50% de sa propre taille */
+      
+          }
         .project {
             margin-bottom: 20px;
             padding: 10px;
@@ -62,9 +68,9 @@
     </style>
   </head>
 
-  {% include("layout/nav.html") %}
-
+  
   <body >
+      {% include("layout/nav.html") %}
     <!-- END LOADER -->
     
     <div>
@@ -82,7 +88,7 @@
             <div>
                 {% if liste and liste is not none %}
                 {% for project in liste %}
-                <a class="comu-link" href="/seeProject?id={{project.idProject}}">
+                <a class="comu-link" href="/seeProject/{{project.idProject}}">
 
                     <div class="project">
                         <img class="project-img" src="static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
