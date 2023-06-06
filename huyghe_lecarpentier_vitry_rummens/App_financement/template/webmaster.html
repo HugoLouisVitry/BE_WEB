@@ -7,7 +7,9 @@
     .clear {
         clear: both;
     }
-    
+    #webmaster{
+        margin-bottom: 20px;
+    }
     #webmaster-img {
       float: left;
       margin-right: 10px;
@@ -16,11 +18,13 @@
     }
 
     #wbm-h {
+        color: black;
         font-size: 30px;
         font-family: 'Courier New', Courier, monospace;
     }
     
     #wbm-p{
+        color: black;
         font-size: 25px;
         font-family: Georgia, 'Times New Roman', Times, serif;
     }
@@ -32,13 +36,12 @@
 
     <div class="container">
         <div class="section-title text-center">
-            <small> Écrit un truc ? </small>
-            <h1>À propos de nous</h1>
+            <h1 style="margin-top: 20px;">À propos de nous</h1>
             <p class="lead">Les artistes qui ont fait ce site web génial</p>
         </div><!-- end title -->
 
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster" >
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
@@ -52,10 +55,8 @@
             </div>
         </section>
         
-        <br>
-
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster">
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
@@ -68,10 +69,9 @@
                 </div>                
              </div>
         </section>
-        
-        <br>
+
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster">
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
@@ -85,10 +85,8 @@
              </div>
         </section>
     
-        <br>
-
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster">
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
@@ -101,11 +99,64 @@
                 </div>                
              </div>
         </section>
-        
-        <br>
-        
     </div>
+    <div id="support" class="section db">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Clients Logo</h3>
+            </div><!-- end title -->
 
+            <div class="row">
+                <div id="logo-carousel" class="owl-carousel">
+                    <div> <img src="/static/uploads/logo_01.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_02.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_03.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_04.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_05.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_06.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_01.png" alt="">
+                    </div>
+                    <div> <img src="/static/uploads/logo_02.png" alt="">
+                    </div>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+
+    {% include("layout/footer.html")%}
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">
+                    <p class="footer-company-name">All Rights Reserved.
+                        &copy; 2018 <a href="#">FlaxSEO</a> Design By :
+                        <a href="https://html.design/">html design</a>
+                    </p>
+                </div>
+
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa
+                fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="/static/js/all.js"></script>
+    <!-- Mapsed JavaScript -->
+    <script src="/static/js/mapsed.js"></script>
+    <script src="/static/js/01-custom-places-example.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="/static/js/custom.js"></script>
 </body>
-            
-{% include("layout/footer.html")%}
+</html>

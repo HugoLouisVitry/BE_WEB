@@ -59,7 +59,7 @@
     
     <div>
         <div class="container text-center">
-            <h1>Projets de la communauté</h1>
+            <h1 style="margin-top: 20px;">Projets de la communauté</h1>
             <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
             {% include("layout/info.html") %}
         </div>
@@ -88,19 +88,38 @@
                 {% endif %}
             </div>
         </div>
+        
+        <br>
+        
     
+        <div id="support" class="section db">
+            <div class="container">
+                <div class="section-title text-center">
+                    <h3>Clients Logo</h3>
+                </div><!-- end title -->
 
-    <br>
-    
-    <section>
-    <div id="support" class="section db">
-        <div class="container">
-            <div class="row">
-                <div id="logo-carousel" class="owl-carousel"></div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-    </section>
+                <div class="row">
+                    <div id="logo-carousel" class="owl-carousel">
+                        <div> <img src="/static/uploads/logo_01.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_02.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_03.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_04.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_05.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_06.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_01.png" alt="">
+                        </div>
+                        <div> <img src="/static/uploads/logo_02.png" alt="">
+                        </div>
+                    </div>
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </div><!-- end section -->
 
     {% include("layout/footer.html")%}
 	
