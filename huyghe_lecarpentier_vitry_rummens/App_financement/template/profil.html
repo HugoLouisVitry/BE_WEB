@@ -13,12 +13,69 @@
             style="background-image:url(static/images/pattern-4.png);">
             <!--Page -->
             <div class="container">
-
-
+                <div class="section-title text-center">
+                    <h3>Votre solde</h3>
+                </div>
             </div>
 
-            <HR ALIGN=CENTER WIDTH="500" SIZE="4" noshade>
-                
+            <div class="container">
+                <div class="section-title text-center">
+                    <h3>Votre impact à ce jour</h3>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="section-title text-center">
+                    <h3>Recharger votre porte monaie</h3>
+                    <div class="col-md-6">
+                        <div class="contact_form">
+                            <div id="message"></div>
+                            <div method="post" action="/update_mdp">
+                                <h4 class="card-title text-center mb-2 fw-light">Acheter des kiwis</h4>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <label for="old_mdp">Choisir le mode de payement----</label>
+                                <select name="pets" id="pet-select">
+                                    <option value="">VISA</option>
+                                    <option value="">CB</option>
+                                    <option value="">MASTERCARD</option>
+                                </select>
+                                <div class="form-floating mb-3">
+                                    <label for="new_mdp">Numéro de carte</label>
+                                  <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="Numero de carte" required>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <label for="new_mdp">date d'expiration</label>
+                                  <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="date d'expiration" required>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <label for="new_mdp">cryptogramme de sécurité</label>
+                                  <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="cryptogramme à 3 chiffres" required>
+                                </div>
+                          </div>
+                        
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact_form">
+                            <div id="message"></div>
+                            <form method="post" action="/update_mdp">
+                                <h4 class="card-title text-center mb-2 fw-light">Obtenir des kiwis gratuits</h4>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <label for="new_mdp">En soutenant nos partenaires : annonce publicitaire (lien yt ?)</label>
+                                <a href="https://blog.hubspot.fr/website/a-href-lien-html#:~:text=Pour%20faire%20un%20lien%20HTML%20sur%20une%20image%2C%20il%20faut,%22%20%3E%20" , target="_blank" >Soutenir nos sponsors</a>
+                              </div>
+                           <div class="form-floating mb-3">
+                                <label for="new_mdp">à l'aide d'un coupon cadeau Kiwi</label>
+                              <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="Numero de coupon" required>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+
+            <HR ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
+
             <div id="support" class="section wb">
                 <div class="container">
                     <div class="section-title text-center">
