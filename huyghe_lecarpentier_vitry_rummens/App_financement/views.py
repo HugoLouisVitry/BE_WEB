@@ -194,12 +194,13 @@ def myProjects():
     params = f.messageInfo(params)
     return render_template("myProjects.html", **params)
 
-@app.route("/seeProject")
-def seeProject():
+@app.route("/seeProject/<id>")
+def seeProject(id=''):
     listeProjets = bdd.get_projectData()
-    params ={'liste':listeProjets}
-    print()
-    params = f.messageInfo(params)
+    for i in range(len(listeProjets)):
+        if listeProjets[i]['idProject'] == int(id):
+            params = {'currentProject':listeProjets[i]} 
+            params = f.messageInfo(params)
     return render_template("seeProject.html", **params)
 
 
@@ -251,4 +252,13 @@ def updateProject(champ=None):
         bdd.update_projectData("nom", idProject, newvalue)
     if champ == "S":
         bdd.update_membreData("statut", idProject, newvalue)
+    return "1"
+
+# Contribution financière au projet
+@app.route("/participateProject/<contribution>")
+def participateProject(contribution=None):
+    idProject = request.form['pk']
+    idUser = session['idUser']
+    value = request.form['value']
+    bdd.update_participation(idProject, idUser, value)
     return "1"
