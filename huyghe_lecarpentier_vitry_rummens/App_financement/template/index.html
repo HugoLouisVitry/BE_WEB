@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% include("layout/head.html") %}
-    
-</head>
-<body class="seo_version" onload="setTimeout(cacherDiv,5000)">
 
-	<!-- END LOADER -->
+  </head>
+  <body class="seo_version" onload="setTimeout(cacherDiv,5000)">
+
+    <!-- END LOADER -->
     {% include("layout/nav.html") %}
 
-
-    <SCRIPT language="JavaScript">
+    <script language="JavaScript">
         function cacherDiv() {
              document.getElementById("messageInfo").style.display ="none";
         }
-        </SCRIPT>
-
+        </script>
 
     {% include ("layout/info.html") %}
-    <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('/static/uploads/parallax_12.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <div class="big-tagline">
-                        <h2>Agir<br> ensemble</h2>
-                        <p class="lead">Petit ou grand projet, rendez le monde meilleur depuis chez vous !</p>
-                    </div>
-                </div>
+    <div id="home" class="parallax first-section"
+      data-stellar-background-ratio="0.4"
+      style="background-image:url('/static/uploads/parallax_12.jpg');">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="big-tagline">
+              <h2>Agir<br> ensemble</h2>
+              <p class="lead">Petit ou grand projet, rendez le monde meilleur
+                depuis chez vous !</p>
+            </div>
+          </div>
 
-                <div class="app_iphone_02 wow slideInUp hidden-xs hidden-sm" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <img src="/static/uploads/rocket.png" alt="" class="img-responsive">
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
+          <div class="app_iphone_02 wow slideInUp hidden-xs hidden-sm"
+            data-wow-duration="1s" data-wow-delay="0.5s">
+            <img src="/static/uploads/rocket.png" alt class="img-responsive">
+          </div>
+        </div><!-- end row -->
+      </div><!-- end container -->
     </div><!-- end section -->
     <br>
-<style>
+    <style>
 #Cadre{
   position: relative;
   height: 200;
@@ -47,20 +49,20 @@
 }
 
 </style>
-<div class="container" id="Cadre">
-<p>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/Yd7BcAkH8iY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</p>
-<p>
-  Faut du mettre du texte
-</p>
-</div>
+    <div class="container" id="Cadre">
+      <p>
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/Yd7BcAkH8iY?controls=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </p>
+      <p>
+        Faut du mettre du texte
+      </p>
+    </div>
 
-
-    
-
-    
-  <style>
+    <style>
     /* Styles CSS du slider */
     .slider {
       position: relative;
@@ -171,44 +173,46 @@
       z-index: 99990;
     }
   </style>
-<br>
-  <div class="slider">
-    <div class="slide-container">
-      {% if liste and liste is not none %}
-      {% for project in liste %}
-      <a href="/seeProject/{{project.idProject}}" class="slide">
-        
-        <img src="/static/images/projectsPictures/{{project.picture}}" alt="Image">
-        <div class="slide-content">
-          <h3>{{ project.name }}</h3>
-          <p>{{ project.description }}</p>
-          <div class="progress-container">
-            <progress value="{{project.current}}" max="{{project.target}}">
-              <br>
-            
-          </div><span>{{ project.current }} / {{ project.target }}</span>
+    <br>
+    <div class="slider">
+      <div class="slide-container">
+        {% if liste and liste is not none %}
+        {% for project in liste %}
+        <a href="/seeProject/{{project.idProject}}" class="slide">
+
+          <img src="/static/images/projectsPictures/{{project.picture}}"
+            alt="Image">
+          <div class="slide-content">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <div class="progress-container">
+              <progress value="{{project.current}}" max="{{project.target}}">
+                <br>
+
+              </div><span>{{ project.current }} / {{ project.target }}</span>
+            </div>
+          </a>
+          {% endfor %}
+          {% if liste|length < 9 %}
+          {% set remainingSlides = 9 - liste|length %}
+          {% for _ in range(remainingSlides) %}
+          <div class="slide">
+            <img src="/static/images/projectsPictures/comingSoon.jpg"
+              alt="Image par défaut">
+            <div class="slide-content">
+              <h3>Coming Soon</h3>
+              <p></p>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endif %}
         </div>
-    </a>
-    {% endfor %}
-    {% if liste|length < 9 %}
-            {% set remainingSlides = 9 - liste|length %}
-            {% for _ in range(remainingSlides) %}
-                <div class="slide">
-                    <img src="/static/images/projectsPictures/comingSoon.jpg" alt="Image par défaut">
-                    <div class="slide-content">
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-      {% endif %}
-    </div>
-  </div>
+      </div>
 
-  <div class="slider-pagination"></div>
+      <div class="slider-pagination"></div>
 
-  <script>
+      <script>
     // Sélectionnez les éléments du slider
     const slider = document.querySelector('.slider');
     const slideContainer = slider.querySelector('.slide-container');
@@ -272,8 +276,7 @@
     updatePagination();
   </script>
 
-{% include("layout/footer.html") %}
+      {% include("layout/footer.html") %}
 
-
-</body>
-</html>
+    </body>
+  </html>
