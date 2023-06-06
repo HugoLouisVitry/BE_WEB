@@ -252,3 +252,12 @@ def updateProject(champ=None):
     if champ == "S":
         bdd.update_membreData("statut", idProject, newvalue)
     return "1"
+
+# Contribution financière au projet
+@app.route("/participateProject/<contribution>")
+def participateProject(contribution=None):
+    idProject = request.form['pk']
+    idUser = session['idUser']
+    value = request.form['value']
+    bdd.update_participation(idProject, idUser, value)
+    return "1"
