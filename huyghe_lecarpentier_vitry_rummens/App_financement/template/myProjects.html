@@ -3,6 +3,20 @@
 
 <head>
     {% include("layout/head.html") %}
+    <style>
+        #comu-link {
+            color: black;
+            text-decoration: none;
+        }
+        #comu-link:hover{
+            color: black;
+            text-decoration: none;            
+        }
+        #comu-link:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body class="seo_version">
@@ -61,6 +75,10 @@
                                             {% else %}
                                             Ouvert
                                             {% endif %}
+                                        </td>
+                                        <td>
+                                            <!-- remplacer par une image !  -->
+                                            <a id="comu-link" href="/seeProject/{{project.idProject}}">Voir le projet</a>
                                         </td>
                                     </tr>
                                     {% endif %}
