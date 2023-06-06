@@ -133,6 +133,12 @@ def update_solde():
     session["solde"]+=int(add_solde)
     bdd.update_solde(idUser=session["idUser"], newvalue=session["solde"])
     return redirect("/profil")
+
+@app.route("/solde_pub",methods=['POST'])
+def solde_pub():
+    session["solde"]+=20
+    bdd.update_solde(idUser=session["idUser"], newvalue=session["solde"])
+    return redirect("/profil")
  
 
 @app.route("/logout")

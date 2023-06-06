@@ -71,9 +71,13 @@
             <div class="container">
                 <div class="section-title text-center">
                     <h3>Votre solde</h3>
+
+                </div>
+                <div class="section-title text-center">
+                    <h3>{{session["solde"]}}</h3>
                 </div>
             </div>
-           
+
             <div class="container">
                 <div class="section-title text-center">
                     <h3>Votre impact à ce jour</h3>
@@ -143,7 +147,7 @@
                     <div class="col-md-6">
                         <div>
 
-                            <form method="post" action="/update_mdp">
+                            <form id="pub" method="post" action="/solde_pub">
                                 <h4 class="card-title text-center mb-2 fw-light">Obtenir
                                     des kiwis gratuits</h4>
                             </div>
@@ -151,20 +155,26 @@
                                 <label>En soutenant nos partenaires : annonce
                                     publicitaire</label>
                                 <div>
-                                    <a href="{{url}}" , target="_blank">Soutenir
+                                    <a href="{{url}}" , target="_blank"
+                                        onclick="submitForm()">Soutenir
                                         nos sponsors</a>
                                 </div>
                             </div>
+                        </form>
+                        <form id='bon' method='post' action="/solde_pub">
                             <div class="form-floating mb-3">
                                 <label>à l'aide d'un coupon cadeau Kiwi</label>
                                 <input type="text" class="form-control"
                                     id="coupon" name="coupon"
                                     placeholder="Numero de coupon" required>
                             </div>
+                            <button
+                                class="btn btn-primary btn-login fw-bold text-uppercase"
+                                type="submit"> Valider </button>
+                            </div>
                         </div>
                     </div>
-                </div>
-
+                </form>
                 <hr ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
 
                 <div id="support" class="section wb">
@@ -241,6 +251,11 @@
                           const astrocoinsAmount = Math.floor(euroAmount * 100);
                           astrocoinsInput.value = astrocoinsAmount;
                         });
+
+                        function submitForm() {
+                            let form = document.getElementById("pub");
+                            form.submit();
+                        }
                       </script>
 
                 </div><!-- end section -->
