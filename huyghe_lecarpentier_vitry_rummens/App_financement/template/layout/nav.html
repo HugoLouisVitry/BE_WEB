@@ -20,6 +20,12 @@
 
     }
 
+    #solde{
+        font-size: 20px;
+        font-family: 'FontAwesome';
+
+    }
+
     #menu {
         position: fixed;
         top: 0;
@@ -101,6 +107,9 @@
                     <table id="table_user">
                         <tbody>
                             <tr>
+                                <td>
+                                    <h4 id="solde">{{session['solde']}}</h4>
+                                </td>
 
                                 <td><img id="avatar"
                                         src="/static/images/avatar/{{session['avatar']}}"

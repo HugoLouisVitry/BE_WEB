@@ -89,7 +89,7 @@
 
                         </div>
                         <div class="col-md-4">
-                            <div class="contact_form">
+                            <div style="z-index: 1000;" class="contact_form">
                                 <div id="message"></div>
                                 <form method="post" action="/addProject" enctype="multipart/form-data">
                                     <h4 class="card-title text-center mb-2 fw-light">Nouveau projet</h4>
@@ -162,6 +162,45 @@
                             </div>
 
                         </div>
+                         <div class="section-title col-md-11 text-center">
+                             <h3 style="z-index: 0;">Les projets que j'ai soutenus</h3>
+                        </div>
+                          <div class="row">
+                                <div>
+                                    {# liste #}
+                                    <table class="table" data-toggle="table" data-search="true" data-pagination="true"
+                                        data-page-size="8" data-page-list="[10, 25, 50, all]">
+                                        <thead>
+                                            <tr>
+                                                <th data-field="picture" data-align="center">Image</th>
+                                                <th data-field="name" data-sortable="true">Nom</th>
+                                                <th data-field="target" data-sortable="true">Objectif</th>
+                                                <th data-field="somme" data-sortable="true">Contribution</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% if contribution and contribution is not none %}
+                                            {% for participate in contribution %}
+                                            {% if participate.idUser == session['idUser'] %}
+                                                <tr>
+                                                    <td><img src="static/images/projectsPictures/{{participate.picture}}"
+                                                            class="picture" height="30px" width="30px" /></td>
+                                                    <td>
+                                                        <a href="/seeProject/{{participate.idProject}}">{{ participate.name
+                                                                }}</a>
+                                                    </td>
+                                                    <td>{{ participate.target }}</td>
+                                                    <td>{{ participate.somme }}</td>
+                                                </tr>
+                                            {% endif %}
+                                            {% endfor %}
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+         
+                                </div>
+
+
                         <div class="col-md-6">
                             <br>
                             <img id="preview" class="w-50 img-fluid">
