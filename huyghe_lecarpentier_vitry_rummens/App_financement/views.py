@@ -161,7 +161,8 @@ def sgbd():
 @app.route("/profil")
 def profil():
     url_yt=choisir_pub()
-    params ={'url':url_yt}
+    contribution_totale  = bdd.get_contribution_totale(session['idUser'])
+    params ={'url':url_yt, 'contribution_totale':contribution_totale}
     params=f.messageInfo(params)
     return render_template("profil.html",**params) 
 
@@ -325,11 +326,28 @@ def updateProject(champ=None):
 
 # Contribution financière au projet
 
+@app.route("/participateProject/<id>")
+def participate(id=''):
+    listeProjets = bdd.get_projectData()
+    users=bdd.get_membresData()
 
-@app.route("/participateProject/<contribution>")
-def participateProject(contribution=None):
-    idProject = request.form['pk']
-    idUser = session['idUser']
-    value = request.form['value']
-    bdd.update_participation(idProject, idUser, value)
-    return "1"
+    for i in range(len(listeProjets)):
+        if listeProjets[i]['idProject'] == int(id):
+            params = {'currentProject': listeProjets[i]}
+            for j in range(len(users)):
+                if listeProjets[i]['idUser']==users[j]['idUser']:
+                    print("MATCH  ",listeProjets[i]['idUser'],"et",users[j]['idUser'])
+                    params['projectUser']=users[j]
+    print("PARAM",params)
+    params = f.messageInfo(params)
+
+    return render_template("participateProject.html",**params)
+    
+# WIP 
+# @app.route("/participateProject/<contribution>")
+# def participateProject(contribution=None):
+#     idProject = request.form['pk']
+#     idUser = session['idUser']
+#     value = request.form['value']
+#     bdd.update_participation(idProject, idUser, value)
+#     return render_template("participateProject.html")

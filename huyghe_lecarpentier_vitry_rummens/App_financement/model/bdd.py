@@ -323,6 +323,33 @@ def get_participate():
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return listeContribution
 
+#Contribution totale de l'utilisateur
+def get_contribution_totale(idUser):
+    cnx = connexion() 
+    print('AAAAAAAAAAAAAAAAAAAAAAAAAAHHHHH')
+    if cnx is None: return None
+    
+    try:
+        idUser = str(idUser)
+        print('MIIIIIIIIIAAAAAAAOOOOOOOOOUUUUUUUUUUU')
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT SUM(somme) FROM project JOIN participate ON project.idProject = participate.idProject JOIN user on user.idUser = participate.idUser WHERE participate.idUser = %s;"
+        print(sql)
+        param = (idUser,)
+        # print('idUser = ', idUser)
+        cursor.execute(sql, param)
+        # print('OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
+        contribution_totale = cursor.fetchone()['SUM(somme)']
+        print('contribution :', contribution_totale)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK get_contribution_totale"
+    except mysql.connector.Error as err:
+        contribution_totale = None
+        session['errorDB'] = "Failed get contribution totale : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return contribution_totale
+
 def get_project_index():
     cnx = connexion()
     if cnx is None:
@@ -351,8 +378,9 @@ def update_participation(idProject, idUser, value):
     try:
         cursor = cnx.cursor()
         current = "SELECT current FROM project WHERE idProject = %s;"
-        param_current = (idProject)
+        param_current = (idProject,)
         cursor.execute(current, param_current)
+        current = cursor.fetchall()
         sql_project = "UPDATE project SET current = current + %s WHERE idProject = %s;"
         sql_user = "UPDATE user SET solde = solde - %s WHERE idProject = %s;"
         param = (value, idProject)
