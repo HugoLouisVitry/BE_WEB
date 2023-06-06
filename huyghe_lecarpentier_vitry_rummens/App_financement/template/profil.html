@@ -2,9 +2,66 @@
 <html lang="en">
     <head>
         {% include("layout/head.html") %}
+
+        <style>
+            h1 {
+                text-align: center;
+              }
+          
+              form {
+                max-width: 400px;
+                margin: 0 auto;
+              }
+          
+              label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+              }
+          
+              input[type="text"],
+              input[type="month"],
+              input[type="number"],
+              select {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-bottom: 20px;
+                text-align: center;
+              }
+          
+              input[type="submit"] {
+                background-color: #4CAF50;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                font-size: 16px;
+              }
+          
+              input[type="submit"]:hover {
+                background-color: #45a049;
+              }
+          
+              .payment-method-icons {
+                display: flex;
+                justify-content: center;
+                margin-top: 10px;
+              }
+          
+              .payment-method-icons img {
+                width: 30px;
+                height: auto;
+                margin: 0 5px;
+              }
+
+
+        </style>
     </head>
     <body class="seo_version">
-
 
         <!-- END LOADER -->
         {% include("layout/nav.html") %}
@@ -27,39 +84,58 @@
                 <div class="section-title text-center">
                     <h3>Recharger votre porte monaie</h3>
                     <div class="col-md-6">
-                        <div class="contact_form">
-                            <div id="message"></div>
-                            <div method="post" action="/update_mdp">
-                                <h4 class="card-title text-center mb-2 fw-light">Acheter des kiwis</h4>
+                        <form>
+                            <label for="card-number">Numéro de carte :</label>
+                            <input type="text" id="card-number"
+                                name="card-number" pattern="[0-9]{16}"
+                                maxlength="16" inputmode="numeric"
+                                placeholder="1234 5678 9012 3456" required>
+
+                            <label for="card-name">Nom du titulaire :</label>
+                            <input type="text" id="card-name" name="card-name"
+                                placeholder="Nom du titulaire" required>
+
+                            <label for="expiration-date">Date d'expiration :</label>
+                            <input type="month" id="expiration-date"
+                                name="expiration-date" required>
+
+                            <label for="cvv">Code de sécurité (CVV) :</label>
+                            <input type="number" id="cvv" name="cvv"
+                                pattern="[0-9]{3}" maxlength="3"
+                                inputmode="numeric" placeholder="123" required>
+
+                            <label for="payment-method">Choix du mode de
+                                paiement :</label>
+                            <div class="payment-method-icons">
+                                <input type="radio" id="visa"
+                                    name="payment-method" value="visa" checked>
+                                <label for="visa"><img
+                                        src="static/images/Carte_Bleue/196578.png"
+                                        alt="Visa"></label>
+
+                                <input type="radio" id="cb"
+                                    name="payment-method" value="cb">
+                                <label for="cb"><img
+                                        src="static/images/Carte_Bleue/cb.png"
+                                        alt="CB"></label>
+
+                                <input type="radio" id="mastercard"
+                                    name="payment-method" value="mastercard">
+                                <label for="mastercard"><img
+                                        src="static/images/Carte_Bleue/logo-mastercard-256.png"
+                                        alt="Mastercard"></label>
                             </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <label for="old_mdp">Choisir le mode de payement----</label>
-                                <select name="pets" id="pet-select">
-                                    <option value="">VISA</option>
-                                    <option value="">CB</option>
-                                    <option value="">MASTERCARD</option>
-                                </select>
-                                <div class="form-floating mb-3">
-                                    <label for="new_mdp">Numéro de carte</label>
-                                  <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="Numero de carte" required>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <label for="new_mdp">date d'expiration</label>
-                                  <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="date d'expiration" required>
-                                </div>
-                                <div class="form-floating mb-3">
-                                    <label for="new_mdp">cryptogramme de sécurité</label>
-                                  <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="cryptogramme à 3 chiffres" required>
-                                </div>
-                          </div>
-                        
+
+                            <input type="submit" value="Valider">
+                        </form>
+
                     </div>
                     <div class="col-md-6">
                         <div class="contact_form">
                             <div id="message"></div>
                             <form method="post" action="/update_mdp">
-                                <h4 class="card-title text-center mb-2 fw-light">Obtenir des kiwis gratuits</h4>
+                                <h4 class="card-title text-center mb-2 fw-light">Obtenir
+                                    des kiwis gratuits</h4>
                             </div>
                             <div class="form-floating mb-3">
                                 <label for="new_mdp">En soutenant nos partenaires : annonce publicitaire</label>
@@ -73,61 +149,84 @@
                             </div>
                         </div>
                     </div>
-            </div>
+                </div>
 
-            <HR ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
+                <hr ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
 
-            <div id="support" class="section wb">
-                <div class="container">
-                    <div class="section-title text-center">
-                        <h3>Mot de passe</h3>
-                        {% include("layout/info.html") %} 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="contact_form">
-                                    <div id="message"></div>
-                                    <form method="post" action="/update_mdp">
-                                        <h4 class="card-title text-center mb-2 fw-light">Changer de mot de passe</h4>
-                          
-                                        <div class="form-floating mb-3">
-                                            <label for="old_mdp">Ancien mot de passe</label>
-                                          <input style="border-color: black;" type="text" class="form-control" id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" required autofocus>
-                                        </div>
-                          
-                                        <div class="form-floating mb-3">
-                                            <label for="new_mdp">Nouveau mot de passe</label>
-                                          <input style="border-color: black;" type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" required>
-                                        </div>
-                          
-                                        <div class="form-floating mb-3">
-                                            <label for="confirm_mdp">Confirmer votre mot de passe</label>
-                                          <input style="border-color: black;" type="text" class="form-control" id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe" required>
-                                        </div>
+                <div id="support" class="section wb">
+                    <div class="container">
+                        <div class="section-title text-center">
+                            <h3>Mot de passe</h3>
+                            {% include("layout/info.html") %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="contact_form">
+                                        <div id="message"></div>
+                                        <form method="post" action="/update_mdp">
+                                            <h4
+                                                class="card-title text-center mb-2 fw-light">Changer
+                                                de mot de passe</h4>
 
-                                        <br>
-                        
-                          
-                          
-                                        <div class="d-grid mb-2 mt-5">
-                                          <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
-                                        </div>
-                          
-                                      </form>
-                                </div>
-                            </div><!-- end col -->
-                            <!-- <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <label for="old_mdp">Ancien mot
+                                                    de passe</label>
+                                                <input
+                                                    style="border-color: black;"
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="old_mdp" name="old_mdp"
+                                                    placeholder="Ancien mot de passe"
+                                                    required autofocus>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <label for="new_mdp">Nouveau mot
+                                                    de passe</label>
+                                                <input
+                                                    style="border-color: black;"
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="new_mdp" name="new_mdp"
+                                                    placeholder="Nouveau mot de passe"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <label for="confirm_mdp">Confirmer
+                                                    votre mot de passe</label>
+                                                <input
+                                                    style="border-color: black;"
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="confirm_mdp"
+                                                    name="confirm_mdp"
+                                                    placeholder="Votre mot de passe"
+                                                    required>
+                                            </div>
+
+                                            <br>
+
+                                            <div class="d-grid mb-2 mt-5">
+                                                <button
+                                                    class="btn btn-primary btn-login fw-bold text-uppercase"
+                                                    type="submit">Enregistrer</button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div><!-- end col -->
+                                <!-- <div class="col-md-6">
                                 <div class="map-box">
                                     <div id="custom-places" class="small-map"></div>
                                 </div>
                             </div>end col -->
-                        </div><!-- end row -->
-                    </div>
-                </div><!-- end title -->
-                <!--End Page-->
-            </div><!-- end section -->
+                            </div><!-- end row -->
+                        </div>
+                    </div><!-- end title -->
+                    <!--End Page-->
+                </div><!-- end section -->
 
-    {% include("layout/footer.html")%}
+                {% include("layout/footer.html")%}
 
-
-    </body>
-</html>
+            </body>
+        </html>

@@ -10,7 +10,7 @@
         right: 0;
         margin-top: 10px;
         margin-right: 10px;
-        z-index: 100;
+        z-index: 999999999;
         
     }
     #avatar{
@@ -27,7 +27,7 @@
         background-color: rgb(236,236,236);
         height: 70px;
         text-align: center;
-        z-index : 100 ;
+        z-index : 999999999 ;
         margin: 0;
     }
 
@@ -39,7 +39,7 @@
 
 
     #image_marque { 
-        z-index: 100;
+        z-index: 999999999;
         position: fixed;
         top: 0px;
         height: 70px;
@@ -62,7 +62,7 @@
     }
 </style>
 <header>
-    <nav class="megamenu navbar navbar-default" >
+    <nav class="megamenu navbar navbar-default">
         <a class="navbar-brand" href="/" id="image_marque">
             <img src="/static/images/logos/logo-seo.png" alt="image">
         </a>
@@ -79,7 +79,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
 
-            <ul class="nav navbar-nav" id="menu">
+                <ul class="nav navbar-nav" id="menu">
                     <li><a class="active" href="/">Accueil</a></li>
                     <!-- <li><a href="/about">About Us </a></li> -->
                     <li><a href="/community">Communauté</a></li>
@@ -90,9 +90,9 @@
                     <li><a href="/login">Log In</a></li>
                     <li><a href="/signin">Sign In</a></li>
                     {% else %}
-                    <li><a href="/logout">Logout</a></li>
                     <li><a href="/profil">Profil</a></li>
                     <li><a href="/myProjects">Mes projets</a></li>
+                    <li><a href="/logout">Logout</a></li>
                     {% endif %}
                     {% if session['isAdmin'] %}
                     <li><a href="/sgbd">SGBD</a></li>
@@ -102,15 +102,18 @@
                         <tbody>
                             <tr>
 
-                                <td><img id="avatar" src="/static/images/avatar/{{session['avatar']}}" alt="User Avatar"></td>
-                                <td><h5 id="user"> {{ session['nom'] }} <br> {{ session['prenom'] }}</h5></td>
+                                <td><img id="avatar"
+                                        src="/static/images/avatar/{{session['avatar']}}"
+                                        alt="User Avatar"></td>
+                                <td><h5 id="user"> {{ session['nom'] }} <br> {{
+                                        session['prenom'] }}</h5></td>
                             </tr>
-                            
+
                         </tbody>
                     </table>
-                    
+
                     {% endif %}
                 </ul>
             </div>
-    </nav>
-</header>
+        </nav>
+    </header>
