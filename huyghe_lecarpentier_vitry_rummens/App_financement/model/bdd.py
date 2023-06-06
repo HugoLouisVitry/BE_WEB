@@ -255,6 +255,25 @@ def get_projectData():
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return listeProjets
 
+#Retourne les projets et les utilisateurs qui y ont contribué
+def get_participate():
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT * FROM project JOIN participate ON project.idProject = participate.idProject JOIN user on user.idUser = participate.idUser"
+        cursor.execute(sql)
+        listeContribution = cursor.fetchall()
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK get_participate"
+    except mysql.connector.Error as err:
+        listeContribution = None
+        session['errorDB'] = "Failed get contribution : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return listeContribution
+
 def get_project_index():
     cnx = connexion() 
     if cnx is None: return None
@@ -279,15 +298,16 @@ def update_participation(idProject, idUser, value):
     try:
         cursor = cnx.cursor()
         current = "SELECT current FROM project WHERE idProject = %s;"
-        param = (idProject)
-        cursor.execute(current, param1)
-        print(current)
-        sql = "UPDATE project SET current = %s WHERE idProject = %s;"
-        param1 = (current + value, idProject)
-        cursor.execute(sql, param1)
-        sql2 = "INSERT INTO participate (idUser, idProject, somme) VALUES (%s, %s, %s);"
-        param2 = (idUser, idProject, value)
-        cursor.execute(sql2, param2)
+        param_current = (idProject)
+        cursor.execute(current, param_current)
+        sql_project = "UPDATE project SET current = current + %s WHERE idProject = %s;"
+        sql_user = "UPDATE user SET solde = solde - %s WHERE idProject = %s;"
+        param = (value, idProject)
+        cursor.execute(sql_project, param)
+        cursor.execute(sql_user, param)
+        sql_participate = "INSERT INTO participate (idUser, idProject, somme) VALUES (%s, %s, %s);"
+        param_participate = (idUser, idProject, value)
+        cursor.execute(sql_participate, param_participate)
         cnx.commit()
         close_bd(cursor, cnx)
         #session['successDB'] = "OK update_participation"

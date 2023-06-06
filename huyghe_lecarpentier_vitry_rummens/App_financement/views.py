@@ -190,7 +190,8 @@ def updateMembre(champ=None):
 @app.route("/myProjects")
 def myProjects():
     listeProjets = bdd.get_projectData()
-    params ={'liste':listeProjets}
+    listeContribution = bdd.get_participate()
+    params ={'liste':listeProjets, 'contribution':listeContribution}
     params = f.messageInfo(params)
     return render_template("myProjects.html", **params)
 
