@@ -95,6 +95,7 @@
       height: auto; /* Ajuste la hauteur en fonction du contenu */
       object-fit: cover;
       z-index: 99990;
+      max-width: 250px;
     }
 
     .slide-content {
@@ -152,6 +153,7 @@
         <div class="slide-content">
           <h3>{{ project.name }}</h3>
           <p>{{ project.description }}</p>
+          <progress value="{{project.prix}}" max="{{project.target}}">
         </div>
     </div>
     {% endfor %}
