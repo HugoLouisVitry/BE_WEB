@@ -1,5 +1,6 @@
 from flask import session
 import hashlib
+import random as rd
 # passe les messages d'info en paramètres
 def messageInfo(params):
     if params is None:
