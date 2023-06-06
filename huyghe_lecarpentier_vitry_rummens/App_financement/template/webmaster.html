@@ -7,7 +7,9 @@
     .clear {
         clear: both;
     }
-    
+    #webmaster{
+        margin-bottom: 20px;
+    }
     #webmaster-img {
       float: left;
       margin-right: 10px;
@@ -16,11 +18,13 @@
     }
 
     #wbm-h {
+        color: black;
         font-size: 30px;
         font-family: 'Courier New', Courier, monospace;
     }
     
     #wbm-p{
+        color: black;
         font-size: 25px;
         font-family: Georgia, 'Times New Roman', Times, serif;
     }
@@ -32,17 +36,16 @@
 
     <div class="container">
         <div class="section-title text-center">
-            <small> Écrit un truc ? </small>
-            <h1>À propos de nous</h1>
+            <h1 style="margin-top: 20px;">À propos de nous</h1>
             <p class="lead">Les artistes qui ont fait ce site web génial</p>
         </div><!-- end title -->
 
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster" >
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="static/images/webmaster/mathias.jpg" alt="" class="img-responsive img-rounded">
+                                <img id="webmaster-img" src="/static/images/webmaster/mathias.jpg" alt="" class="img-responsive img-rounded">
                                 <h id="wbm-h">HUYGHE Mathias </h>
                                 <p id="wbm-p">Infos 3a avant l'enac <br> mais on remplira plus tard </p>
                                 <div class="clear"></div>
@@ -52,14 +55,12 @@
             </div>
         </section>
         
-        <br>
-
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster">
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="static/images/webmaster/marie.jpg"alt="" class="img-responsive img-rounded">
+                                <img id="webmaster-img" src="/static/images/webmaster/marie.jpg"alt="" class="img-responsive img-rounded">
                                 <h id="wbm-h">LE CARPENTIER Marie</h>
                                 <p id ="wbm-p">Infos 3a avant l'enac</p>
                                 <div class="clear"></div>
@@ -68,14 +69,13 @@
                 </div>                
              </div>
         </section>
-        
-        <br>
+
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster">
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="static/images/webmaster/paul.jpg"alt="" class="img-responsive img-rounded">
+                                <img id="webmaster-img" src="/static/images/webmaster/paul.jpg"alt="" class="img-responsive img-rounded">
                                 <h id="wbm-h">RUMMENS Paul</h>
                                 <p id ="wbm-p">Infos 3a avant l'enac</p>
                                 <div class="clear"></div>
@@ -85,14 +85,12 @@
              </div>
         </section>
     
-        <br>
-
         <section>
-            <div id="webmaster" class="section wb">
+            <div id="webmaster">
                 <div>
                     <div>
                         <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="static/images/webmaster/hugo.jpg"alt="" class="img-responsive img-rounded">
+                                <img id="webmaster-img" src="/static/images/webmaster/hugo.jpg"alt="" class="img-responsive img-rounded">
                                 <h id="wbm-h">VITRY Hugo</h>
                                 <p id ="wbm-p">Infos 3a avant l'enac</p>
                                 <div class="clear"></div>
@@ -101,11 +99,9 @@
                 </div>                
              </div>
         </section>
-        
-        <br>
-        
     </div>
+    
+    {% include("layout/footer.html")%}
 
 </body>
-            
-{% include("layout/footer.html")%}
+</html>

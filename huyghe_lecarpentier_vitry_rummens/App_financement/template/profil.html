@@ -9,9 +9,15 @@
         <!-- END LOADER -->
         {% include("layout/nav.html") %}
 
-        <div class="all-page-title"
-            style="background-image:url(static/images/pattern-4.png);">
+        <div style="background-image:url(/static/images/pattern-4.png);">
             <!--Page -->
+            <div class="container">
+
+
+            </div>
+
+            <HR ALIGN=CENTER WIDTH="500" SIZE="4" noshade>
+                
             <div id="support" class="section wb">
                 <div class="container">
                     <div class="section-title text-center">
@@ -26,17 +32,17 @@
                           
                                         <div class="form-floating mb-3">
                                             <label for="old_mdp">Ancien mot de passe</label>
-                                          <input type="text" class="form-control" id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" required autofocus>
+                                          <input style="border-color: black;" type="text" class="form-control" id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" required autofocus>
                                         </div>
                           
                                         <div class="form-floating mb-3">
                                             <label for="new_mdp">Nouveau mot de passe</label>
-                                          <input type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" required>
+                                          <input style="border-color: black;" type="text" class="form-control" id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" required>
                                         </div>
                           
                                         <div class="form-floating mb-3">
                                             <label for="confirm_mdp">Confirmer votre mot de passe</label>
-                                          <input type="text" class="form-control" id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe" required>
+                                          <input style="border-color: black;" type="text" class="form-control" id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe" required>
                                         </div>
 
                                         <br>
@@ -50,79 +56,19 @@
                                       </form>
                                 </div>
                             </div><!-- end col -->
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <div class="map-box">
                                     <div id="custom-places" class="small-map"></div>
                                 </div>
-                            </div><!-- end col -->
+                            </div>end col -->
                         </div><!-- end row -->
                     </div>
                 </div><!-- end title -->
                 <!--End Page-->
             </div><!-- end section -->
-            <br>
 
-            <div id="support" class="section db">
-                <div class="container">
-                    <div class="section-title text-center">
-                        <h3>Clients Logo</h3>
-                    </div><!-- end title -->
-
-                    <div class="row">
-                        <div id="logo-carousel" class="owl-carousel">
-                            <div> <img src="static/uploads/logo_01.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_02.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_03.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_04.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_05.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_06.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_01.png" alt="">
-                            </div>
-                            <div> <img src="static/uploads/logo_02.png" alt="">
-                            </div>
-                        </div>
-                    </div><!-- end row -->
-                </div><!-- end container -->
-            </div><!-- end section -->
+    {% include("layout/footer.html")%}
 
 
-
-            {% include("layout/footer.html")%}
-
-            <div class="copyrights">
-                <div class="container">
-                    <div class="footer-distributed">
-                        <div class="footer-left">
-                            <p class="footer-company-name">All Rights Reserved.
-                                &copy; 2018 <a href="#">FlaxSEO</a> Design By :
-                                <a
-                                    href="https://html.design/">html design</a></p>
-                        </div>
-
-
-                    </div>
-                </div><!-- end container -->
-            </div><!-- end copyrights -->
-
-            <a href="#" id="scroll-to-top" class="dmtop global-radius"><i
-                    class="fa
-                    fa-angle-up"></i></a>
-
-            <!-- ALL JS FILES -->
-            <script src="static/js/all.js"></script>
-            <script
-                src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
-            <!-- Mapsed JavaScript -->
-            <script src="static/js/mapsed.js"></script>
-            <script src="static/js/01-custom-places-example.js"></script>
-            <!-- ALL PLUGINS -->
-            <script src="static/js/custom.js"></script>
-
-        </body>
-    </html>
+    </body>
+</html>
