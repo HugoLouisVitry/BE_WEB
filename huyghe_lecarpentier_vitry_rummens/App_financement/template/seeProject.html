@@ -1,56 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% include("layout/head.html") %}
+    <style>
 
-  <title>Project Details</title>
-  <style>
+      .project {
+        color: black;
+        background-color: #e8f7b7;
+        height: 700px;
+        width: 1500px;
+      }
+      
+      .project-img {
+        
 
-    .project-container {
-      max-width: 600px;
-      padding: 20px;
-      background-color: #f2f2f2;
-      border-radius: 8px;
-    }
+        max-height: 500px;
+        
 
-    .project-title {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+        max-width: 700px;
+      }
 
-    .project-description {
-      font-size: 18px;
-      line-height: 1.5;
-    }
-  </style>
-  {% include("layout/nav.html") %}
-</head>
-<body>
-    <p id="output"></p>
+      .name {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
 
+      .description {
+        font-size: 20px;
+      }
 
+      .target {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-right: 20px;
+      }
+      
+    </style>
+  </head>
+
+  
+  <body class="seo_version">
+    {% include("layout/nav.html") %}
     
-    
-    <script>
-        // Get the project ID from the URL query parameter
-        var urlParams = new URLSearchParams(window.location.search);
-        var projectId = urlParams.get('id');        
-        var outputElement = document.getElementById("output");
-        outputElement.textContent = projectId;
-    </script>
+  {% if currentProject and currentProject is not none %}
+  <section>
 
-    <div class="project-container">
-      <p>{{id_projet}}</p>
-    {% if liste and liste is not none %}
-        {% for project in liste %}
-            {% if project.idProject == ALED %}
-                <p>{{project.idProject}} AAAALEEEEEEEEDDDDDDDDDD</p>
-            {% endif %}
-        {% endfor %}
-    {% endif %}
-        <p class="project-description">Project Description goes here...</p>
-  </div>
+    <div class="container aligncenter project" style="margin-top:50px;">
+        <img class="project-img alignleft img-reponsive" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
+        <div>
+          <p class="name">{{currentProject.name}}</p>
+          <p class="description">{{currentProject.description}}</p>
+          <p class="target alignright"> Récolte: (recolte WIP) / {{currentProject.target}} €</p>
+          <a href="/"><button class="alignright" href="/"> Participer ! </button></a>
+        </div>
+    </div>
+
+  </section>
+  {% endif %}
+  {% include("layout/footer.html") %}
 </body>
 </html>
 

@@ -13,13 +13,13 @@
     <!-- END LOADER -->
     {% include("layout/nav.html") %}
 
-    <div class="all-page-title" style="background-image:url(static/images/pattern-4.png);">
+    <div style="background-image:url(/static/images/pattern-4.png);">
         <!--Page -->
 
-        <section id="connecter" class="contact">
+        <section id="connecter" class="contact  ">
             <div class="container">
                 <div class="section-title text-center">
-                    <h3>Base de données</h3>
+                    <h3 style="margin-top:20px; color:black;">Base de données</h3>
                     {% include("layout/info.html") %}
 
                     <div class="row">
@@ -28,7 +28,7 @@
 
                             <!-- <a href="/exportToExcel" class="btn btn-success">Exporter les données</a> -->
                             <br>
-                            <table class="table">
+                            <table class="table" style="color:black">
                                 <br>
                                 <thead data-align="center">
 
@@ -64,7 +64,7 @@
                                     <tr>
                                         <td>
                                             <a href="/suppMembre/{{user.idUser}}">
-                                                <img src='static/images/prettyPhoto/trashcan.png' height="30px"
+                                                <img src='/static/images/prettyPhoto/trashcan.png' height="30px"
                                                     width="30px">
                                             </a>
                                         </td>
@@ -101,67 +101,9 @@
     </div><!-- end title -->
     <!--End Page-->
     </div><!-- end section -->
-    <br>
-
-    <div id="support" class="section db">
-        <div class="container">
-            <div class="section-title text-center">
-                <h3>Clients Logo</h3>
-            </div><!-- end title -->
-
-            <div class="row">
-                <div id="logo-carousel" class="owl-carousel">
-                    <div> <img src="static/uploads/logo_01.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_02.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_03.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_04.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_05.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_06.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_01.png" alt="">
-                    </div>
-                    <div> <img src="static/uploads/logo_02.png" alt="">
-                    </div>
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-
 
     {% include("layout/footer.html")%}
 
-    <div class="copyrights">
-        <div class="container">
-            <div class="footer-distributed">
-                <div class="footer-left">
-                    <p class="footer-company-name">All Rights Reserved.
-                        &copy; 2018 <a href="#">FlaxSEO</a> Design By :
-                        <a href="https://html.design/">html design</a>
-                    </p>
-                </div>
-
-
-            </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
-
-    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa
-                    fa-angle-up"></i></a>
-
-    <!-- ALL JS FILES -->
-    <script src="static/js/all.js"></script>
-    <script
-        src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCKjLTXdq6Db3Xit_pW_GK4EXuPRtnod4o"></script>
-    <!-- Mapsed JavaScript -->
-    <script src="static/js/mapsed.js"></script>
-    <script src="static/js/01-custom-places-example.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="static/js/custom.js"></script>
 
     <script>
         const $ = jQuery.noConflict();

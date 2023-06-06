@@ -3,18 +3,11 @@
   <head>
     {% include("layout/head.html") %}
     <style>
-        .project-container {
-            position:relative;
-            height: 600px;
-            width: 600px;
-        }
+        
         .project {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            color: black;
             background-color: #c8ea5b;
-
-        }
+          }
 
         .comu-link {
             color: black;
@@ -25,22 +18,18 @@
             text-decoration: none;            
         }
         .comu-link:focus {
+            color: black;
             text-decoration: none;
         }
 
         .clear{
             clear: both;
         }
-      .project-content {
-        top: 0;
-        right: 0;
-      }
+
 
       .project-img {
-        float:left;
-        max-width: 300px;
-        margin-right: 20px;
-        margin-bottom: 0px;
+        max-width: 500px;
+        max-height: 400px;
       }
 
       .name {
@@ -56,20 +45,21 @@
       .target {
         font-size: 20px;
         font-weight: bold;
-        left: 0;
         margin-top: 10px;
+        margin-right: 20px;
+        bottom: 0;
       }
     </style>
   </head>
 
-  {% include("layout/nav.html") %}
-
+  
   <body >
+      {% include("layout/nav.html") %}
     <!-- END LOADER -->
     
     <div>
         <div class="container text-center">
-            <h1>Projets de la communauté</h1>
+            <h1 style="margin-top: 20px;">Projets de la communauté</h1>
             <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
             {% include("layout/info.html") %}
         </div>
@@ -82,14 +72,14 @@
             <div>
                 {% if liste and liste is not none %}
                 {% for project in liste %}
-                <a class="comu-link" href="/seeProject?id={{project.idProject}}">
+                <a class="container comu-link" href="/seeProject/{{project.idProject}}">
 
                     <div class="project">
-                        <img class="project-img" src="static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
-                        <div class="project-content">
+                        <img class="project-img alignleft" src="/static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
+                        <div>
                             <p class="name">{{project.name}}</p>
                             <p class="description">{{project.description}}</p>
-                            <p class="target"> Récolte: (recolte WIP) / {{project.target}} €</p>
+                            <p class="target alignright"> Récolte: (recolte WIP) / {{project.target}} €</p>
                             <div class="clear"></div>
                         </div>
                     </div>
@@ -98,45 +88,8 @@
                 {% endif %}
             </div>
         </div>
-    
-
-    <br>
-    
-    <section>
-    <div id="support" class="section db">
-        <div class="container">
-            <div class="row">
-                <div id="logo-carousel" class="owl-carousel"></div>
-            </div><!-- end row -->
-        </div><!-- end container -->
-    </div><!-- end section -->
-    </section>
 
     {% include("layout/footer.html")%}
-	
-    <div class="copyrights">
-        <div class="container">
-            <div class="footer-distributed">
-                <div class="footer-left">
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2018 <a href="#">FlaxSEO</a> Design By : <a href="https://html.design/">html design</a></p>
-                </div>
-
-                <div class="footer-right">
-                    <form method="get" action="#">
-                        <input placeholder="Subscribe our newsletter.." name="search">
-                        <i class="fa fa-envelope-o"></i>
-                    </form>
-                </div>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
-
-    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
-
-    <!-- ALL JS FILES -->
-    <script src="static/js/all.js"></script>
-    <!-- ALL PLUGINS -->
-    <script src="static/js/custom.js"></script>
 
 </body>
 </html>
