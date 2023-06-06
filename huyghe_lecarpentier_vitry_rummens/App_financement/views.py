@@ -3,6 +3,7 @@ from .model import bdd as bdd
 from .controller import function as f
 from werkzeug.utils import secure_filename
 import pandas, os 
+import random as rd
 Upload_avatar_picture=os.path.dirname(__file__)+"/static/images/avatar" 
 Upload_project_picture=os.path.dirname(__file__)+"/static/images/projectsPictures"
 
@@ -131,8 +132,11 @@ def sgbd():
 
 @app.route("/profil")
 def profil():
-    params=f.messageInfo(None)
+    url_yt=choisir_pub()
+    params ={'url':url_yt}
+    params=f.messageInfo(params)
     return render_template("profil.html",**params) 
+
 
 @app.route("/update_mdp", methods=['POST'])
 def update_mdp():
@@ -186,6 +190,35 @@ def updateMembre(champ=None):
         bdd.update_membreData("statut", idUser, newvalue)
     return "1"
 
+#Mise à jour du solde d'un membre
+@app.route("/refillSolde")
+def refillSolde(idUser=None):
+    
+    crt_solde=request.form('solde')
+    
+#choisir la pub
+def choisir_pub():
+    L=["https://www.youtube.com/watch?v=g8d4rvT29z8",
+        "https://www.youtube.com/watch?v=-9XnWvnU8fk",
+        "https://www.youtube.com/watch?v=2wYy-oaMPOA&t=5s",
+        "https://www.youtube.com/watch?v=4M61pYUII5Y",
+        "https://www.youtube.com/watch?v=Z9xLEmxp4ds",
+        "https://www.youtube.com/watch?v=PtGQVWzkjsg",
+        "https://www.youtube.com/watch?v=q30s32F27ko",
+        "https://www.youtube.com/watch?v=Enm6pJUhiYg",
+        "https://www.youtube.com/watch?v=yP3Ch0uwYtE",
+        "https://www.youtube.com/watch?v=9Ky4-Kp-l5w",
+        "https://www.youtube.com/watch?v=DonKn7Bbw-E",
+        "https://www.youtube.com/watch?v=xdmCP_hfrCo",
+        "https://www.youtube.com/watch?v=bAF5-XzBDvc",
+        "https://www.youtube.com/watch?v=rSSONZHKSaM",
+        "https://www.youtube.com/watch?v=9KQKJgr_fLI",
+        "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        ]
+    k = rd.randint(0,15)
+    n=len(L[k])
+    return L[k][0:n]
+
 #page new-project
 @app.route("/myProjects")
 def myProjects():
@@ -194,13 +227,12 @@ def myProjects():
     params = f.messageInfo(params)
     return render_template("myProjects.html", **params)
 
-@app.route("/seeProject/<id>")
-def seeProject(id=''):
+@app.route("/seeProject")
+def seeProject():
     listeProjets = bdd.get_projectData()
-    for i in range(len(listeProjets)):
-        if listeProjets[i]['idProject'] == int(id):
-            params = {'currentProject':listeProjets[i]} 
-            params = f.messageInfo(params)
+    params ={'liste':listeProjets}
+    print()
+    params = f.messageInfo(params)
     return render_template("seeProject.html", **params)
 
 
@@ -252,13 +284,4 @@ def updateProject(champ=None):
         bdd.update_projectData("nom", idProject, newvalue)
     if champ == "S":
         bdd.update_membreData("statut", idProject, newvalue)
-    return "1"
-
-# Contribution financière au projet
-@app.route("/participateProject/<contribution>")
-def participateProject(contribution=None):
-    idProject = request.form['pk']
-    idUser = session['idUser']
-    value = request.form['value']
-    bdd.update_participation(idProject, idUser, value)
     return "1"
