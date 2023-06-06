@@ -72,6 +72,9 @@
             <div class="section-title text-center">
                 <h3>Votre solde</h3>
             </div>
+            <div class="section-title text-center">
+                <h3>{{session["solde"]}}</h3>
+            </div>
         </div>
 
         <div class="container">
@@ -188,17 +191,52 @@
                                     <h4 class="card-title text-center mb-2 fw-light">Changer
                                         de mot de passe</h4>
 
-                                    <div class="form-floating mb-3">
+                                    <div class="form-floating mb-3"> 
                                         <label for="old_mdp">Ancien mot
                                             de passe</label>
                                         <input style="border-color: black;" type="text" class="form-control"
                                             id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" required
                                             autofocus>
+                                            <div class="form-floating mb-3">
+                                                <label for="new_mdp">Nouveau mot
+                                                    de passe</label>
+                                                <input
+                                                    style="border-color: black;"
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="new_mdp" name="new_mdp"
+                                                    placeholder="Nouveau mot de passe"
+                                                    required>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <label for="confirm_mdp">Confirmer
+                                                    votre mot de passe</label>
+                                                <input
+                                                    style="border-color: black;"
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="confirm_mdp"
+                                                    name="confirm_mdp"
+                                                    placeholder="Votre mot de passe"
+                                                    required>
+                                            </div>
+
+                                            <br>
+
+                                            <div class="d-grid mb-2 mt-5">
+                                                <button
+                                                    class="btn btn-primary btn-login fw-bold text-uppercase"
+                                                    type="submit">Enregistrer</button>
+                                            </div>
                                     </div>
-                                </div>
-                            </div><!-- end row -->
+                                </form>
+                            </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
                     <script>
                         const euroInput = document.getElementById("amount-euro");
                         const astrocoinsInput = document.getElementById("amount-astrocoins");
@@ -214,8 +252,7 @@
                             form.submit();
                         }
                       </script>
-
-                </div><!-- end section -->
+        </div><!-- end section -->
 
         {% include("layout/footer.html")%}
 

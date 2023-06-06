@@ -11,13 +11,22 @@
         width: 1500px;
       }
       
-      .project-img {
-        
-
-        max-height: 500px;
-        
-
+      .img-container {
+        width: auto;
+        height: auto;
         max-width: 700px;
+        max-height: 800px;
+        float: right;
+        margin-top: 20px;
+        margin-left: 10px;
+      }
+      #project-image{
+        width: 500px;
+        height: auto;
+        align-self: center;
+      }
+      .project-content{
+        top: 0;
       }
 
       .name {
@@ -28,15 +37,42 @@
 
       .description {
         font-size: 20px;
+        text-align:justify;
       }
 
       .target {
         font-size: 20px;
         font-weight: bold;
         margin-top: 10px;
-        margin-right: 20px;
+        margin-left: 20px;
       }
-      
+      .button {
+        display: block;
+        padding: 10px 20px;
+        background-color: #f2f2f2;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #333;
+      }
+      .progress-container {
+        display: flex;
+        align-items: center;
+        z-index: 99990;
+      }
+    
+      .progress-container progress {
+        flex: 1;
+        margin-right: 10px;
+        z-index: 99990;
+      }
+    
+      .progress-container span {
+        font-size: 14px;
+        z-index: 99990;
+      }
+ 
     </style>
   </head>
 
@@ -48,12 +84,27 @@
   <section>
 
     <div class="container aligncenter project" style="margin-top:50px;">
-        <img class="project-img alignleft img-reponsive" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
+      <div class="img-container alignright" >
+        <img id="project-image" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
+      </div>
+      <div class="project-content">
+        <p class="name">{{currentProject.name}}</p>
+        <p class="description">{{currentProject.description}}</p>
+      </script>
+
         <div>
-          <p class="name">{{currentProject.name}}</p>
-          <p class="description">{{currentProject.description}}</p>
-          <p class="target alignright"> Récolte: (recolte WIP) / {{currentProject.target}} €</p>
-          <a href="/participateProject/{{currentProject.idProject}}"><button class="alignright" href="/"> Participer ! </button></a>
+          <div class="container alignright">
+            <div class="slide-content">
+              <div class="progress-container">
+                <progress value="{{currentProject.current}}" max="{{currentProject.target}}">
+                  <br>
+                </div><span>{{ currentProject.current }} / {{ currentProject.target }}</span>
+            </div>
+              <a href="/participateProject/{{currentProject.idProject}}">
+                <button style="float:bottom;" href="/"> Participer ! </button>
+              </a>
+          </div>
+            
         </div>
     </div>
 

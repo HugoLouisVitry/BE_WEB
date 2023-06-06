@@ -13,28 +13,32 @@
 
 </head>
 <body class="seo_version">
-    {% include("layout/nav.html") %} 
+    {% include("layout/nav.html") %}
+    {% include("layout/info.html") %}
+
     {% if currentProject and currentProject is not none %}
     {% if projectUser and projectUser is not none %}
     <section>
   
       <div class="container aligncenter project" style="margin-top:50px;">
-          <div>
+        <div>
             <p class="name">{{currentProject.name}}</p>
             <div class="alignright">
                 <p> {{projectUser.prenom}} serait très heureux(se) <br> que vous souteniez son projet </p>
                 <img style="margin-left: 50px;" height="100px" width="100px" src="/static/images/avatar/{{projectUser.avatar}}" alt="Image de validation">
             </div>
             <div class="alignleft">
-                <label for="paiement"> Montant </label>
-                <input style="border-color: black;" type="text" class="form-control" id="paiement" name="paiement" placeholder="Montant en Mat Coins" required>
-                <p style="float: right;"> Votre Solde en Mat Coins {{session.solde}}</p>
+                <form method="post" action="/tip/{{currentProject.idProject}}">
+                    <label for="paiement"> Montant </label>
+                    <input style="border-color: black;" type="number" class="form-control" id="paiement" name="paiement" placeholder="Montant en Mat Coins" required>
+                    <div style="margin-top: 20px; color:black;">
+                        <p style="float: right; margin-left:20px;"> Votre Solde en Mathcoins : {{session.solde}}</p>
+                        <input type="submit" value="Payer"></input>
+                    </div>
+                </form>
             </div>
         </div>
-        <div class="d-grid mb-2 mt-5">
-            <button class="btn btn-primary btn-login fw-bold text-uppercase"
-                type="submit">Enregistrer</button>
-        </div>
+        
       </div>
   
     </section>

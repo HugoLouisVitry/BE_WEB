@@ -16,6 +16,14 @@
             color: black;
             text-decoration: none;
         }
+        .description-truncated {
+            font-size: 18px;
+            line-height: 1.5;
+            max-width: 800px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
     </style>
 </head>
 
@@ -66,7 +74,19 @@
                                             <a href="/seeProject/{{project.idProject}}">{{ project.name
                                                     }}</a>
                                         </td>
-                                        <td>{{ project.description }}</td>
+                                        <td class="description-truncated">{{ project.description }}</td>
+                                        <script>
+                                            var description = "{{project.description}}"; // Récupérer la description du projet
+                                            var decodedDescription = document.createElement('textarea');
+                                            decodedDescription.innerHTML = description;
+                                            var decodedText = decodedDescription.value;
+                                            var truncatedDescription = decodedText.substring(0, 30) + "..."; // Obtenir les 20 premiers caractères et ajouter des points de suspension
+                                            
+                                            // Insérer la description tronquée dans l'élément HTML approprié
+                                            var descriptionElement = document.querySelector(".description-truncated");
+                                            descriptionElement.textContent = truncatedDescription;
+                                          </script>
+                                          
                                         <td>{{ project.target }}</td>
                                         <td>{{ project.endDate }}</td>
                                         <td class='modifSelect' data-url='/closeProject/S'
@@ -76,10 +96,6 @@
                                             {% else %}
                                             Ouvert
                                             {% endif %}
-                                        </td>
-                                    </tr>
-                                            <!-- remplacer par une image !  -->
-                                            <a id="comu-link" href="/seeProject/{{project.idProject}}">Voir le projet</a>
                                         </td>
                                     </tr>
                                     {% endif %}

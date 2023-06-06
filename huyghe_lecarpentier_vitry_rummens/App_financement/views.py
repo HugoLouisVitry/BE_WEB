@@ -70,12 +70,6 @@ def case_study():
 def webmaster():
     return render_template("webmaster.html")
 
-# @app.route("/new-project")
-# def new_project():
-#     params = f.messageInfo(None)
-#     return render_template("new-project.html", **params)
-
-
 @app.route("/addMembre", methods=['POST'])
 def addMembre():
     # réception des données du formulaire
@@ -196,8 +190,6 @@ def update_mdp():
     return redirect("/profil")
 
 # suppression d'un membre
-
-
 @app.route("/suppMembre/<idUser>")
 def suppMembre(idUser=None):
     bdd.del_membreData(idUser)
@@ -336,18 +328,23 @@ def participate(id=''):
             params = {'currentProject': listeProjets[i]}
             for j in range(len(users)):
                 if listeProjets[i]['idUser']==users[j]['idUser']:
-                    print("MATCH  ",listeProjets[i]['idUser'],"et",users[j]['idUser'])
                     params['projectUser']=users[j]
-    print("PARAM",params)
+
     params = f.messageInfo(params)
 
     return render_template("participateProject.html",**params)
     
-# WIP 
-# @app.route("/participateProject/<contribution>")
-# def participateProject(contribution=None):
-#     idProject = request.form['pk']
-#     idUser = session['idUser']
-#     value = request.form['value']
-#     bdd.update_participation(idProject, idUser, value)
-#     return render_template("participateProject.html")
+ 
+@app.route("/tip/<id>", methods=['POST'])
+def tip(id=''):
+    money = int(request.form['paiement'])
+    if money > session['solde'] : 
+        session["infoRouge"] = "Votre solde est insufisant"
+        return redirect("/participateProject/"+str(id))
+    try:
+        bdd.update_participation(int(id), int(session["idUser"]), money)
+        session["infoVert"] = "Paiement réussi"
+        return redirect("/myProjects")
+    except:
+        session["infoRouge"] = "Erreur Innatendue"
+        return redirect("/participateProject/"+str(id))
