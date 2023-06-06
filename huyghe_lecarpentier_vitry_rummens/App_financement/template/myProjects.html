@@ -3,6 +3,20 @@
 
 <head>
     {% include("layout/head.html") %}
+    <style>
+        #comu-link {
+            color: black;
+            text-decoration: none;
+        }
+        #comu-link:hover{
+            color: black;
+            text-decoration: none;            
+        }
+        #comu-link:focus {
+            color: black;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body class="seo_version">
@@ -39,31 +53,34 @@
                                     {% if liste and liste is not none %}
                                     {% for project in liste %}
                                     {% if project.idUser == session['idUser'] %}
-                                        <tr>
-                                            <td>
-                                                <a href="/closeProject/{{project.idProject}}">
-                                                    <img src='static/images/prettyPhoto/cross.png' height="30px"
-                                                        width="30px">
-                                                </a>
-                                            </td>
-                                            <td><img src="static/images/projectsPictures/{{project.picture}}"
-                                                    class="picture" height="30px" width="30px" /></td>
-                                            <td>
-                                                <a href="/seeProject/{{project.idProject}}">{{ project.name
-                                                        }}</a>
-                                            </td>
-                                            <td>{{ project.description }}</td>
-                                            <td>{{ project.target }}</td>
-                                            <td>{{ project.endDate }}</td>
-                                            <td class='modifSelect' data-url='/closeProject/S'
-                                                data-pk='{{project.idProject}}'>
-                                                {% if project.isOpen == 0 %}
-                                                Fermé
-                                                {% else %}
-                                                Ouvert
-                                                {% endif %}
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="/closeProject/{{project.idProject}}">
+                                                <img src='/static/images/prettyPhoto/cross.png' height="30px"
+                                                    width="30px">
+                                            </a>
+                                        </td>
+                                        <!-- <td>{{ project.idProject }}</td> -->
+                                        <td><img src="/static/images/projectsPictures/{{project.picture}}" class="picture"
+                                            height="30px" width="30px" /></td>
+                                        <td class='modif' data-url='/updateProject/N' data-pk='{{project.idProject}}'> {{
+                                            project.name }}
+                                        </td>
+                                        <td>{{ project.description }}</td>
+                                        <td>{{ project.target }}</td>
+                                        <td>{{ project.endDate }}</td>
+                                        <td class='modifSelect' data-url='/closeProject/S' data-pk='{{project.idProject}}'>
+                                            {% if project.isOpen == 0 %}
+                                            Fermé
+                                            {% else %}
+                                            Ouvert
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <!-- remplacer par une image !  -->
+                                            <a id="comu-link" href="/seeProject/{{project.idProject}}">Voir le projet</a>
+                                        </td>
+                                    </tr>
                                     {% endif %}
                                     {% endfor %}
                                     {% endif %}
