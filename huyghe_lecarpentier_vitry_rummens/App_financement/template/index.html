@@ -1,41 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     {% include("layout/head.html") %}
-    
-</head>
-<body class="seo_version" onload="setTimeout(cacherDiv,5000)">
 
-	<!-- END LOADER -->
+  </head>
+  <body class="seo_version" onload="setTimeout(cacherDiv,5000)">
+
+    <!-- END LOADER -->
     {% include("layout/nav.html") %}
 
-
-    <SCRIPT language="JavaScript">
+    <script language="JavaScript">
         function cacherDiv() {
              document.getElementById("messageInfo").style.display ="none";
         }
-        </SCRIPT>
-
+        </script>
 
     {% include ("layout/info.html") %}
-    <div id="home" class="parallax first-section" data-stellar-background-ratio="0.4" style="background-image:url('/static/uploads/parallax_12.jpg');">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <div class="big-tagline">
-                        <h2>Agir<br> ensemble</h2>
-                        <p class="lead">Petit ou grand projet, rendez le monde meilleur depuis chez vous !</p>
-                    </div>
-                </div>
+    <div id="home" class="parallax first-section"
+      data-stellar-background-ratio="0.4"
+      style="background-image:url('/static/uploads/parallax_12.jpg');">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="big-tagline">
+              <h2>Agir<br> ensemble</h2>
+              <p class="lead">Petit ou grand projet, rendez le monde meilleur
+                depuis chez vous !</p>
+            </div>
+          </div>
 
-                <div class="app_iphone_02 wow slideInUp hidden-xs hidden-sm" data-wow-duration="1s" data-wow-delay="0.5s">
-                    <img src="/static/uploads/rocket.png" alt="" class="img-responsive">
-                </div>
-            </div><!-- end row -->
-        </div><!-- end container -->
+          <div class="app_iphone_02 wow slideInUp hidden-xs hidden-sm"
+            data-wow-duration="1s" data-wow-delay="0.5s">
+            <img src="/static/uploads/rocket.png" alt class="img-responsive">
+          </div>
+        </div><!-- end row -->
+      </div><!-- end container -->
     </div><!-- end section -->
     <br>
-<style>
+    <style>
 #Cadre{
   position: relative;
   height: 200;
@@ -47,20 +49,20 @@
 }
 
 </style>
-<div class="container" id="Cadre">
-<p>
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/Yd7BcAkH8iY?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-</p>
-<p>
-  Faut du mettre du texte
-</p>
-</div>
+    <div class="container" id="Cadre">
+      <p>
+        <iframe width="560" height="315"
+          src="https://www.youtube.com/embed/Yd7BcAkH8iY?controls=0"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </p>
+      <p>
+        Faut du mettre du texte
+      </p>
+    </div>
 
-
-    
-
-    
-  <style>
+    <style>
     /* Styles CSS du slider */
     .slider {
       position: relative;
@@ -80,47 +82,56 @@
 
     .slide {
       flex: 0 0 calc(33.33% - 20px);
-      height: auto; /* Ajuste la hauteur en fonction du contenu */
+      height: 300px; /* Hauteur fixe pour toutes les slides */
       margin: 0 10px;
       background-color: #c0bbbb;
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       overflow: hidden;
-      display: flex;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       z-index: 99990;
+      position: relative;
+    
     }
-
+    
     .slide img {
-      flex: 0 0 50%; /* Ajuste la largeur de l'image */
-      height: 250px; /* Ajuste la hauteur en fonction du contenu */
-      object-fit: cover;
-      z-index: 99990;
-      max-width: 250px;
+      flex: 0 0 100%; /* Ajuster la largeur de l'image à 100% de la slide */
+      height: auto; /* Hauteur automatique pour conserver les proportions de l'image */
+      max-width: 200px; /* Limiter la largeur de l'image à 200px */
+      max-height: 200px; /* Limiter la hauteur de l'image à 200px */
+      object-fit: contain;
+      text-align: center;
+      justify-content: center;
     }
-
+    
     .slide-content {
-      flex: 0 0 50%; /* Ajuste la largeur du contenu */
+      /* ... Vos styles existants ... */
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       padding: 20px;
-      z-index: 99990;
+      background-color: rgba(0, 0, 0, 0.5); /* Ajoutez un fond semi-transparent pour une meilleure lisibilité */
+      color: #fff; /* Couleur du texte pour une meilleure lisibilité */
+      box-sizing: border-box;
     }
-
+    
     .slide h3 {
       margin: 0;
       font-size: 18px;
       margin-bottom: 10px;
       white-space: pre-wrap;
-      z-index: 99990;
-  }
-
-    .slide p {
-    margin: 0;
-    font-size: 14px;
-     /* Hauteur maximale de la description */
+      text-align: center; /* Centrer le titre */
+    }
     
-    text-overflow: ellipsis; /* Troncature avec des points de suspension */
-    white-space: nowrap;
-    overflow-wrap: break-word
-  }
+    .slide p {
+      margin: 0;
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     .slider-pagination {
       display: flex;
@@ -162,44 +173,46 @@
       z-index: 99990;
     }
   </style>
-<br>
-  <div class="slider">
-    <div class="slide-container">
-      {% if liste and liste is not none %}
-      {% for project in liste %}
-      <a href="/seeProject/{{project.idProject}}" class="slide">
-        
-        <img src="/static/images/projectsPictures/{{project.picture}}" alt="Image">
-        <div class="slide-content">
-          <h3>{{ project.name }}</h3>
-          <p>{{ project.description }}</p>
-          <div class="progress-container">
-            <progress value="{{project.prix}}" max="{{project.target}}">
-              <br>
-            
-          </div><span>{{ project.prix }} / {{ project.target }}</span>
+    <br>
+    <div class="slider">
+      <div class="slide-container">
+        {% if liste and liste is not none %}
+        {% for project in liste %}
+        <a href="/seeProject/{{project.idProject}}" class="slide">
+
+          <img src="/static/images/projectsPictures/{{project.picture}}"
+            alt="Image">
+          <div class="slide-content">
+            <h3>{{ project.name }}</h3>
+            <p>{{ project.description }}</p>
+            <div class="progress-container">
+              <progress value="{{project.current}}" max="{{project.target}}">
+                <br>
+
+              </div><span>{{ project.current }} / {{ project.target }}</span>
+            </div>
+          </a>
+          {% endfor %}
+          {% if liste|length < 9 %}
+          {% set remainingSlides = 9 - liste|length %}
+          {% for _ in range(remainingSlides) %}
+          <div class="slide">
+            <img src="/static/images/projectsPictures/comingSoon.jpg"
+              alt="Image par défaut">
+            <div class="slide-content">
+              <h3>Coming Soon</h3>
+              <p></p>
+            </div>
+          </div>
+          {% endfor %}
+          {% endif %}
+          {% endif %}
         </div>
-    </a>
-    {% endfor %}
-    {% if liste|length < 9 %}
-            {% set remainingSlides = 9 - liste|length %}
-            {% for _ in range(remainingSlides) %}
-                <div class="slide">
-                    <img src="/static/images/projectsPictures/comingSoon.jpg" alt="Image par défaut">
-                    <div class="slide-content">
-                        <h3>Coming Soon</h3>
-                        <p></p>
-                    </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-      {% endif %}
-    </div>
-  </div>
+      </div>
 
-  <div class="slider-pagination"></div>
+      <div class="slider-pagination"></div>
 
-  <script>
+      <script>
     // Sélectionnez les éléments du slider
     const slider = document.querySelector('.slider');
     const slideContainer = slider.querySelector('.slide-container');
@@ -263,8 +276,7 @@
     updatePagination();
   </script>
 
-{% include("layout/footer.html") %}
+      {% include("layout/footer.html") %}
 
-
-</body>
-</html>
+    </body>
+  </html>
