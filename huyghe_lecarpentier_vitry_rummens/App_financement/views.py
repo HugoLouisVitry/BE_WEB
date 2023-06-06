@@ -160,8 +160,9 @@ def sgbd():
 
 @app.route("/profil")
 def profil():
-    url_yt=choisir_pub()    
-    params={'url':url_yt}
+    url_yt=choisir_pub()
+    contribution_totale  = bdd.get_contribution_totale(session['idUser'])
+    params ={'url':url_yt, 'contribution_totale':contribution_totale}
     params=f.messageInfo(params)
     return render_template("profil.html",**params) 
 
