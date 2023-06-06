@@ -202,6 +202,25 @@ def update_mdp(idUser, newvalue):
     return 1
 
 
+def update_solde(idUser, newvalue):
+    cnx = connexion()
+    if cnx is None:
+        return None
+
+    try:
+        cursor = cnx.cursor()
+        sql = "UPDATE user SET solde = %s WHERE idUser = %s;"
+        param = (newvalue, idUser)
+        cursor.execute(sql, param)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK update_membreData"
+    except mysql.connector.Error as err:
+        session['errorDB'] = "Failed update solde data : {}".format(err)
+        print(session['errorDB'])  # le problème s'affiche dans le terminal
+    return 1
+
+
 def add_projectData(name, description, target, endDate, isOpen, idUser, picture):
     cnx = connexion()
     if cnx is None:

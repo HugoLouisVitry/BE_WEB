@@ -126,6 +126,14 @@ def connect():
         session["infoRouge"] = "Authentification refusée"
         return redirect("/login")
 
+@app.route("/update_solde",methods=['POST'])
+def update_solde():
+    add_solde=request.form["amount-astrocoins"]
+    
+    session["solde"]+=int(add_solde)
+    bdd.update_solde(idUser=session["idUser"], newvalue=session["solde"])
+    return redirect("/profil")
+ 
 
 @app.route("/logout")
 def logout():

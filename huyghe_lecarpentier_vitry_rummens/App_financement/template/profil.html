@@ -74,17 +74,20 @@
                 </div>
             </div>
 
-
             <div class="container">
                 <div class="section-title text-center">
                     <h3>Recharger votre porte monaie</h3>
                     <div class="col-md-6">
-                        <form>
+                        <form method="post" action="/update_solde">
                             <label for="amount-euro">Montant en Euro :</label>
-                            <input type="number" id="amount-euro" name="amount-euro" step="0.01" min="0" placeholder="Entrez le montant en Euro" required>
-                      
-                            <label for="amount-astrocoins">Montant en Astrocoins :</label>
-                            <input type="text" id="amount-astrocoins" name="amount-astrocoins" readonly>
+                            <input type="number" id="amount-euro"
+                                name="amount-euro" step="0.01" min="0"
+                                placeholder="Entrez le montant en Euro" required>
+
+                            <label for="amount-astrocoins">Montant en Astrocoins
+                                :</label>
+                            <input type="text" id="amount-astrocoins"
+                                name="amount-astrocoins" readonly>
 
                             <label for="card-number">Numéro de carte :</label>
                             <input type="text" id="card-number"
@@ -99,8 +102,6 @@
                             <label for="expiration-date">Date d'expiration :</label>
                             <input type="month" id="expiration-date"
                                 name="expiration-date" required>
-                                
-                            
 
                             <label for="cvv">Code de sécurité (CVV) :</label>
                             <input type="number" id="cvv" name="cvv"
@@ -135,20 +136,24 @@
                     </div>
                     <div class="col-md-6">
                         <div>
-                        
+
                             <form method="post" action="/update_mdp">
                                 <h4 class="card-title text-center mb-2 fw-light">Obtenir
                                     des kiwis gratuits</h4>
                             </div>
                             <div class="form-floating mb-3">
-                                <label>En soutenant nos partenaires : annonce publicitaire</label>
+                                <label>En soutenant nos partenaires : annonce
+                                    publicitaire</label>
                                 <div>
-                                   <a href="{{url}}", target="_blank" >Soutenir nos sponsors</a>  
+                                    <a href="{{url}}" , target="_blank">Soutenir
+                                        nos sponsors</a>
                                 </div>
-                              </div>
-                           <div class="form-floating mb-3">
+                            </div>
+                            <div class="form-floating mb-3">
                                 <label>à l'aide d'un coupon cadeau Kiwi</label>
-                              <input type="text" class="form-control" id="coupon" name="coupon" placeholder="Numero de coupon" required>
+                                <input type="text" class="form-control"
+                                    id="coupon" name="coupon"
+                                    placeholder="Numero de coupon" required>
                             </div>
                         </div>
                     </div>
@@ -227,11 +232,11 @@
                   
                         euroInput.addEventListener("input", function() {
                           const euroAmount = parseFloat(euroInput.value);
-                          const astrocoinsAmount = euroAmount * 100;
-                          astrocoinsInput.value = astrocoinsAmount.toFixed(2);
+                          const astrocoinsAmount = Math.floor(euroAmount * 100);
+                          astrocoinsInput.value = astrocoinsAmount;
                         });
-                    </script>
-                   
+                      </script>
+
                 </div><!-- end section -->
 
                 {% include("layout/footer.html")%}
