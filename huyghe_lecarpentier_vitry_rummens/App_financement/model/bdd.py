@@ -271,3 +271,27 @@ def get_project_index():
         session['errorDB'] = "Failed get projets data : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
     return listeProjets
+
+#participation financière, modification table project (current) et participate
+def update_participation(idProject, idUser, value):
+    cnx = connexion() 
+    if cnx is None: return None
+    try:
+        cursor = cnx.cursor()
+        current = "SELECT current FROM project WHERE idProject = %s;"
+        param = (idProject)
+        cursor.execute(current, param1)
+        print(current)
+        sql = "UPDATE project SET current = %s WHERE idProject = %s;"
+        param1 = (current + value, idProject)
+        cursor.execute(sql, param1)
+        sql2 = "INSERT INTO participate (idUser, idProject, somme) VALUES (%s, %s, %s);"
+        param2 = (idUser, idProject, value)
+        cursor.execute(sql2, param2)
+        cnx.commit()
+        close_bd(cursor, cnx)
+        #session['successDB'] = "OK update_participation"
+    except mysql.connector.Error as err:
+        session['errorDB'] = "Failed update participation : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return 1

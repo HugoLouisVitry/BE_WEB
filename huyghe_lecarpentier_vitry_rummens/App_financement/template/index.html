@@ -92,7 +92,7 @@
 
     .slide img {
       flex: 0 0 50%; /* Ajuste la largeur de l'image */
-      height: auto; /* Ajuste la hauteur en fonction du contenu */
+      height: 250px; /* Ajuste la hauteur en fonction du contenu */
       object-fit: cover;
       z-index: 99990;
       max-width: 250px;
@@ -113,10 +113,14 @@
   }
 
     .slide p {
-      margin: 0;
-      font-size: 14px;
-      z-index: 99990;
-    }
+    margin: 0;
+    font-size: 14px;
+     /* Hauteur maximale de la description */
+    
+    text-overflow: ellipsis; /* Troncature avec des points de suspension */
+    white-space: nowrap;
+    overflow-wrap: break-word
+  }
 
     .slider-pagination {
       display: flex;
@@ -141,6 +145,22 @@
       background-color: #555;
       z-index: 99990;
     }
+    .progress-container {
+      display: flex;
+      align-items: center;
+      z-index: 99990;
+    }
+  
+    .progress-container progress {
+      flex: 1;
+      margin-right: 10px;
+      z-index: 99990;
+    }
+  
+    .progress-container span {
+      font-size: 14px;
+      z-index: 99990;
+    }
   </style>
 <br>
   <div class="slider">
@@ -153,7 +173,11 @@
         <div class="slide-content">
           <h3>{{ project.name }}</h3>
           <p>{{ project.description }}</p>
-          <progress value="{{project.prix}}" max="{{project.target}}">
+          <div class="progress-container">
+            <progress value="{{project.prix}}" max="{{project.target}}">
+              <br>
+            
+          </div><span>{{ project.prix }} / {{ project.target }}</span>
         </div>
     </a>
     {% endfor %}
