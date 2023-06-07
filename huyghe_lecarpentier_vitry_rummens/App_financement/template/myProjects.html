@@ -8,14 +8,17 @@
             color: black;
             text-decoration: none;
         }
-        #comu-link:hover{
+
+        #comu-link:hover {
             color: black;
-            text-decoration: none;            
+            text-decoration: none;
         }
+
         #comu-link:focus {
             color: black;
             text-decoration: none;
         }
+
         .description-truncated {
             font-size: 18px;
             line-height: 1.5;
@@ -23,7 +26,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-          }
+        }
     </style>
 </head>
 
@@ -48,13 +51,13 @@
                                 data-page-size="8" data-page-list="[10, 25, 50, all]">
                                 <thead>
                                     <tr>
-                                        <th data-field="close" data-align="center">Fermer</th>
-                                        <th data-field="picture" data-sortable="true">Image</th>
-                                        <th data-field="name" data-sortable="true">Nom</th>
-                                        <th data-field="description" data-sortable="true">Description</th>
-                                        <th data-field="target" data-sortable="true">Objectif</th>
-                                        <th data-field="endDate" data-sortable="true">Date limite</th>
-                                        <th data-field="isOpen" data-sortable="true">Statut</th>
+                                        <th class="text-center" data-field="close" data-align="center">Fermer</th>
+                                        <th class="text-center" data-field="picture" data-sortable="true">Image</th>
+                                        <th class="text-center" data-field="name" data-sortable="true">Nom</th>
+                                        <th class="text-center" data-field="description" data-sortable="true">Description</th>
+                                        <th class="text-center" data-field="target" data-sortable="true">Objectif</th>
+                                        <th class="text-center" data-field="endDate" data-sortable="true">Date limite</th>
+                                        <th class="text-center" data-field="isOpen" data-sortable="true">Statut</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,7 +75,7 @@
                                                 class="picture" height="30px" width="30px" /></td>
                                         <td>
                                             <a href="/seeProject/{{project.idProject}}">{{ project.name
-                                                    }}</a>
+                                                }}</a>
                                         </td>
                                         <td class="description-truncated">{{ project.description }}</td>
                                         <script>
@@ -81,12 +84,12 @@
                                             decodedDescription.innerHTML = description;
                                             var decodedText = decodedDescription.value;
                                             var truncatedDescription = decodedText.substring(0, 30) + "..."; // Obtenir les 20 premiers caractères et ajouter des points de suspension
-                                            
+
                                             // Insérer la description tronquée dans l'élément HTML approprié
                                             var descriptionElement = document.querySelector(".description-truncated");
                                             descriptionElement.textContent = truncatedDescription;
-                                          </script>
-                                          
+                                        </script>
+
                                         <td>{{ project.target }}</td>
                                         <td>{{ project.endDate }}</td>
                                         <td class='modifSelect' data-url='/closeProject/S'
@@ -103,7 +106,14 @@
                                     {% endif %}
                                 </tbody>
                             </table>
-
+                            {% if non_createurs and non_createurs is not none %}
+                            {% for utilisateur in non_createurs %}
+                            {% if utilisateur.idUser == session['idUser'] %}
+                            <p style="font-size: 40px; color :#58ae47;">Donnez vie à votre premier projet dès
+                                maintenant !</p>
+                            {% endif %}
+                            {% endfor %}
+                            {% endif %}
                         </div>
                         <div class="col-md-4">
                             <div style="z-index: 1000;" class="contact_form">
@@ -180,55 +190,64 @@
 
                         </div>
                         <div class="section-title col-md-11 text-center">
-                             <h3 style="z-index: 0;">Les projets que j'ai soutenus</h3>
+                            <h3 style="z-index: 0;">Les projets que j'ai soutenus</h3>
                         </div>
-                          <div class="row">
-                                <div>
-                                    {# liste #}
-                                    <table class="table" data-toggle="table" data-search="true" data-pagination="true"
-                                        data-page-size="8" data-page-list="[10, 25, 50, all]">
-                                        <thead>
-                                            <tr>
-                                                <th data-field="picture" data-align="center">Image</th>
-                                                <th data-field="name" data-sortable="true">Nom</th>
-                                                <th data-field="target" data-sortable="true">Objectif</th>
-                                                <th data-field="somme" data-sortable="true">Contribution</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {% if contribution and contribution is not none %}
-                                            {% for participate in contribution %}
-                                            {% if participate.idUser == session['idUser'] %}
-                                                <tr>
-                                                    <td><img src="/static/images/projectsPictures/{{participate.picture}}"
-                                                            class="picture" height="30px" width="30px" /></td>
-                                                    <td>
-                                                        <a href="/seeProject/{{participate.idProject}}">{{ participate.name
-                                                                }}</a>
-                                                    </td>
-                                                    <td>{{ participate.target }}</td>
-                                                    <td>{{ participate.somme }}</td>
-                                                </tr>
-                                            {% endif %}
-                                            {% endfor %}
-                                            {% endif %}
-                                        </tbody>
-                                    </table>
-         
-                                </div>
+                        <div class="row">
+                            <div>
+                                {# liste #}
+                                <table class="table" data-toggle="table" data-search="true" data-pagination="true"
+                                    data-page-size="8" data-page-list="[10, 25, 50, all]">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center" data-field="picture" data-align="center">Image</th>
+                                            <th class="text-center" data-field="name" data-sortable="true">Nom</th>
+                                            <th class="text-center" data-field="target" data-sortable="true">Objectif</th>
+                                            <th class="text-center" data-field="somme" data-sortable="true" >Contribution</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if contribution and contribution is not none %}
+                                        {% for participate in contribution %}
+                                        {% if participate.idUser == session['idUser'] %}
+                                        <tr>
+                                            <td><img src="/static/images/projectsPictures/{{participate.picture}}"
+                                                    class="picture" height="30px" width="30px" /></td>
+                                            <td>
+                                                <a href="/seeProject/{{participate.idProject}}">{{ participate.name
+                                                    }}</a>
+                                            </td>
+                                            <td>{{ participate.target }}</td>
+                                            <td>{{ participate.somme }}</td>
+                                        </tr>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+                                {% if non_contributeurs and non_contributeurs is not none %}
+                                {% for utilisateur in non_contributeurs %}
+                                {% if utilisateur.idUser == session['idUser'] %}
+                                <a href="/community">
+                                    <p style="font-size: 40px; color :#58ae47;">Faites votre premier don dès
+                                        maintenant !</p>
+                                </a>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </div>
 
 
-                        <div class="col-md-6">
-                            <br>
-                            <img id="preview" class="w-50 img-fluid">
-                        </div><!-- end col -->
-                    </div><!-- end row -->
-                </div>
-            </div><!-- end title -->
-            <!--End Page-->
-        </div><!-- end section -->
+                            <div class="col-md-6">
+                                <br>
+                                <img id="preview" class="w-50 img-fluid">
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+                    </div>
+                </div><!-- end title -->
+                <!--End Page-->
+            </div><!-- end section -->
 
-    {% include("layout/footer.html")%}
+            {% include("layout/footer.html")%}
 
 </body>
 

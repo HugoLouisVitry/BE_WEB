@@ -152,7 +152,7 @@
         </div>
       </div>
     </div>
-    <div class="section-title col-md-11 text-center">
+    <div class="section-title col-md-11">
       <h3 style="z-index: 0;">Ils y ont contribué...</h3>
     </div>
     <div class="row">
@@ -183,6 +183,21 @@
               {% endif %}
             </tbody>
           </table>
+          {% if non_contributed and non_contributed is not none %}
+          {% for project in non_contributed %}
+          {% if project.idProject == currentProject.idProject %}
+          {% if session['idUser'] and session['idUser'] is not none %}
+          <a href="/participateProject/{{currentProject.idProject}}">
+            <center><p style="font-size: 40px; color :#58ae47;">Soyez le premier !</p></center>
+          </a>
+          {% else %}
+          <a href="/login">
+            <center><p style="font-size: 40px; color :#58ae47;">Soyez le premier !</p></center>
+          </a>
+          {% endif %}
+          {% endif %}
+          {% endfor %}
+          {% endif %}
         </div>
       </div>
 

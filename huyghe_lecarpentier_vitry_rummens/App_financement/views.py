@@ -250,7 +250,9 @@ def choisir_pub():
 def myProjects():
     listeProjets = bdd.get_projectData()
     listeContribution = bdd.get_participate()
-    params ={'liste':listeProjets, 'contribution':listeContribution}
+    non_contributeurs = bdd.get_non_contributeurs()
+    non_createurs = bdd.get_non_createurs()
+    params ={'liste':listeProjets, 'contribution':listeContribution, 'non_contributeurs':non_contributeurs, 'non_createurs':non_createurs}
     params = f.messageInfo(params)
     return render_template("myProjects.html", **params)
 
@@ -259,9 +261,10 @@ def myProjects():
 def seeProject(id=''):
     listeProjets = bdd.get_projectData()
     contributions = bdd.get_contributions(id)
+    non_contributed = bdd.get_non_contributed()
     for i in range(len(listeProjets)):
         if listeProjets[i]['idProject'] == int(id):
-            params = {'currentProject': listeProjets[i], 'contributions':contributions}
+            params = {'currentProject': listeProjets[i], 'contributions':contributions, 'non_contributed':non_contributed}
             params = f.messageInfo(params)
     return render_template("seeProject.html", **params)
 

@@ -305,7 +305,46 @@ def get_projectData():
         print(session['errorDB'])  # le problème s'affiche dans le terminal
     return listeProjets
 
-#Retourne les projets et les utilisateurs qui y ont contribué
+#Utilisateurs n'ayant pas créé de projet
+def get_non_createurs():
+    cnx = connexion()
+    if cnx is None:
+        return None
+
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT user.idUser FROM user WHERE user.idUser NOT IN(SELECT project.idUser FROM project)"
+        cursor.execute(sql)
+        liste_non_createurs = cursor.fetchall()
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK get_non_createurs"
+    except mysql.connector.Error as err:
+        liste_non_createurs = None
+        session['errorDB'] = "Failed get non createurs : {}".format(err)
+        print(session['errorDB'])  # le problème s'affiche dans le terminal
+    return liste_non_createurs
+
+def get_non_contributed():
+    cnx = connexion()
+    if cnx is None:
+        return None
+
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT project.idProject FROM project WHERE project.idProject NOT IN(SELECT participate.idProject FROM participate)"
+        cursor.execute(sql)
+        liste_non_contributed = cursor.fetchall()
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK get_non_contributed"
+    except mysql.connector.Error as err:
+        liste_non_createurs = None
+        session['errorDB'] = "Failed get non contributed : {}".format(err)
+        print(session['errorDB'])  # le problème s'affiche dans le terminal
+    return liste_non_contributed
+
+#Retourne les projets auxquels des utilisateurs ont contribué
 def get_participate():
     cnx = connexion() 
     if cnx is None: return None
@@ -315,18 +354,32 @@ def get_participate():
         sql1 = "SELECT participate.idProject, participate.idUser, picture, name, target, somme FROM project JOIN participate ON project.idProject = participate.idProject JOIN user on user.idUser = participate.idUser"
         cursor.execute(sql1)
         listeContribution = cursor.fetchall()
-        sql2 = "SELECT user.idUser FROM user WHERE user.idUser NOT IN(SELECT participate.idUser FROM participate)"
-        cursor.execute(sql2)
-        liste_non_contributeurs = cursor.fetchall()
         cnx.commit()
         close_bd(cursor, cnx)
         # session['successDB'] = "OK get_participate"
     except mysql.connector.Error as err:
         listeContribution = None
-        liste_non_contributeurs = None
         session['errorDB'] = "Failed get contribution : {}".format(err)
         print(session['errorDB']) #le problème s'affiche dans le terminal
-    return listeContribution, liste_non_contributeurs
+    return listeContribution
+
+def get_non_contributeurs():
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT user.idUser FROM user WHERE user.idUser NOT IN(SELECT participate.idUser FROM participate)"
+        cursor.execute(sql)
+        liste_non_contributeurs = cursor.fetchall()
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK get_non_contributeurs"
+    except mysql.connector.Error as err:
+        liste_non_contributeurs = None
+        session['errorDB'] = "Failed get non_contributeurs : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return liste_non_contributeurs
 
 #Contribution totale de l'utilisateur
 def get_contribution_totale(idUser):
