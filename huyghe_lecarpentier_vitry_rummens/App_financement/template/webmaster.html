@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    {% include("layout/head.html") %}
-    <style>
+{% include("layout/head.html") %}
+<style>
     .clear {
         clear: both;
     }
@@ -20,19 +20,28 @@
 
     .myDiv {
         display: none;
-        width: 930px;
-        height: 200px;
+        width: 600px;
+        height: 800px;
         background-color: lightgray;
         margin-top: 20px;
         float: right;
         clear: right;
+        position: relative;
+    }
+
+    .myDiv img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
     }
 
     .wbm-h-div {
         display: none;
     }
 </style>
-    <script>
+<script>
     function toggleDiv(divId) {
         var div = document.getElementById(divId);
         if (div.style.display === "none") {
@@ -42,121 +51,113 @@
         }
     }
 </script>
-    <body class="seo_version">
+<body class="seo_version">
 
-        {% include("layout/nav.html") %}
+    {% include("layout/nav.html") %}
 
-        <div class="container">
-            <div class="section-title text-center">
-                <h1 style="margin-top: 20px;">À propos de nous</h1>
-                <p class="lead">Les artistes qui ont fait ce site web génial</p>
-            </div><!-- end title -->
+    <div class="container">
+        <div class="section-title text-center">
+            <h1 style="margin-top: 20px;">À propos de nous</h1>
+            <p class="lead">Les artistes qui ont fait ce site web génial</p>
+        </div><!-- end title -->
 
-            <section>
-                <div id="webmaster">
+        <section>
+            <div id="webmaster">
+                <div>
                     <div>
-                        <div>
-                            <div class="post-media wow fadeIn">
-                                <img id="webmaster-img"
-                                    src="/static/images/webmaster/mathias.jpg"
-                                    alt class="img-responsive img-rounded"
-                                    onclick="toggleDiv('myDiv1')">
-                                <div id="wbm-p-div1" class="wbm-p-div">
-                                    <h1 id="wbm-h1">HUYGHE Mathias</h1>
-                                </div>
-                                <div id="myDiv1" class="myDiv">
-                                    <!-- Contenu du div 1 -->
-                                    <h2>Contenu du div 1</h2>
-                                    <p>Ceci est le contenu du div 1 qui apparaît
-                                        lorsque vous cliquez sur l'image 1.</p>
-                                </div>
-                                <div class="clear"></div>
+                        <div class="post-media wow fadeIn">
+                            <img id="webmaster-img"
+                                src="/static/images/webmaster/mathias.jpg"
+                                alt class="img-responsive img-rounded"
+                                onclick="toggleDiv('myDiv1')">
+                            <div id="wbm-p-div1" class="wbm-p-div">
+                                <h1 id="wbm-h1">HUYGHE Mathias</h1>
                             </div>
+                            <div id="myDiv1" class="myDiv">
+                                <!-- Contenu du div 1 -->
+                                <img src="\static\images\webmaster\Capture_Mathias.PNG" alt="">
+                            </div>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section>
-                <div id="webmaster">
+        <section>
+            <div id="webmaster">
+                <div>
                     <div>
-                        <div>
-                            <div class="post-media wow fadeIn">
-                                <img id="webmaster-img"
-                                    src="/static/images/webmaster/marie.jpg"
-                                    alt class="img-responsive img-rounded"
-                                    onclick="toggleDiv('myDiv2')">
-                                <div id="wbm-p-div2" class="wbm-p-div">
-                                    <h1 id="wbm-h2">LE CARPENTIER Marie</h1>
+                        <div class="post-media wow fadeIn">
+                            <img id="webmaster-img"
+                                src="/static/images/webmaster/marie.jpg"
+                                alt class="img-responsive img-rounded"
+                                onclick="toggleDiv('myDiv2')">
+                            <div id="wbm-p-div2" class="wbm-p-div">
+                                <h1 id="wbm-h2">LE CARPENTIER Marie</h1>
 
-                                </div>
-                                <div id="myDiv2" class="myDiv">
-                                    <!-- Contenu du div 2 -->
-                                    <h2>Contenu du div 2</h2>
-                                    <p>Ceci est le contenu du div 2 qui apparaît
-                                        lorsque vous cliquez sur l'image 2.</p>
-                                </div>
-                                <div class="clear"></div>
                             </div>
+                            <div id="myDiv2" class="myDiv">
+                                <!-- Contenu du div 2 -->
+                                <img src="\static\images\webmaster\Capture_Marie.PNG" alt="">
+                            </div>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section>
-                <div id="webmaster">
+        <section>
+            <div id="webmaster">
+                <div>
                     <div>
-                        <div>
-                            <div class="post-media wow fadeIn">
-                                <img id="webmaster-img"
-                                    src="/static/images/webmaster/paul.jpg"
-                                    alt class="img-responsive img-rounded"
-                                    onclick="toggleDiv('myDiv3')">
-                                <div id="wbm-p-div3" class="wbm-p-div">
-                                    <h1 id="wbm-h3">RUMMENS Paul</h1>
+                        <div class="post-media wow fadeIn">
+                            <img id="webmaster-img"
+                                src="/static/images/webmaster/paul.jpg"
+                                alt class="img-responsive img-rounded"
+                                onclick="toggleDiv('myDiv3')">
+                            <div id="wbm-p-div3" class="wbm-p-div">
+                                <h1 id="wbm-h3">RUMMENS Paul</h1>
 
-                                </div>
-                                <div id="myDiv3" class="myDiv">
-                                    <!-- Contenu du div 3 -->
-                                    <h2>Contenu du div 3</h2>
-                                    <p>Ceci est le contenu du div 3 qui apparaît
-                                        lorsque vous cliquez sur l'image 3.</p>
-                                </div>
-                                <div class="clear"></div>
                             </div>
+                            <div id="myDiv3" class="myDiv">
+                                <!-- Contenu du div 3 -->
+                                <img src="\static\images\webmaster\Capture_Paul.PNG" alt="">
+                            </div>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </section>
 
-            <section>
-                <div id="webmaster">
+        <section>
+            <div id="webmaster">
+                <div>
                     <div>
-                        <div>
-                            <div class="post-media wow fadeIn">
-                                <img id="webmaster-img"
-                                    src="/static/images/webmaster/hugo.jpg"
-                                    alt class="img-responsive img-rounded"
-                                    onclick="toggleDiv('myDiv4')">
-                                <div id="wbm-p-div4" class="wbm-p-div">
-                                    <h1 id="wbm-h4">VITRY Hugo</h1>
+                        <div class="post-media wow fadeIn">
+                            <img id="webmaster-img"
+                                src="/static/images/webmaster/hugo.jpg"
+                                alt class="img-responsive img-rounded"
+                                onclick="toggleDiv('myDiv4')">
+                            <div id="wbm-p-div4" class="wbm-p-div">
+                                <h1 id="wbm-h4">VITRY Hugo</h1>
 
-                                </div>
-                                <div id="myDiv4" class="myDiv">
-                                    <!-- Contenu du div 4 -->
-                                    <h2>Contenu du div 4</h2>
-                                    <p>Ceci est le contenu du div 4 qui apparaît
-                                        lorsque vous cliquez sur l'image 4.</p>
-                                </div>
-                                <div class="clear"></div>
                             </div>
+                            <div id="myDiv4" class="myDiv">
+                                <!-- Contenu du div 4 -->
+                                <img src="\static\images\webmaster\Capture_Hugo.PNG" alt="">
+                            </div>
+                            <div class="clear"></div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
+    </div>
 
-        {% include("layout/footer.html")%}
+    {% include("layout/footer.html")%}
 
-    </body>
+</body>
 </html>

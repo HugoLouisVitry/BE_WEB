@@ -31,15 +31,16 @@
         top: 0;
         width: 100%;
         background-color: rgb(236,236,236);
-        height: 70px;
+        height: 10%;
         text-align: center;
-        z-index : 999999999 ;
+        z-index : 9999999 ;
         margin: 0;
+        float: right;
     }
 
     #menu li {
         position: relative;
-        left: 10%;
+        left: 20%;
         top: 15%;
     }
 
@@ -48,24 +49,66 @@
         z-index: 999999999;
         position: fixed;
         top: 0px;
-        height: 70px;
+        height: 10%;
         background-color: rgb(236,236,236);
-        width: 100%;
+        width: 20%;
         margin: 0;
         padding: 0;
         border: 0;}
     
     #image_marque img{
-        height: 70px;
+        height: 100%;
         width: auto;
         position: relative ;
-        left: 59px;
+        left: 10%;
         top: 30 px;
 
 
 
 
     }
+
+    #Coin_nav{
+        width: auto;
+        height: 20px;
+        
+
+    }
+    @media (max-width: 768px) {
+        #navbar {
+            display: none;
+        }
+
+        #navbar.collapse {
+            display: block;
+            position: absolute;
+            top: 100%;
+            width: 100%;
+            background-color: rgb(236, 236, 236);
+            padding: 10px;
+        }
+
+        #navbar.collapse ul {
+            display: block;
+            text-align: center;
+        }
+
+        #navbar.collapse ul li {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        #navbar.collapse ul li a {
+            display: block;
+        }
+
+        .navbar-toggle {
+            display: block;
+            float: right;
+            margin-right: 15px;
+        }
+    }   
+    
 </style>
 <header>
     <nav class="megamenu navbar navbar-default">
@@ -87,10 +130,9 @@
 
                 <ul class="nav navbar-nav" id="menu">
                     <li><a class="active" href="/">Accueil</a></li>
-                    <!-- <li><a href="/about">About Us </a></li> -->
+                    
                     <li><a href="/community">Communauté</a></li>
-                    <!-- <li><a href="/case-study">Case Study</a></li> -->
-                    <!-- <li><a href="/pricing">Pricing</a></li> -->
+                    
                     <li><a href="/webmaster">À propos de nous</a></li>
                     {% if not session['idUser'] %}
                     <li><a href="/login">Log In</a></li>
@@ -107,6 +149,7 @@
                     <table id="table_user">
                         <tbody>
                             <tr>
+                                <td id="coin_contain"><img src="\static\images\coin-monero_115225.png" id="Coin_nav"></td>
                                 <td>
                                     <h4 id="solde">{{session['solde']}}</h4>
                                 </td>
