@@ -343,7 +343,7 @@ def tip(id=''):
     #     return redirect("/participateProject/"+str(id))
     try:
         print('TTTTTTIIIIIIIIIIIIPPPPPPPPP')
-        
+        session["solde"]-=money
         bdd.update_participation(int(id), int(session["idUser"]), money)
         session["infoVert"] = "Paiement réussi"
         return redirect("/myProjects")
