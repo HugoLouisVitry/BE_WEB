@@ -3,151 +3,150 @@
   <head>
     {% include("layout/head.html") %}
     <style>
-      h1 {
-        text-align: center;
-      }
-  
+      
       .project {
+        color: black;
+        background-color: #73cc49;
         display: flex;
-        margin-bottom: 20px;
-        align-items: flex-start;
-        background-color: #E5F3E9; /* Couleur de fond vert */
-        padding: 10px;
+        align-items: center; /* Aligner les éléments verticalement au centre */
       }
-  
-      .project-image {
-        flex-shrink: 0;
-        margin-right: 20px;
-        width: 400px;
-        height: 400px;
-        overflow: hidden;
-      }
-  
-      .project-info {
-        flex-grow: 1;
-      }
-  
-      .project-title {
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
-  
-      .project-description {
-        margin-bottom: 10px;
-      }
-  
-      .project-goal {
-        font-style: italic;
-        margin-bottom: 5px;
-      }
-  
-      .project-progress {
-        margin-bottom: 10px;
-      }
-  
-      .pagination {
-        display: flex;
-        justify-content: center;
-        margin-top: 20px;
-      }
-  
-      .pagination a {
-        padding: 5px 10px;
-        margin: 0 5px;
-        text-decoration: none;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        color: #333;
-      }
-  
-      .pagination a:hover {
-        background-color: #f0f0f0;
-      }
-  
-      .pagination .current-page {
-        background-color: #ccc;
-      }
-    </style>
-</head>
 
-  
-<body>
-  {% include("layout/nav.html") %}
-  <h1>Liste des projets</h1>
+    .comu-link {
+      color: black;
+      text-decoration: none;
+    }
 
-  <div id="projects-container">
-    {% if liste and liste is not none %}
-    {% for project in liste %}
-    <div class="project">
-      <div class="project-image">
-        <img src="/static/images/projectsPictures/{{project.picture}}" alt="{{ project.name }}">
-      </div>
-      <div class="project-info">
-        <h2 class="project-title">{{ project.name }}</h2>
-        <p class="project-description">{{ project.description }}</p>
-        <p class="project-goal">Objectif : {{ project.target }} Astrocoins</p>
-        <div class="project-progress">
-          Avancement : {{ project.current }} / {{ project.target }} Astrocoins
-        </div>
+    .comu-link:hover{
+      color: black;
+      text-decoration: none;   
+      overflow: hidden;         
+    }
+
+    .comu-link:focus {
+      color: black;
+      text-decoration: none;
+    }
+
+    .project-img {
+      max-width: 400px;
+      height: 400px;
+      width: auto;
+      float: left; /* Placer l'image à gauche */
+      margin-right: 20px;
+    }
+
+    .project-details {
+      flex-grow: 1;
+    }
+
+    .name {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: left; /* Aligner le texte à gauche */
+    }
+
+    .description {
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .target {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-right: 20px;
+    }
+
+    .progress-container {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .progress-container progress {
+      flex: 1;
+      margin-right: 10px;
+      width: 660.8px;
+      height: 15px  ;
+    }
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .pagination a {
+      color: black;
+      text-decoration: none;
+      padding: 10px;
+      margin: 0 5px;
+      border: 1px solid #ccc;
+    }
+
+    .pagination a.active {
+      background-color: #73cc49;
+      color: white;
+    }
+  </style>
+  </head>
+
+  <body>
+    {% include("layout/nav.html") %}
+    <!-- END LOADER -->
+
+    <div>
+      <div class="container text-center">
+        <h1 style="margin-top: 20px;">Projets de la communauté</h1>
+        <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
+        {% include("layout/info.html") %}
       </div>
     </div>
-    {% endfor %}
-  </div>
 
-    {% if has_next_page %}
-      <a class="pagination-link" href="?page={{ next_page }}">Suivant</a>
-    {% endif %}
-    {% endif %}
-  </div>
+    <br>
 
-  <script>
- // Obtenez les éléments HTML nécessaires
-const projectsContainer = document.getElementById('projects-container');
-const paginationContainer = document.getElementById('pagination-container');
+    <div>
+      <div>
+        {% if liste and liste is not none %}
+        {% for project in liste %}
+        <a class="container comu-link" href="/seeProject/{{project.idProject}}">
+          <div class="project">
+            <img class="project-img"
+              src="/static/images/projectsPictures/{{project.picture}}"
+              alt="{{project.name}}" />
+            <div class="project-details">
+              <p class="name">{{project.name}}</p>
+              <p class="description">{{project.description}}</p>
+              <p class="target">Récolte: {{project.current}} /
+                {{project.target}}</p>
+              <div class="progress-container">
+                <progress value="{{project.current}}" max="{{project.target}}"></progress>
+                <br>
+              </div>
+              {% if project.idUser == session['idUser'] %}
+              <p> C'est mon mien </p>
+              {% else %}
+              {%if session['idUser'] and session['idUser'] is not none%}
+              <a href="/participateProject/{{project.idProject}}">
+                <button style="float:bottom;"> Participer ! </button>
+              </a>
+              {%else%}
+              <a id="link" href="/login"> Vous devez être connecté pour
+                participer à un projet </a>
+              {%endif%}
+              {% endif %}
+              <br>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        {% endif %}
+      </div>
+    </div>
 
-// Ajoutez un gestionnaire d'événements de clic sur les liens de pagination
-paginationContainer.addEventListener('click', function(event) {
-  event.preventDefault();
+    <br>
 
-  if (event.target.tagName === 'A') {
-    const pageUrl = event.target.getAttribute('href');
+    {% include("layout/footer.html") %}
 
-    // Effectuez une requête AJAX ou une navigation vers la nouvelle page
-    // en utilisant l'URL de la page de pagination
-
-    // Exemple de requête AJAX avec Fetch API
-    fetch(pageUrl)
-      .then(response => response.text())
-      .then(data => {
-        // Mettez à jour le contenu des projets et de la pagination avec les nouvelles données
-        projectsContainer.innerHTML = extractProjectsFromData(data);
-        paginationContainer.innerHTML = extractPaginationFromData(data);
-      })
-      .catch(error => {
-        console.error('Une erreur s\'est produite lors de la récupération des données :', error);
-      });
-  }
-});
-
-// Fonction utilitaire pour extraire les projets du HTML de la page
-function extractProjectsFromData(data) {
-  const tempElement = document.createElement('div');
-  tempElement.innerHTML = data;
-  const projectsHTML = tempElement.getElementById('projects-container').innerHTML;
-  return projectsHTML;
-}
-
-// Fonction utilitaire pour extraire la pagination du HTML de la page
-function extractPaginationFromData(data) {
-  const tempElement = document.createElement('div');
-  tempElement.innerHTML = data;
-  const paginationHTML = tempElement.getElementById('pagination-container').innerHTML;
-  return paginationHTML;
-}
-  </script>
-
-
-{% include("layout/footer.html")%}
-
-</body>
+  </body>
 </html>
