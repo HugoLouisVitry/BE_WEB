@@ -79,35 +79,33 @@
 
         <div class="container">
             <div class="section-title text-center">
-                <h3>Votre impact à ce jour</h3>
-                    <br>
                 {% if contribution_totale and contribution_totale is not none %}
-                    <p style="font-size: 40px; color :#58ae47;">{{ contribution_totale }} Mathcoins</p>
-                    {% endif %}
-                
+                <h3>Votre impact à ce jour</h3>
+                <br>
+                <p style="font-size: 40px; color :#58ae47;">{{ contribution_totale }} Mathcoins</p>
+                {% else %}
+                <a href="/community"><p style="font-size: 40px; color :#58ae47;">Faites votre premier don dès maintenant !</p></a>
+                {% endif %}
+
             </div>
         </div>
 
-            <div class="container">
-                <div class="section-title text-center">
-                    <h3>Recharger votre porte monnaie</h3>
-                    <div class="col-md-6">
-                        <form method="post" action="/update_solde">
-                            <label for="amount-euro">Montant en Euro :</label>
-                            <input type="number" id="amount-euro"
-                                name="amount-euro" step="0.01" min="0"
-                                placeholder="Entrez le montant en Euro" required>
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Recharger votre porte monnaie</h3>
+                <div class="col-md-6">
+                    <form method="post" action="/update_solde">
+                        <label for="amount-euro">Montant en Euro :</label>
+                        <input type="number" id="amount-euro" name="amount-euro" step="0.01" min="0"
+                            placeholder="Entrez le montant en Euro" required>
 
-                            <label for="amount-astrocoins">Montant en Astrocoins
-                                :</label>
-                            <input type="text" id="amount-astrocoins"
-                                name="amount-astrocoins" readonly>
+                        <label for="amount-astrocoins">Montant en Astrocoins
+                            :</label>
+                        <input type="text" id="amount-astrocoins" name="amount-astrocoins" readonly>
 
-                            <label for="card-number">Numéro de carte :</label>
-                            <input type="text" id="card-number"
-                                name="card-number" pattern="[0-9]{16}"
-                                maxlength="16" inputmode="numeric"
-                                placeholder="1234 5678 9012 3456" required>
+                        <label for="card-number">Numéro de carte :</label>
+                        <input type="text" id="card-number" name="card-number" pattern="[0-9]{16}" maxlength="16"
+                            inputmode="numeric" placeholder="1234 5678 9012 3456" required>
 
                         <label for="card-name">Nom du titulaire :</label>
                         <input type="text" id="card-name" name="card-name" placeholder="Nom du titulaire" required>
@@ -142,34 +140,31 @@
 
                         <form id="pub" method="post" action="/solde_pub">
                             <div class="section-title text-center">
-                                <h3>Obtenir des astrocoins gratuits </h3>     
+                                <h3>Obtenir des astrocoins gratuits </h3>
                             </div>
                         </form>
                     </div>
-                        <div class="form-floating mb-3">
-                            <label>En soutenant nos partenaires : annonce
-                                publicitaire</label>
-                            <FONT face="Times">
-                                <a href="{{url}}" , target="_blank"
-                                    onclick="submitForm()">Soutenir nos sponsors</a>
-                            </FONT>    
-                        </div>
-                        
-                        <form id='bon' method='post' action="/solde_pub">
-                            <div class="form-floating mb-3">
-                                <label>à l'aide d'un coupon cadeau Kiwi</label>
-                                <input type="text" class="form-control"
-                                    id="coupon" name="coupon"
-                                    placeholder="Numero de coupon" required>
-                            </div>
-                            <button
-                                class="btn btn-primary btn-login fw-bold text-uppercase"
-                                type="submit"> Valider </button>
-                            </div>
-                        </div>
+                    <div class="form-floating mb-3">
+                        <label>En soutenant nos partenaires : annonce
+                            publicitaire</label>
+                        <FONT face="Times">
+                            <a href="{{url}}" , target="_blank" onclick="submitForm()">Soutenir nos sponsors</a>
+                        </FONT>
                     </div>
-                </form>
-                <hr ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
+
+                    <form id='bon' method='post' action="/solde_pub">
+                        <div class="form-floating mb-3">
+                            <label>à l'aide d'un coupon cadeau Kiwi</label>
+                            <input type="text" class="form-control" id="coupon" name="coupon"
+                                placeholder="Numero de coupon" required>
+                        </div>
+                        <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit"> Valider
+                        </button>
+                </div>
+            </div>
+        </div>
+        </form>
+        <hr ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
 
         <div id="support" class="section wb">
             <div class="container">
@@ -184,44 +179,33 @@
                                     <h4 class="card-title text-center mb-2 fw-light">Changer
                                         de mot de passe</h4>
 
-                                    <div class="form-floating mb-3"> 
+                                    <div class="form-floating mb-3">
                                         <label for="old_mdp">Ancien mot
                                             de passe</label>
                                         <input style="border-color: black;" type="text" class="form-control"
                                             id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" required
                                             autofocus>
-                                            <div class="form-floating mb-3">
-                                                <label for="new_mdp">Nouveau mot
-                                                    de passe</label>
-                                                <input
-                                                    style="border-color: black;"
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="new_mdp" name="new_mdp"
-                                                    placeholder="Nouveau mot de passe"
-                                                    required>
-                                            </div>
+                                        <div class="form-floating mb-3">
+                                            <label for="new_mdp">Nouveau mot
+                                                de passe</label>
+                                            <input style="border-color: black;" type="text" class="form-control"
+                                                id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" required>
+                                        </div>
 
-                                            <div class="form-floating mb-3">
-                                                <label for="confirm_mdp">Confirmer
-                                                    votre mot de passe</label>
-                                                <input
-                                                    style="border-color: black;"
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="confirm_mdp"
-                                                    name="confirm_mdp"
-                                                    placeholder="Votre mot de passe"
-                                                    required>
-                                            </div>
+                                        <div class="form-floating mb-3">
+                                            <label for="confirm_mdp">Confirmer
+                                                votre mot de passe</label>
+                                            <input style="border-color: black;" type="text" class="form-control"
+                                                id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe"
+                                                required>
+                                        </div>
 
-                                            <br>
+                                        <br>
 
-                                            <div class="d-grid mb-2 mt-5">
-                                                <button
-                                                    class="btn btn-primary btn-login fw-bold text-uppercase"
-                                                    type="submit">Enregistrer</button>
-                                            </div>
+                                        <div class="d-grid mb-2 mt-5">
+                                            <button class="btn btn-primary btn-login fw-bold text-uppercase"
+                                                type="submit">Enregistrer</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -230,24 +214,24 @@
                 </div>
             </div>
         </div>
-                    <script>
-                        const euroInput = document.getElementById("amount-euro");
-                        const astrocoinsInput = document.getElementById("amount-astrocoins");
-                  
-                        euroInput.addEventListener("input", function() {
-                          const euroAmount = parseFloat(euroInput.value);
-                          const astrocoinsAmount = Math.floor(euroAmount * 100);
-                          astrocoinsInput.value = astrocoinsAmount;
-                        });
+        <script>
+            const euroInput = document.getElementById("amount-euro");
+            const astrocoinsInput = document.getElementById("amount-astrocoins");
 
-                        function submitForm() {
-                            let form = document.getElementById("pub");
-                            form.submit();
-                        }
-                      </script>
-        </div><!-- end section -->
+            euroInput.addEventListener("input", function () {
+                const euroAmount = parseFloat(euroInput.value);
+                const astrocoinsAmount = Math.floor(euroAmount * 100);
+                astrocoinsInput.value = astrocoinsAmount;
+            });
 
-        {% include("layout/footer.html")%}
+            function submitForm() {
+                let form = document.getElementById("pub");
+                form.submit();
+            }
+        </script>
+    </div><!-- end section -->
+
+    {% include("layout/footer.html")%}
 
 </body>
 
