@@ -326,21 +326,14 @@ def get_participate():
 #Contribution totale de l'utilisateur
 def get_contribution_totale(idUser):
     cnx = connexion() 
-    print('AAAAAAAAAAAAAAAAAAAAAAAAAAHHHHH')
     if cnx is None: return None
     
     try:
-        idUser = str(idUser)
-        # print('MIIIIIIIIIAAAAAAAOOOOOOOOOUUUUUUUUUUU')
         cursor = cnx.cursor(dictionary=True)
         sql = "SELECT SUM(somme) FROM project JOIN participate ON project.idProject = participate.idProject JOIN user on user.idUser = participate.idUser WHERE participate.idUser = %s;"
-        print(sql)
         param = (idUser,)
-        # print('idUser = ', idUser)
         cursor.execute(sql, param)
-        # print('OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
         contribution_totale = cursor.fetchone()['SUM(somme)']
-        # print('contribution :', contribution_totale)
         cnx.commit()
         close_bd(cursor, cnx)
         # session['successDB'] = "OK get_contribution_totale"
@@ -380,14 +373,13 @@ def update_participation(idProject, idUser, value):
         current = "SELECT current FROM project WHERE idProject = %s;"
         param_current = (idProject,)
         cursor.execute(current, param_current)
-        current = cursor.fetchone()['current']
-        print('MIIIIIIIIIAAAAAAAAAAOOOOOOOOOOOUUUUUUUUUUU')
-        print('current :', current)
+        current = cursor.fetchone()
         sql_project = "UPDATE project SET current = current + %s WHERE idProject = %s;"
         sql_user = "UPDATE user SET solde = solde - %s WHERE idUser = %s;"
-        param = (value, idProject)
-        cursor.execute(sql_project, param)
-        cursor.execute(sql_user, param)
+        param_project = (value, idProject)
+        param_user = (value, idUser)
+        cursor.execute(sql_project, param_project)
+        cursor.execute(sql_user, param_user)
         try :
             sql_participate = "INSERT INTO participate (idUser, idProject, somme) VALUES (%s, %s, %s);"
             param_participate = (idUser, idProject, value)
