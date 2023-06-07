@@ -292,12 +292,10 @@ def get_projectData():
 
     try:
         cursor = cnx.cursor(dictionary=True)
-        sql1 = "SELECT * FROM project"
-        cursor.execute(sql1)
+        sql = "SELECT * FROM project"
+        cursor.execute(sql)
         listeProjets = cursor.fetchall()
-        sql2 = "SELECT user.idUser FROM user WHERE user.idUser NOT IN(SELECT project.idUser FROM project)"
-        cursor.execute(sql2)
-        liste_non_createurs = cursor.fetchall()
+        
         cnx.commit()
         close_bd(cursor, cnx)
         # session['successDB'] = "OK get_projectData"
@@ -305,7 +303,7 @@ def get_projectData():
         listeProjets = None
         session['errorDB'] = "Failed get projets data : {}".format(err)
         print(session['errorDB'])  # le problème s'affiche dans le terminal
-    return listeProjets, liste_non_createurs
+    return listeProjets
 
 #Retourne les projets et les utilisateurs qui y ont contribué
 def get_participate():

@@ -249,9 +249,9 @@ def choisir_pub():
 #page new-project
 @app.route("/myProjects")
 def myProjects():
-    listeProjets, liste_non_createurs = bdd.get_projectData()
-    listeContribution, liste_non_contributeurs = bdd.get_participate()
-    params ={'liste':listeProjets, 'non_createurs':liste_non_createurs,'contribution':listeContribution, 'non_contributeurs':liste_non_contributeurs}
+    listeProjets = bdd.get_projectData()
+    listeContribution = bdd.get_participate()
+    params ={'liste':listeProjets, 'contribution':listeContribution}
     params = f.messageInfo(params)
     return render_template("myProjects.html", **params)
 
@@ -343,11 +343,10 @@ def participate(id=''):
 @app.route("/tip/<id>", methods=['POST'])
 def tip(id=''):
     money = int(request.form['paiement'])
-    # if money > session['solde'] : 
-    #     session["infoRouge"] = "Votre solde est insufisant"
-    #     return redirect("/participateProject/"+str(id))
+    if money > session['solde'] : 
+        session["infoRouge"] = "Votre solde est insufisant"
+        return redirect("/participateProject/"+str(id))
     try:
-        print('TTTTTTIIIIIIIIIIIIPPPPPPPPP')
         session["solde"]-=money
         bdd.update_participation(int(id), int(session["idUser"]), money)
         session["infoVert"] = "Paiement réussi"
