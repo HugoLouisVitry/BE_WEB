@@ -1,110 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    {% include("layout/head.html") %}
-    <style>
 
-      .project {
-        color: black;
-        background-color: #e8f7b7;
-        height: 700px;
-        width: 1500px;
-      }
-      
-      .img-container {
-        width: auto;
-        height: auto;
-        max-width: 700px;
-        max-height: 800px;
-        float: right;
-        margin-top: 20px;
-        margin-left: 10px;
-      }
-      #project-image{
-        width: 500px;
-        height: auto;
-        align-self: center;
-      }
-      .project-content{
-        top: 0;
-      }
+<head>
+  {% include("layout/head.html") %}
+  <style>
+    .project {
+      color: black;
+      background-color: #e8f7b7;
+      height: 700px;
+      width: 1500px;
+    }
 
-      .name {
-        font-size: 30px;
-        font-weight: bold;
-        margin-bottom: 10px;
-      }
+    .img-container {
+      width: auto;
+      height: auto;
+      max-width: 700px;
+      max-height: 800px;
+      float: right;
+      margin-top: 20px;
+      margin-left: 10px;
+    }
 
-      .description {
-        font-size: 20px;
-        text-align:justify;
-      }
+    #project-image {
+      width: 500px;
+      height: auto;
+      align-self: center;
+    }
 
-      .target {
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 10px;
-        margin-left: 20px;
-      }
-      .button {
-        display: block;
-        padding: 10px 20px;
-        background-color: #f2f2f2;
-        border: none;
-        border-radius: 4px;
-        font-size: 16px;
-        text-decoration: none;
-        color: #333;
-      }
-      .progress-container {
-        display: flex;
-        align-items: center;
-        z-index: 99990;
-      }
-    
-      .progress-container progress {
-        flex: 1;
-        margin-right: 10px;
-        z-index: 99990;
-      }
-    
-      .progress-container span {
-        font-size: 14px;
-        z-index: 99990;
-      }
-      #link {
-        color: black;
-        text-decoration: underline;
-      }
-      #link:hover{
-          color: rgb(0, 13, 255);
-          text-decoration: underline;            
-      }
-      #link:focus {
-          color: black;
-          text-decoration: none;
-      }
-    </style>
-  </head>
+    .project-content {
+      top: 0;
+    }
 
-  
-  <body class="seo_version">
-    {% include("layout/nav.html") %}
-    
+    .name {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      font-size: 20px;
+      text-align: justify;
+    }
+
+    .target {
+      font-size: 20px;
+      font-weight: bold;
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+
+    .button {
+      display: block;
+      padding: 10px 20px;
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .progress-container {
+      display: flex;
+      align-items: center;
+      z-index: 99990;
+    }
+
+    .progress-container progress {
+      flex: 1;
+      margin-right: 10px;
+      z-index: 99990;
+    }
+
+    .progress-container span {
+      font-size: 14px;
+      z-index: 99990;
+    }
+
+    #link {
+      color: black;
+      text-decoration: underline;
+    }
+
+    #link:hover {
+      color: rgb(0, 13, 255);
+      text-decoration: underline;
+    }
+
+    #link:focus {
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+</head>
+
+
+<body class="seo_version">
+  {% include("layout/nav.html") %}
+
   {% if currentProject and currentProject is not none %}
   <section>
 
     <div class="container aligncenter project" style="margin-top:50px;">
-      <div class="img-container alignright" >
+      <div class="img-container alignright">
         <img id="project-image" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
         {% if currentProject.idUser == session['idUser'] %}
         <form method="post" action="/update_project/{{currentProject.picture}}">
           <label for="avatar">Modifier la photo du projet ? </label>
-          <input accept="image/png, image/jpeg" type="file" 
-                  name="picture" id="picture"class="custom-file-input">
+          <input accept="image/png, image/jpeg" type="file" name="picture" id="picture" class="custom-file-input">
           <div class="d-grid mb-2 mt-5">
-              <button class="btn btn-primary btn-login fw-bold text-uppercase"
-                  type="submit">Enregistrer</button>
+            <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
           </div>
         </form>
         {%endif%}
@@ -112,7 +117,7 @@
       <div class="project-content">
         <p class="name">{{currentProject.name}}</p>
         <p class="description">{{currentProject.description}}</p>
-      </script>
+        </script>
 
         <div>
           <div class="container alignright">
@@ -120,27 +125,55 @@
               <div class="progress-container">
                 <progress value="{{currentProject.current}}" max="{{currentProject.target}}">
                   <br>
-                </div><span>{{ currentProject.current }} / {{ currentProject.target }}</span>
+              </div><span>{{ currentProject.current }} / {{ currentProject.target }}</span>
             </div>
             {% if currentProject.idUser == session['idUser'] %}
-              <p> C'est mon mien </p>
+            <p> C'est mon mien </p>
             {% else %}
-              {%if session['idUser'] and session['idUser'] is not none%}
-                <a href="/participateProject/{{currentProject.idProject}}">
-                  <button style="float:bottom;"> Participer ! </button>
-                </a>
-              {%else%}
-                <a id="link" href="/login"> Vous devez être connecté pour participer à un projet </a>
-              {%endif%}
+            {%if session['idUser'] and session['idUser'] is not none%}
+            <a href="/participateProject/{{currentProject.idProject}}">
+              <button style="float:bottom;"> Participer ! </button>
+            </a>
+            {%else%}
+            <a id="link" href="/login"> Vous devez être connecté pour participer à un projet </a>
+            {%endif%}
             {% endif %}
           </div>
         </div>
-    </div>
+      </div>
+      <div class="section-title col-md-11 text-center">
+        <h3 style="z-index: 0;">Ils y ont contribué...</h3>
+      </div>
+      <div class="row">
+        <div>
+          {# liste #}
+          <table class="table" data-toggle="table" data-search="true" data-pagination="true" data-page-size="8"
+            data-page-list="[10, 25, 50, all]">
+            <thead>
+              <tr>
+                <th data-field="login" data-align="center">Login</th>
+                <th data-field="somme" data-sortable="true">Contribution</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if contributions and contributions is not none %}
+              {% for participation in contributions %}
+              {% if participation.idProject == currentProject.idProject %}
+              <tr>
+                <td>{{ participation.login }}</td>
+                <td>{{ participation.somme }}</td>
+              </tr>
+              {% endif %}
+              {% endfor %}
+              {% endif %}
+            </tbody>
+          </table>
+
+        </div>
 
   </section>
   {% endif %}
   {% include("layout/footer.html") %}
 </body>
+
 </html>
-
-

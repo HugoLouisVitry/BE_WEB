@@ -256,9 +256,10 @@ def myProjects():
 @app.route("/seeProject/<id>")
 def seeProject(id=''):
     listeProjets = bdd.get_projectData()
+    contributions = bdd.get_contributions(id)
     for i in range(len(listeProjets)):
         if listeProjets[i]['idProject'] == int(id):
-            params = {'currentProject': listeProjets[i]}
+            params = {'currentProject': listeProjets[i], 'contributions':contributions}
             params = f.messageInfo(params)
     return render_template("seeProject.html", **params)
 
