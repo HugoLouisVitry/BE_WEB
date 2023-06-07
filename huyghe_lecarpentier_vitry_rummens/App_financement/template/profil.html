@@ -62,7 +62,11 @@
 </head>
 
 <body class="seo_version">
-
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+          window.scrollTo(0, 0);
+        });
+      </script>
     <!-- END LOADER -->
     {% include("layout/nav.html") %}
 
@@ -99,9 +103,10 @@
                         <input type="number" id="amount-euro" name="amount-euro" step="0.01" min="0"
                             placeholder="Entrez le montant en Euro" required>
 
-                        <label for="amount-astrocoins">Montant en Astrocoins
-                            :</label>
-                        <input type="text" id="amount-astrocoins" name="amount-astrocoins" readonly>
+                            <label for="amount-astrocoins">Montant en Mathcoins
+                                :</label>
+                            <input type="text" id="amount-astrocoins"
+                                name="amount-astrocoins" readonly>
 
                         <label for="card-number">Numéro de carte :</label>
                         <input type="text" id="card-number" name="card-number" pattern="[0-9]{16}" maxlength="16"
@@ -140,16 +145,31 @@
 
                         <form id="pub" method="post" action="/solde_pub">
                             <div class="section-title text-center">
-                                <h3>Obtenir des astrocoins gratuits </h3>
+                                <h3>Obtenir des Mathcoins gratuits </h3>     
                             </div>
                         </form>
                     </div>
-                    <div class="form-floating mb-3">
-                        <label>En soutenant nos partenaires : annonce
-                            publicitaire</label>
-                        <FONT face="Times">
-                            <a href="{{url}}" , target="_blank" onclick="submitForm()">Soutenir nos sponsors</a>
-                        </FONT>
+                        <div class="form-floating mb-3">
+                            <label>En soutenant nos partenaires : annonce
+                                publicitaire</label>
+                            <FONT face="Times">
+                                <a href="{{url}}" , target="_blank"
+                                    onclick="submitForm()">Soutenir nos sponsors</a>
+                            </FONT>    
+                        </div>
+                        
+                        <form id='bon' method='post' action="/solde_pub">
+                            <div class="form-floating mb-3">
+                                <label>à l'aide d'un coupon cadeau Mathcoins</label>
+                                <input type="text" class="form-control"
+                                    id="coupon" name="coupon"
+                                    placeholder="Numero de coupon" required>
+                            </div>
+                            <button
+                                class="btn btn-primary btn-login fw-bold text-uppercase"
+                                type="submit"> Valider </button>
+                            </div>
+                        </div>
                     </div>
 
                     <form id='bon' method='post' action="/solde_pub">

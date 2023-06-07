@@ -3,157 +3,121 @@
   <head>
     {% include("layout/head.html") %}
     <style>
-      
-      .project {
-        color: black;
-        background-color: #73cc49;
-        display: flex;
-        align-items: center; /* Aligner les éléments verticalement au centre */
+        
+        .project {
+            color: black;
+            background-color: #c8ea5b;
+          }
+
+        .comu-link {
+            color: black;
+            text-decoration: none;
+        }
+        .comu-link:hover{
+            color: black;
+            text-decoration: none;            
+        }
+        .comu-link:focus {
+            color: black;
+            text-decoration: none;
+        }
+
+        .clear{
+            clear: both;
+        }
+
+
+        #project-image {
+          width: 500px;
+          height: auto;
+          align-self: center;
+        }
+        .img-container {
+          width: auto;
+          height: auto;
+          max-width: 700px;
+          max-height: 800px;
+          float: left;
+          margin-top: 20px;
+          margin-right: 20px;
+          margin-left: 15px;  
+        }
+      .name {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
       }
 
-    .comu-link {
-      color: black;
-      text-decoration: none;
-    }
+      .description {
+        font-size: 20px;
+      }
 
-    .comu-link:hover{
-      color: black;
-      text-decoration: none;   
-      overflow: hidden;         
-    }
+      .target {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 10px;
+        margin-right: 20px;
+        bottom: 0;
+      }
+      .progress-container {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+      }
+  
+      .progress-container progress {
+        flex: 1;
+        margin-right: 10px;
+        width: 660.8px;
+        height: 15px  ;
+      }
+    </style>
+</head>
 
-    .comu-link:focus {
-      color: black;
-      text-decoration: none;
-    }
-
-    .project-img {
-      max-width: 400px;
-      height: 400px;
-      width: auto;
-      float: left; /* Placer l'image à gauche */
-      margin-right: 20px;
-    }
-
-    .project-details {
-      flex-grow: 1;
-    }
-
-    .name {
-      font-size: 30px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      text-align: left; /* Aligner le texte à gauche */
-    }
-
-    .description {
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .target {
-      font-size: 20px;
-      font-weight: bold;
-      margin-top: 10px;
-      margin-right: 20px;
-    }
-
-    .progress-container {
-      display: flex;
-      align-items: center;
-      margin-top: 10px;
-    }
-
-    .progress-container progress {
-      flex: 1;
-      margin-right: 10px;
-      width: 660.8px;
-      height: 15px  ;
-    }
-    .pagination {
-      display: flex;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    .pagination a {
-      color: black;
-      text-decoration: none;
-      padding: 10px;
-      margin: 0 5px;
-      border: 1px solid #ccc;
-    }
-
-    .pagination a.active {
-      background-color: #73cc49;
-      color: white;
-    }
-
-    #comu{
-      height: auto;
-      width: 450px;
-      
-    }
-
-  </style>
-  </head>
-
-  <body>
+  
+<body >
     {% include("layout/nav.html") %}
     <!-- END LOADER -->
-
+    
     <div>
-      <div class="container text-center">
-        <h1 style="margin-top: 20px;">Projets de la communauté</h1>
-        <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
-        {% include("layout/info.html") %}
-      </div>
+        <div class="container text-center">
+            <h1 style="margin-top: 20px;">Projets de la communauté</h1>
+            <h3>Entrez au coeur des idées et des ambitions du monde entier</h3>
+            {% include("layout/info.html") %}
+        </div>
     </div>
-
+    
     <br>
+    
+        <div>
+            <div style="width: 1800px;" class="aligncenter">
+                {% if liste and liste is not none %}
+                {% for project in liste %}
+                <a class="container comu-link" href="/seeProject/{{project.idProject}}">
 
-    <div>
-      <div>
-        {% if liste and liste is not none %}
-        {% for project in liste %}
-        <a class="container comu-link" href="/seeProject/{{project.idProject}}" id="comu">
-          <div class="project">
-            <img class="project-img"
-              src="/static/images/projectsPictures/{{project.picture}}"
-              alt="{{project.name}}" />
-            <div class="project-details">
-              <p class="name">{{project.name}}</p>
-              <p class="description">{{project.description}}</p>
-              <p class="target">Récolte: {{project.current}} /
-                {{project.target}}</p>
-              <div class="progress-container">
-                <progress value="{{project.current}}" max="{{project.target}}"></progress>
-                <br>
-              </div>
-              {% if project.idUser == session['idUser'] %}
-              <p> C'est mon mien </p>
-              {% else %}
-              {%if session['idUser'] and session['idUser'] is not none%}
-              <a href="/participateProject/{{project.idProject}}">
-                <button style="float:bottom;"> Participer ! </button>
-              </a>
-              {%else%}
-              <a id="link" href="/login"> Vous devez être connecté pour
-                participer à un projet </a>
-              {%endif%}
-              {% endif %}
-              <br>
+                    <div class="project">
+                      <div class="img-container alignleft">
+                        <img id="project-image" src="/static/images/projectsPictures/{{project.picture}}" alt="Project Image" />
+                      </div>
+                        <div>
+                            <p class="name">{{project.name}}</p>
+                            <p class="description">{{project.description}}</p>
+                            <p class="target"> Récolte: {{project.current}} / {{project.target}} €</p>
+                            <div class="progress-container">
+                              <progress value="{{project.current}}" max="{{project.target}}"></progress>
+                              <br>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </a>
+                {% endfor %}
+                {% endif %}
             </div>
-          </div>
-        </a>
-        {% endfor %}
-        {% endif %}
-      </div>
-    </div>
+        </div>
+        <br>
 
-    <br>
+{% include("layout/footer.html")%}
 
-    {% include("layout/footer.html") %}
-
-  </body>
+</body>
 </html>
