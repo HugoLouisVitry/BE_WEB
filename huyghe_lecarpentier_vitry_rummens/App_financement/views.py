@@ -206,16 +206,15 @@ def suppMembre(idUser=None):
 # Mise à jour du nom et du statut d'un membre
 
 
-@app.route("/updateMembre/<champ>", methods=['POST'])
-def updateMembre(champ=None):
-    # réception des données du formulaire
-    idUser = request.form['pk']
-    newvalue = request.form['value']
-    if champ == "N":
-        bdd.update_membreData("nom", idUser, newvalue)
-    if champ == "S":
-        bdd.update_membreData("statut", idUser, newvalue)
-    return "1"
+@app.route("/updateMembre/<id>/<champ>", methods=['POST'])
+def updateMembre(id='',champ=''):
+    if champ == "avatar":
+        avatar = request.files['avatar']
+        if avatar.filename:
+            nom_avatar = secure_filename(avatar.filename)
+            avatar.save(os.path.join(Upload_avatar_picture, nom_avatar))
+        bdd.update_membreData("avatar", id, nom_avatar)
+    return redirect("/profil")
 
 #Mise à jour du solde d'un membre
 @app.route("/refillSolde")
@@ -310,16 +309,22 @@ def closeProject(idProject=None):
 # Mise à jour du projet
 
 
-@app.route("/updateProject/<champ>", methods=['POST'])
-def updateProject(champ=None):
-    # réception des données du formulaire
-    idProject = request.form['pk']
-    newvalue = request.form['value']
-    if champ == "N":
-        bdd.update_projectData("nom", idProject, newvalue)
-    if champ == "S":
-        bdd.update_membreData("statut", idProject, newvalue)
-    return "1"
+@app.route("/updateProject/<id>/<champ>", methods=['POST'])
+def updateProject(id='',champ=''):
+    #name = request.form['name']
+    #target = request.form['target']
+    #endDate = request.form['endDate']
+    
+    if champ == "description":
+        description = request.form['description']
+        bdd.update_projectData("description", id, description)
+    if champ == "picture":
+        picture = request.files['picture']
+        if picture.filename:
+            nom_picture = secure_filename(picture.filename)
+            picture.save(os.path.join(Upload_project_picture, nom_picture))
+        bdd.update_projectData("picture", id, nom_picture)
+    return redirect("/seeProject/"+str(id))
 
 # Contribution financière au projet
 

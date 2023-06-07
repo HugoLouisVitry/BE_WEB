@@ -105,8 +105,8 @@
       <div class="img-container alignright">
         <img id="project-image" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
         {% if currentProject.idUser == session['idUser'] %}
-        <form method="post" action="/update_project/{{currentProject.picture}}">
-          <label for="avatar">Modifier la photo du projet ? </label>
+        <form enctype="multipart/form-data" method="post" action="/updateProject/{{currentProject.idProject}}/picture">
+          <label for="picture">Modifier la photo du projet ? </label>
           <input accept="image/png, image/jpeg" type="file" name="picture" id="picture" class="custom-file-input">
           <div class="d-grid mb-2 mt-5">
             <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
@@ -116,7 +116,17 @@
       </div>
       <div class="project-content">
         <p class="name">{{currentProject.name}}</p>
+        
         <p class="description">{{currentProject.description}}</p>
+        {% if currentProject.idUser == session['idUser'] %}
+        <form method="post" action="/updateProject/{{currentProject.idProject}}/description">
+          <label for="description">Modifier la description du projet ? </label>
+          <input type="text" name="description" id="description">
+          <div class="d-grid mb-2 mt-5">
+            <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
+          </div>
+        </form>
+        {%endif%}
 
         <div>
           <div class="container alignright">
@@ -127,7 +137,6 @@
               </div><span>{{ currentProject.current }} / {{ currentProject.target }}</span>
             </div>
             {% if currentProject.idUser == session['idUser'] %}
-            <p> C'est mon mien </p>
             {% else %}
             {%if session['idUser'] and session['idUser'] is not none%}
             <a href="/participateProject/{{currentProject.idProject}}">

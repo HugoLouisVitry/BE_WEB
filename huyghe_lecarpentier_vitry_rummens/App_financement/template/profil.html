@@ -72,11 +72,11 @@
 </head>
 
 <body class="seo_version">
-    <script>
+    <!-- <script>
         window.addEventListener('DOMContentLoaded', function() {
           window.scrollTo(0, 0);
         });
-      </script>
+      </script> -->
     <!-- END LOADER -->
     {% include("layout/nav.html") %}
 
@@ -181,21 +181,11 @@
                             </div>
                         </div>
                     </div>
-
-                    <form id='bon' method='post' action="/solde_pub">
-                        <div class="form-floating mb-3">
-                            <label>à l'aide d'un coupon cadeau Kiwi</label>
-                            <input type="text" class="form-control" id="coupon" name="coupon"
-                                placeholder="Numero de coupon" required>
-                        </div>
-                        <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit"> Valider
-                        </button>
                 </div>
             </div>
         </div>
-        </form>
         <hr ALIGN=CENTER WIDTH="700" SIZE="10" noshade>
-
+        
         <div id="support" class="section wb">
             <div class="container">
                 <div class="section-title text-center">
@@ -209,7 +199,7 @@
                                     <h4 class="card-title text-center mb-2 fw-light">Changer
                                         de mot de passe</h4>
 
-                                    <div class="form-floating mb-3">
+                                        <div class="form-floating mb-3">
                                         <label for="old_mdp">Ancien mot
                                             de passe</label>
                                         <input style="border-color: black;" type="text" class="form-control"
@@ -218,51 +208,62 @@
                                         <div class="form-floating mb-3">
                                             <label for="new_mdp">Nouveau mot
                                                 de passe</label>
-                                            <input style="border-color: black;" type="text" class="form-control"
+                                                <input style="border-color: black;" type="text" class="form-control"
                                                 id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" required>
-                                        </div>
+                                            </div>
+                                            
+                                            <div class="form-floating mb-3">
+                                                <label for="confirm_mdp">Confirmer
+                                                    votre mot de passe</label>
+                                                    <input style="border-color: black;" type="text" class="form-control"
+                                                    id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe"
+                                                    required>
+                                                </div>
 
-                                        <div class="form-floating mb-3">
-                                            <label for="confirm_mdp">Confirmer
-                                                votre mot de passe</label>
-                                            <input style="border-color: black;" type="text" class="form-control"
-                                                id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe"
-                                                required>
-                                        </div>
-
-                                        <br>
-
-                                        <div class="d-grid mb-2 mt-5">
-                                            <button class="btn btn-primary btn-login fw-bold text-uppercase"
+                                                <br>
+                                                
+                                                <div class="d-grid mb-2 mt-5">
+                                                    <button class="btn btn-primary btn-login fw-bold text-uppercase"
                                                 type="submit">Enregistrer</button>
-                                        </div>
+                                            </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                    </div>
+                        <div class="container aligncenter project" style="margin-top:50px;">
+                            <div class="img-container alignright">
+                            <img src="/static/images/avatar/{{ session['avatar'] }}" alt="AVATAR">
+                            <form enctype="multipart/form-data" method="post" action="/updateMembre/{{session['idUser']}}/avatar">
+                                <label style="align-content: right;" for="avatar"> Modifier la photo de profil ? </label>
+                                <input accept="image/png, image/jpeg" type="file" name="avatar" id="avatar" class="custom-file-input">
+                                <div class="d-grid mb-2 mt-5">
+                                    <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
+                                </div>
+                            </form> 
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>
         <script>
             const euroInput = document.getElementById("amount-euro");
             const astrocoinsInput = document.getElementById("amount-astrocoins");
-
+            
             euroInput.addEventListener("input", function () {
                 const euroAmount = parseFloat(euroInput.value);
                 const astrocoinsAmount = Math.floor(euroAmount * 100);
                 astrocoinsInput.value = astrocoinsAmount;
             });
-
+            
             function submitForm() {
                 let form = document.getElementById("pub");
                 form.submit();
             }
         </script>
     </div><!-- end section -->
-
+    
     {% include("layout/footer.html")%}
-
+    
 </body>
 
 </html>
