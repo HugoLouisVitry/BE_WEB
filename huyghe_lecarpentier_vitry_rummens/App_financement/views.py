@@ -1,5 +1,6 @@
 from flask import Flask, render_template, session, request, redirect
 from .model import bdd as bdd
+from .model import bdd_generate as gen
 from .controller import function as f
 from werkzeug.utils import secure_filename
 import pandas, os 
@@ -79,12 +80,14 @@ def addMembre():
     login = request.form['login']
     motPasse = request.form['mdp']
     avatar = request.files['avatar']
-    nom_avatar = secure_filename(avatar.filename)
-    avatar.save(os.path.join(Upload_avatar_picture, nom_avatar))
 
-    statut = 0
-    bdd.add_membreData(nom, prenom, mail,
-                       login, motPasse, nom_avatar, statut, )
+    if avatar.filename:
+        nom_avatar = secure_filename(avatar.filename)
+        avatar.save(os.path.join(Upload_avatar_picture, nom_avatar))
+    else:
+        nom_avatar = "default_user.png"
+        statut = 0
+    bdd.add_membreData(nom, prenom, mail, login, motPasse, nom_avatar, statut )
 
     # dernier id créé par la BDD
     if "errorDB" not in session:
@@ -256,9 +259,10 @@ def myProjects():
 @app.route("/seeProject/<id>")
 def seeProject(id=''):
     listeProjets = bdd.get_projectData()
+    contributions = bdd.get_contributions(id)
     for i in range(len(listeProjets)):
         if listeProjets[i]['idProject'] == int(id):
-            params = {'currentProject': listeProjets[i]}
+            params = {'currentProject': listeProjets[i], 'contributions':contributions}
             params = f.messageInfo(params)
     return render_template("seeProject.html", **params)
 
@@ -273,6 +277,7 @@ def addProject():
     isOpen = 1
     idUser = session['idUser']
     picture = request.files['picture']
+    print("date: ",endDate)
     if picture.filename:
         nom_picture = secure_filename(picture.filename)
         picture.save(os.path.join(Upload_project_picture, nom_picture))
@@ -350,3 +355,27 @@ def tip(id=''):
     except:
         session["infoRouge"] = "Erreur Innatendue"
         return redirect("/participateProject/"+str(id))
+    
+@app.route("/generate")
+def generate_bdd():
+    newUsers=gen.generate_users()
+    newProjects=gen.generate_projects()
+    print("\ngenerated !\n")
+    try:
+        for user in newUsers:
+            bdd.add_membreData(user["nom"],user["prenom"],user["email"],user["login"],user["login"],"default_user.png",0)
+        print("\nmembers added\n")
+        users=bdd.get_membresData()
+        i=1
+        for project in newProjects:
+            # print(project["nom_projet"],project["description_projet"],
+            #                     project["objectif_monetaire"],project["date_cloture"],1,users[i]["idUser"],"default_picture.png")
+            bdd.add_projectData(project["nom_projet"],project["description_projet"],
+                                project["objectif_monetaire"],project["date_cloture"],1,users[i]["idUser"],"default_picture.png")
+            print("added project: ",project["nom_projet"], "for user: ",users[i]["idUser"]  )
+            i+=1
+        session["infoVert"] = "Base Générée"
+        return redirect("/sgbd")
+    except:
+        session["infoRouge"] = "Erreur Generation"
+        return redirect("/sgbd")

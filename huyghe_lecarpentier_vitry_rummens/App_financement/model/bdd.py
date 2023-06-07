@@ -395,3 +395,28 @@ def update_participation(idProject, idUser, value):
         session['errorDB'] = "Failed update participation : {}".format(err)
         print(session['errorDB'])  # le problème s'affiche dans le terminal
     return 1
+
+#Liste des contributeurs à un projet
+def get_contributions(idProject):
+    cnx = connexion() 
+    if cnx is None: return None
+    
+    try:
+        cursor = cnx.cursor(dictionary=True)
+        sql = "SELECT participate.idProject, login, somme FROM project JOIN participate ON project.idProject = participate.idProject JOIN user on user.idUser = participate.idUser WHERE participate.idProject = %s ORDER BY somme DESC;"
+        param = (idProject,)
+        cursor.execute(sql, param)
+        contributions = cursor.fetchall()
+        for i in range(min(len(contributions),3)):
+            contributions[i]['classement'] = i+1
+            
+        print(contributions)
+        
+        cnx.commit()
+        close_bd(cursor, cnx)
+        # session['successDB'] = "OK get_contribution_totale"
+    except mysql.connector.Error as err:
+        contributions = None
+        session['errorDB'] = "Failed get contributeurs : {}".format(err)
+        print(session['errorDB']) #le problème s'affiche dans le terminal
+    return contributions
