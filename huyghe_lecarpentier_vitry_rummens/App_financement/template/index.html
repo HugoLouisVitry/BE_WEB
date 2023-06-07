@@ -100,9 +100,11 @@
       height: auto; /* Hauteur automatique pour conserver les proportions de l'image */
       max-width: 200px; /* Limiter la largeur de l'image à 200px */
       max-height: 200px; /* Limiter la hauteur de l'image à 200px */
-      object-fit: contain;
       text-align: center;
       justify-content: center;
+      position: inherit;
+      left: 55%;
+      margin-top: 5px;
     }
     
     .slide-content {
@@ -190,6 +192,7 @@
                 <br>
 
               </div><span>{{ project.current }} / {{ project.target }}</span>
+              
             </div>
           </a>
           {% endfor %}

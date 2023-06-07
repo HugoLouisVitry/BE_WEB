@@ -88,6 +88,13 @@
       background-color: #73cc49;
       color: white;
     }
+
+    #comu{
+      height: auto;
+      width: 450px;
+      
+    }
+
   </style>
   </head>
 
@@ -109,7 +116,7 @@
       <div>
         {% if liste and liste is not none %}
         {% for project in liste %}
-        <a class="container comu-link" href="/seeProject/{{project.idProject}}">
+        <a class="container comu-link" href="/seeProject/{{project.idProject}}" id="comu">
           <div class="project">
             <img class="project-img"
               src="/static/images/projectsPictures/{{project.picture}}"
