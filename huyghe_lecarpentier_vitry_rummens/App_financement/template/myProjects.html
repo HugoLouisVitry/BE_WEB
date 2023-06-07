@@ -200,7 +200,7 @@
                                             {% for participate in contribution %}
                                             {% if participate.idUser == session['idUser'] %}
                                                 <tr>
-                                                    <td><img src="static/images/projectsPictures/{{participate.picture}}"
+                                                    <td><img src="/static/images/projectsPictures/{{participate.picture}}"
                                                             class="picture" height="30px" width="30px" /></td>
                                                     <td>
                                                         <a href="/seeProject/{{participate.idProject}}">{{ participate.name

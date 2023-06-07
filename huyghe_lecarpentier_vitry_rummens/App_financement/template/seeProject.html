@@ -141,35 +141,40 @@
           </div>
         </div>
       </div>
-      <div class="section-title col-md-11 text-center">
-        <h3 style="z-index: 0;">Ils y ont contribué...</h3>
-      </div>
-      <div class="row">
+    </div>
+    <div class="section-title col-md-11 text-center">
+      <h3 style="z-index: 0;">Ils y ont contribué...</h3>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
         <div>
           {# liste #}
-          <table class="table" data-toggle="table" data-search="true" data-pagination="true" data-page-size="8"
-            data-page-list="[10, 25, 50, all]">
+          <table class="table" style="max-width:1000px; margin-left:30px;" data-toggle="table" data-search="true"
+            data-pagination="true" data-page-size="8" data-page-list="[10, 25, 50, all]">
             <thead>
               <tr>
-                <th data-field="login" data-align="center">Login</th>
+                <th data-field="classement" data-align="center">Classement</th>
+                <th data-field="login" data-sortable="true">Login</th>
                 <th data-field="somme" data-sortable="true">Contribution</th>
               </tr>
             </thead>
             <tbody>
               {% if contributions and contributions is not none %}
-              {% for participation in contributions %}
+              {% for participation in contributions[:3] %}
               {% if participation.idProject == currentProject.idProject %}
               <tr>
+                <td><img src="/static/images/prettyPhoto/{{participation.classement}}.jpg" class="picture" height="30px"
+                    width="30px" /></td>
                 <td>{{ participation.login }}</td>
-                <td>{{ participation.somme }}</td>
+                <td>{{ participation.somme }} Mathcoins</td>
               </tr>
               {% endif %}
               {% endfor %}
               {% endif %}
             </tbody>
           </table>
-
         </div>
+      </div>
 
   </section>
   {% endif %}

@@ -79,12 +79,14 @@ def addMembre():
     login = request.form['login']
     motPasse = request.form['mdp']
     avatar = request.files['avatar']
-    nom_avatar = secure_filename(avatar.filename)
-    avatar.save(os.path.join(Upload_avatar_picture, nom_avatar))
 
-    statut = 0
-    bdd.add_membreData(nom, prenom, mail,
-                       login, motPasse, nom_avatar, statut, )
+    if avatar.filename:
+        nom_avatar = secure_filename(avatar.filename)
+        avatar.save(os.path.join(Upload_avatar_picture, nom_avatar))
+    else:
+        nom_avatar = "default_user.png"
+        statut = 0
+    bdd.add_membreData(nom, prenom, mail, login, motPasse, nom_avatar, statut )
 
     # dernier id créé par la BDD
     if "errorDB" not in session:
