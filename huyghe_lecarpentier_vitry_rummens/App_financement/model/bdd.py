@@ -331,7 +331,7 @@ def get_contribution_totale(idUser):
     
     try:
         idUser = str(idUser)
-        print('MIIIIIIIIIAAAAAAAOOOOOOOOOUUUUUUUUUUU')
+        # print('MIIIIIIIIIAAAAAAAOOOOOOOOOUUUUUUUUUUU')
         cursor = cnx.cursor(dictionary=True)
         sql = "SELECT SUM(somme) FROM project JOIN participate ON project.idProject = participate.idProject JOIN user on user.idUser = participate.idUser WHERE participate.idUser = %s;"
         print(sql)
@@ -340,7 +340,7 @@ def get_contribution_totale(idUser):
         cursor.execute(sql, param)
         # print('OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIII')
         contribution_totale = cursor.fetchone()['SUM(somme)']
-        print('contribution :', contribution_totale)
+        # print('contribution :', contribution_totale)
         cnx.commit()
         close_bd(cursor, cnx)
         # session['successDB'] = "OK get_contribution_totale"
@@ -380,15 +380,22 @@ def update_participation(idProject, idUser, value):
         current = "SELECT current FROM project WHERE idProject = %s;"
         param_current = (idProject,)
         cursor.execute(current, param_current)
-        current = cursor.fetchall()
+        current = cursor.fetchone()['current']
+        print('MIIIIIIIIIAAAAAAAAAAOOOOOOOOOOOUUUUUUUUUUU')
+        print('current :', current)
         sql_project = "UPDATE project SET current = current + %s WHERE idProject = %s;"
         sql_user = "UPDATE user SET solde = solde - %s WHERE idUser = %s;"
         param = (value, idProject)
         cursor.execute(sql_project, param)
         cursor.execute(sql_user, param)
-        sql_participate = "INSERT INTO participate (idUser, idProject, somme) VALUES (%s, %s, %s);"
-        param_participate = (idUser, idProject, value)
-        cursor.execute(sql_participate, param_participate)
+        try :
+            sql_participate = "INSERT INTO participate (idUser, idProject, somme) VALUES (%s, %s, %s);"
+            param_participate = (idUser, idProject, value)
+            cursor.execute(sql_participate, param_participate)
+        except :
+            sql_participate = "UPDATE participate SET somme = somme + %s WHERE idUser = %s AND idProject = %s;"
+            param_participate = (value, idUser, idProject)
+            cursor.execute(sql_participate, param_participate)
         cnx.commit()
         close_bd(cursor, cnx)
         # session['successDB'] = "OK update_participation"
