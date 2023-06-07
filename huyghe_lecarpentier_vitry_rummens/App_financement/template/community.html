@@ -4,11 +4,12 @@
     {% include("layout/head.html") %}
     <style>
       
-    .project {
-      color: black;
-      background-color: #73cc49;
-      display: flex;
-    }
+      .project {
+        color: black;
+        background-color: #73cc49;
+        display: flex;
+        align-items: center; /* Aligner les éléments verticalement au centre */
+      }
 
     .comu-link {
       color: black;
@@ -17,7 +18,8 @@
 
     .comu-link:hover{
       color: black;
-      text-decoration: none;            
+      text-decoration: none;   
+      overflow: hidden;         
     }
 
     .comu-link:focus {
@@ -29,8 +31,8 @@
       max-width: 400px;
       height: 400px;
       width: auto;
+      float: left; /* Placer l'image à gauche */
       margin-right: 20px;
-      
     }
 
     .project-details {
@@ -41,6 +43,7 @@
       font-size: 30px;
       font-weight: bold;
       margin-bottom: 10px;
+      text-align: left; /* Aligner le texte à gauche */
     }
 
     .description {
@@ -64,6 +67,8 @@
     .progress-container progress {
       flex: 1;
       margin-right: 10px;
+      width: 660.8px;
+      height: 15px  ;
     }
     .pagination {
       display: flex;
@@ -118,6 +123,19 @@
                 <progress value="{{project.current}}" max="{{project.target}}"></progress>
                 <br>
               </div>
+              {% if project.idUser == session['idUser'] %}
+              <p> C'est mon mien </p>
+              {% else %}
+              {%if session['idUser'] and session['idUser'] is not none%}
+              <a href="/participateProject/{{project.idProject}}">
+                <button style="float:bottom;"> Participer ! </button>
+              </a>
+              {%else%}
+              <a id="link" href="/login"> Vous devez être connecté pour
+                participer à un projet </a>
+              {%endif%}
+              {% endif %}
+              <br>
             </div>
           </div>
         </a>
