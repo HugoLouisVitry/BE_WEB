@@ -1,107 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% include("layout/head.html") %}
-<style>
-
+    {% include("layout/head.html") %}
+    <style>
     .clear {
         clear: both;
     }
-    #webmaster{
+
+    #webmaster {
         margin-bottom: 20px;
     }
+
     #webmaster-img {
-      float: left;
-      margin-right: 10px;
-      height: 200px;
-      width: 200px;
+        float: left;
+        margin-right: 10px;
+        height: 200px;
+        width: 200px;
     }
 
-    #wbm-h {
-        color: black;
-        font-size: 30px;
-        font-family: 'Courier New', Courier, monospace;
-    }
-    
-    #wbm-p{
-        color: black;
-        font-size: 25px;
-        font-family: Georgia, 'Times New Roman', Times, serif;
+    .myDiv {
+        display: none;
+        width: 930px;
+        height: 200px;
+        background-color: lightgray;
+        margin-top: 20px;
+        float: right;
+        clear: right;
     }
 
-  </style>
-<body class="seo_version">
-    
-    {% include("layout/nav.html") %}
+    .wbm-h-div {
+        display: none;
+    }
+</style>
+    <script>
+    function toggleDiv(divId) {
+        var div = document.getElementById(divId);
+        if (div.style.display === "none") {
+            div.style.display = "block";
+        } else {
+            div.style.display = "none";
+        }
+    }
+</script>
+    <body class="seo_version">
 
-    <div class="container">
-        <div class="section-title text-center">
-            <h1 style="margin-top: 20px;">À propos de nous</h1>
-            <p class="lead">Les artistes qui ont fait ce site web génial</p>
-        </div><!-- end title -->
+        {% include("layout/nav.html") %}
 
-        <section>
-            <div id="webmaster" >
-                <div>
+        <div class="container">
+            <div class="section-title text-center">
+                <h1 style="margin-top: 20px;">À propos de nous</h1>
+                <p class="lead">Les artistes qui ont fait ce site web génial</p>
+            </div><!-- end title -->
+
+            <section>
+                <div id="webmaster">
                     <div>
-                        <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="/static/images/webmaster/mathias.jpg" alt="" class="img-responsive img-rounded">
-                                <h id="wbm-h">HUYGHE Mathias </h>
-                                <p id="wbm-p">Infos 3a avant l'enac <br> mais on remplira plus tard </p>
+                        <div>
+                            <div class="post-media wow fadeIn">
+                                <img id="webmaster-img"
+                                    src="/static/images/webmaster/mathias.jpg"
+                                    alt class="img-responsive img-rounded"
+                                    onclick="toggleDiv('myDiv1')">
+                                <div id="wbm-p-div1" class="wbm-p-div">
+                                    <h1 id="wbm-h1">HUYGHE Mathias</h1>
+                                </div>
+                                <div id="myDiv1" class="myDiv">
+                                    <!-- Contenu du div 1 -->
+                                    <h2>Contenu du div 1</h2>
+                                    <p>Ceci est le contenu du div 1 qui apparaît
+                                        lorsque vous cliquez sur l'image 1.</p>
+                                </div>
                                 <div class="clear"></div>
+                            </div>
                         </div>
                     </div>
-                </div>                
-            </div>
-        </section>
-        
-        <section>
-            <div id="webmaster">
-                <div>
-                    <div>
-                        <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="/static/images/webmaster/marie.jpg"alt="" class="img-responsive img-rounded">
-                                <h id="wbm-h">LE CARPENTIER Marie</h>
-                                <p id ="wbm-p">Infos 3a avant l'enac</p>
-                                <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>                
-             </div>
-        </section>
+                </div>
+            </section>
 
-        <section>
-            <div id="webmaster">
-                <div>
+            <section>
+                <div id="webmaster">
                     <div>
-                        <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="/static/images/webmaster/paul.jpg"alt="" class="img-responsive img-rounded">
-                                <h id="wbm-h">RUMMENS Paul</h>
-                                <p id ="wbm-p">Infos 3a avant l'enac</p>
-                                <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>                
-             </div>
-        </section>
-    
-        <section>
-            <div id="webmaster">
-                <div>
-                    <div>
-                        <div class="post-media wow fadeIn">
-                                <img id="webmaster-img" src="/static/images/webmaster/hugo.jpg"alt="" class="img-responsive img-rounded">
-                                <h id="wbm-h">VITRY Hugo</h>
-                                <p id ="wbm-p">Infos 3a avant l'enac</p>
-                                <div class="clear"></div>
-                        </div>
-                    </div>
-                </div>                
-             </div>
-        </section>
-    </div>
-    
-    {% include("layout/footer.html")%}
+                        <div>
+                            <div class="post-media wow fadeIn">
+                                <img id="webmaster-img"
+                                    src="/static/images/webmaster/marie.jpg"
+                                    alt class="img-responsive img-rounded"
+                                    onclick="toggleDiv('myDiv2')">
+                                <div id="wbm-p-div2" class="wbm-p-div">
+                                    <h1 id="wbm-h2">LE CARPENTIER Marie</h1>
 
-</body>
+                                </div>
+                                <div id="myDiv2" class="myDiv">
+                                    <!-- Contenu du div 2 -->
+                                    <h2>Contenu du div 2</h2>
+                                    <p>Ceci est le contenu du div 2 qui apparaît
+                                        lorsque vous cliquez sur l'image 2.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div id="webmaster">
+                    <div>
+                        <div>
+                            <div class="post-media wow fadeIn">
+                                <img id="webmaster-img"
+                                    src="/static/images/webmaster/paul.jpg"
+                                    alt class="img-responsive img-rounded"
+                                    onclick="toggleDiv('myDiv3')">
+                                <div id="wbm-p-div3" class="wbm-p-div">
+                                    <h1 id="wbm-h3">RUMMENS Paul</h1>
+
+                                </div>
+                                <div id="myDiv3" class="myDiv">
+                                    <!-- Contenu du div 3 -->
+                                    <h2>Contenu du div 3</h2>
+                                    <p>Ceci est le contenu du div 3 qui apparaît
+                                        lorsque vous cliquez sur l'image 3.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div id="webmaster">
+                    <div>
+                        <div>
+                            <div class="post-media wow fadeIn">
+                                <img id="webmaster-img"
+                                    src="/static/images/webmaster/hugo.jpg"
+                                    alt class="img-responsive img-rounded"
+                                    onclick="toggleDiv('myDiv4')">
+                                <div id="wbm-p-div4" class="wbm-p-div">
+                                    <h1 id="wbm-h4">VITRY Hugo</h1>
+
+                                </div>
+                                <div id="myDiv4" class="myDiv">
+                                    <!-- Contenu du div 4 -->
+                                    <h2>Contenu du div 4</h2>
+                                    <p>Ceci est le contenu du div 4 qui apparaît
+                                        lorsque vous cliquez sur l'image 4.</p>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        {% include("layout/footer.html")%}
+
+    </body>
 </html>
