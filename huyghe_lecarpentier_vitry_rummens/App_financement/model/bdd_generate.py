@@ -1,6 +1,6 @@
 import random
 import string
-import bdd
+
 # Génération d'un nom aléatoire
 def generate_nom():
     noms = ["Smith", "Johnson", "Brown", "Taylor", "Miller", "Wilson", "Moore", "Davis", "Anderson", "Thomas"]
@@ -26,20 +26,21 @@ def generate_login(prenom, nom):
     return f"{prenom}.{nom}"
 
 # Génération des 15 utilisateurs fictifs
-utilisateurs = []
-for _ in range(15):
-    nom = generate_nom()
-    prenom = generate_prenom()
-    email = generate_email(prenom, nom)
-    login = generate_login(prenom, nom)
-    utilisateur = {
-        "nom": nom,
-        "prenom": prenom,
-        "email": email,
-        "login": login
-    }
-    utilisateurs.append(utilisateur)
-    bdd.add_membreData(nom,prenom,email,login,login,None,0)
+def generate_users():
+    utilisateurs = []
+    for _ in range(15):
+        nom = generate_nom()
+        prenom = generate_prenom()
+        email = generate_email(prenom, nom)
+        login = generate_login(prenom, nom)
+        utilisateur = {
+            "nom": nom,
+            "prenom": prenom,
+            "email": email,
+            "login": login
+        }
+        utilisateurs.append(utilisateur)
+    return utilisateurs
 
 # Liste d'actions possibles
 
@@ -83,33 +84,27 @@ def generate_description_projet():
     return description
 
 # Génération des 10 projets fictifs
-projets = []
-noms_projet = ["Projet A", "Projet B", "Projet C", "Projet D", "Projet E", "Projet F", "Projet G", "Projet H", "Projet I", "Projet J"]
-for  proj in noms_projet:
-    nom_projet = proj
-    description_projet = generate_description_projet()
-    objectif_monetaire = random.randint(1000, 10000)
-    date_cloture = f"{random.randint(1, 30)}/{random.randint(1, 12)}/{random.randint(2023, 2025)}"
-    url_image = "generate_url_image()"
-    projet = {
-        "nom_projet": nom_projet,
-        "description_projet": description_projet,
-        "objectif_monetaire": objectif_monetaire,
-        "date_cloture": date_cloture,
-        "url_image": url_image
-    }
-    projets.append(projet)
-    bdd.get_membresData()
-    bdd.add_projectData(nom_projet,description_projet,objectif_monetaire,date_cloture,1,)
-
-
-# Affichage des utilisateurs
-for utilisateur in utilisateurs:
-    print(utilisateur)
-# Affichage des projets
-for projet in projets:
-    print(projet)
+def generate_projects():
     
-
-
-
+    projets = []
+    noms_projet = ["Projet A", "Projet B", "Projet C", "Projet D", "Projet E", "Projet F", "Projet G", "Projet H", "Projet I", "Projet J"]
+    for  proj in noms_projet:
+        nom_projet = proj
+        description_projet = generate_description_projet()
+        objectif_monetaire = random.randint(1000, 10000)
+        date_cloture = f"{random.randint(2023, 2025)}-{random.randint(1, 12)}-{random.randint(1, 30)}"
+        projet = {
+            "nom_projet": nom_projet,
+            "description_projet": description_projet,
+            "objectif_monetaire": objectif_monetaire,
+            "date_cloture": date_cloture,
+        }
+        projets.append(projet)
+    return projets
+    # Affichage des utilisateurs
+# for utilisateur in utilisateurs:
+#     print(utilisateur)
+# # Affichage des projets
+# for projet in projets:
+#     print(projet)
+    
