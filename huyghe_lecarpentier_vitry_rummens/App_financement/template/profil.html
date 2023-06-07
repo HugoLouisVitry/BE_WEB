@@ -140,20 +140,21 @@
                 <div class="col-md-6">
                     <div>
 
-                        <form method="post" action="/update_mdp">
-                            <h4 class="card-title text-center mb-2 fw-light">Obtenir
-                                des kiwis gratuits</h4>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <label>En soutenant nos partenaires : annonce publicitaire</label>
-                        <div>
-                                <div>
-                                    <a href="{{url}}" , target="_blank"
-                                        onclick="submitForm()">Soutenir
-                                        nos sponsors</a>
-                                </div>
+                        <form id="pub" method="post" action="/solde_pub">
+                            <div class="section-title text-center">
+                                <h3>Obtenir des astrocoins gratuits </h3>     
                             </div>
                         </form>
+                    </div>
+                        <div class="form-floating mb-3">
+                            <label>En soutenant nos partenaires : annonce
+                                publicitaire</label>
+                            <FONT face="Times">
+                                <a href="{{url}}" , target="_blank"
+                                    onclick="submitForm()">Soutenir nos sponsors</a>
+                            </FONT>    
+                        </div>
+                        
                         <form id='bon' method='post' action="/solde_pub">
                             <div class="form-floating mb-3">
                                 <label>à l'aide d'un coupon cadeau Kiwi</label>
