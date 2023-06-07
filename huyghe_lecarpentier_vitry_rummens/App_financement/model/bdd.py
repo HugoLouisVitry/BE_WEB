@@ -382,7 +382,7 @@ def update_participation(idProject, idUser, value):
         cursor.execute(current, param_current)
         current = cursor.fetchall()
         sql_project = "UPDATE project SET current = current + %s WHERE idProject = %s;"
-        sql_user = "UPDATE user SET solde = solde - %s WHERE idProject = %s;"
+        sql_user = "UPDATE user SET solde = solde - %s WHERE idUser = %s;"
         param = (value, idProject)
         cursor.execute(sql_project, param)
         cursor.execute(sql_user, param)

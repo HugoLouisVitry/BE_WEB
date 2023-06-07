@@ -72,7 +72,18 @@
         font-size: 14px;
         z-index: 99990;
       }
- 
+      #link {
+        color: black;
+        text-decoration: underline;
+      }
+      #link:hover{
+          color: rgb(0, 13, 255);
+          text-decoration: underline;            
+      }
+      #link:focus {
+          color: black;
+          text-decoration: none;
+      }
     </style>
   </head>
 
@@ -86,6 +97,17 @@
     <div class="container aligncenter project" style="margin-top:50px;">
       <div class="img-container alignright" >
         <img id="project-image" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
+        {% if currentProject.idUser == session['idUser'] %}
+        <form method="post" action="/update_project/{{currentProject.picture}}">
+          <label for="avatar">Modifier la photo du projet ? </label>
+          <input accept="image/png, image/jpeg" type="file" 
+                  name="picture" id="picture"class="custom-file-input">
+          <div class="d-grid mb-2 mt-5">
+              <button class="btn btn-primary btn-login fw-bold text-uppercase"
+                  type="submit">Enregistrer</button>
+          </div>
+        </form>
+        {%endif%}
       </div>
       <div class="project-content">
         <p class="name">{{currentProject.name}}</p>
@@ -100,11 +122,18 @@
                   <br>
                 </div><span>{{ currentProject.current }} / {{ currentProject.target }}</span>
             </div>
-              <a href="/participateProject/{{currentProject.idProject}}">
-                <button style="float:bottom;" href="/"> Participer ! </button>
-              </a>
+            {% if currentProject.idUser == session['idUser'] %}
+              <p> C'est mon mien </p>
+            {% else %}
+              {%if session['idUser'] and session['idUser'] is not none%}
+                <a href="/participateProject/{{currentProject.idProject}}">
+                  <button style="float:bottom;"> Participer ! </button>
+                </a>
+              {%else%}
+                <a id="link" href="/login"> Vous devez être connecté pour participer à un projet </a>
+              {%endif%}
+            {% endif %}
           </div>
-            
         </div>
     </div>
 
