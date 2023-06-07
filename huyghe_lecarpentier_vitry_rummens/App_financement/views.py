@@ -249,9 +249,9 @@ def choisir_pub():
 #page new-project
 @app.route("/myProjects")
 def myProjects():
-    listeProjets = bdd.get_projectData()
-    listeContribution = bdd.get_participate()
-    params ={'liste':listeProjets, 'contribution':listeContribution}
+    listeProjets, liste_non_createurs = bdd.get_projectData()
+    listeContribution, liste_non_contributeurs = bdd.get_participate()
+    params ={'liste':listeProjets, 'non_createurs':liste_non_createurs,'contribution':listeContribution, 'non_contributeurs':liste_non_contributeurs}
     params = f.messageInfo(params)
     return render_template("myProjects.html", **params)
 
