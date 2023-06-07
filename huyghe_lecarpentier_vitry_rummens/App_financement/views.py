@@ -338,10 +338,12 @@ def participate(id=''):
 @app.route("/tip/<id>", methods=['POST'])
 def tip(id=''):
     money = int(request.form['paiement'])
-    if money > session['solde'] : 
-        session["infoRouge"] = "Votre solde est insufisant"
-        return redirect("/participateProject/"+str(id))
+    # if money > session['solde'] : 
+    #     session["infoRouge"] = "Votre solde est insufisant"
+    #     return redirect("/participateProject/"+str(id))
     try:
+        print('TTTTTTIIIIIIIIIIIIPPPPPPPPP')
+        
         bdd.update_participation(int(id), int(session["idUser"]), money)
         session["infoVert"] = "Paiement réussi"
         return redirect("/myProjects")
