@@ -80,7 +80,7 @@ descriptions_projets = [
 # Génération d'une description de projet aléatoire avec le format spécifié
 def generate_description_projet():
     action = random.choice(descriptions_projets)
-    description = f"L'objectif est de réaliser {action}."
+    description = f"{action}."
     return description
 
 # Génération des 10 projets fictifs
