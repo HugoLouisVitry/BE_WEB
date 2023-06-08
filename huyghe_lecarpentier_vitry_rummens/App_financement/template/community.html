@@ -93,6 +93,7 @@
             <div style="width: 1800px;" class="aligncenter">
                 {% if liste and liste is not none %}
                 {% for project in liste %}
+                {% if project.isOpen == 1}
                 <a class="container comu-link" href="/seeProject/{{project.idProject}}">
 
                     <div class="project">
@@ -119,6 +120,7 @@
                     </div>
                 </a>
                 {% endfor %}
+                {% endif %}
                 {% endif %}
             </div>
         </div>

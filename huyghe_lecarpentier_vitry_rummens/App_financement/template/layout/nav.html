@@ -1,10 +1,10 @@
 <style>
-    #user{
+    #user {
         font-size: 20px;
         font-family: 'FontAwesome';
-        
     }
-    #table_user{
+    
+    #table_user {
         position: fixed;
         top: 0;
         right: 0;
@@ -12,166 +12,153 @@
         margin-right: 10px;
         z-index: 999999999;
         width: 20%;
-        
     }
-    #avatar{
-        
+    
+    #avatar {
         margin-right: 10px;
         height: 40px;
         width: auto;
-
     }
-
-    #solde{
+    
+    #solde {
         margin-top: 1%;
         font-size: 20px;
         font-family: 'FontAwesome';
-
     }
-
+    
     #menu {
         position: fixed;
         top: 0%;
         width: 100%;
-        background-color: rgb(236,236,236);
+        background-color: rgb(236, 236, 236);
         height: auto;
         text-align: center;
-        z-index : 9999999 ;
+        z-index: 9999999;
         margin: 0;
+        display: flex;
+        align-items: flex-start;
     }
-
-    #menu li {
-        position: relative;
-        left: 15%;
-        top: 20%;
-        height: 100%;
-    }
-
-
-    #image_marque { 
-        z-index: 999999999;
-        position: relative;
-        top: 0px;
-        height: 10%;
-        background-color: rgb(236,236,236);
-        width: 10%;
-        margin: 0;
-        padding: 0;
-        border: 0;}
     
-    #image_marque img{
-        height: 100%;
+    #image_marque {
+        width: 10%;
+        margin-left: auto;
+        margin-right: 10px;
+    }
+    
+    
+    
+    #image_marque img {
+        height: 200%;
         width: auto;
-        position: relative ;
+        position: relative;
         left: 10%;
-        top: 30 px;
-
+        top: -10px;
     }
-
-    #Coin_nav{
-        height: 8%;
+    
+    #Coin_nav {
+        height: 20px;
         width: auto;
-        margin-right: 1%;
-        margin-left: 1%;
+        margin-right: 5px;
     }
-
+    
+    .navbar-center {
+        flex-grow: 1;
+        text-align: center;
+    }
+    
+    #table_user {
+        margin-right: 10px;
+    }
+    
+    #solde,
+    #avatar,
+    #user {
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 10px;
+    }
+    
     @media (max-width: 768px) {
-        #navbar {
+        #table_user {
             display: none;
         }
-
-        #navbar.collapse {
-            display: block;
-            position: absolute;
-            top: 100%;
-            width: 100%;
-            background-color: rgb(236, 236, 236);
-            padding: 10px;
-        }
-
-        #navbar.collapse ul {
-            display: block;
-            text-align: center;
-        }
-
-        #navbar.collapse ul li {
+    
+        #menu li {
             display: block;
             margin-bottom: 10px;
+            width: 100%;
+            text-align: center;
         }
-
-        #navbar.collapse ul li a {
-            display: block;
+    
+        #image_marque {
+            width: 20%;
         }
-
+    
+        #image_marque img {
+            left: 5%;
+        }
+    
         .navbar-toggle {
             display: block;
             float: right;
             margin-right: 15px;
         }
-    }   
+    }
+    .pull-right {
+        float: right !important;
+        margin-right: 15px;
+      }
     
 </style>
-<header>
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {window.scrollTo(0, 0);});
-    </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <header>
+            <div style="margin-bottom: 5%;">
+                <nav class="navbar navbar-default" id="menu">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed pull-right" data-toggle="collapse" data-target="#navbar-collapse">
 
-    <div style="margin-bottom: 5%;">
-        <ul class="nav navbar-nav megamenu navbar navbar-default" id="menu">
-            <a class="navbar-brand" href="/" id="image_marque">
-                <img src="/static/images/logos/logo-seo.png" alt="image">
-            </a>
-            <li><a class="active" href="/">Accueil</a></li>
-            
-            <li><a href="/community">Communauté</a></li>
-            
-            <li><a href="/webmaster">À propos de nous</a></li>
-            {% if not session['idUser'] %}
-            <li><a href="/login">Log In</a></li>
-            <li><a href="/signin">Sign In</a></li>
-            {% else %}
-            <li><a href="/profil">Profil</a></li>
-            <li><a href="/myProjects">Mes projets</a></li>
-            <li><a href="/logout">Logout</a></li>
-            {% endif %}
-            {% if session['isAdmin'] %}
-            <li><a href="/sgbd">SGBD</a></li>
-            {% endif %}
-            {% if session['idUser'] %}
-            <div  id="table_user">
-                <div >
-                    <div  style="display:flex;">
-                        <div style="display:flex;">
-                            <h4 id="solde">{{session['solde']}}</h4>
-                            <img src="\static\images\coin-monero_115225.png" id="Coin_nav">
-                            <img id="avatar"
-                                    src="/static/images/avatar/{{session['avatar']}}"
-                                    alt="User Avatar">
-                            <h5  id="user"> {{ session['nom'] }} <br> {{
-                                    session['prenom'] }}</h5>
-                        </div>
-        
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand navbar-left hidden-xs" href="/" id="image_marque">
+
+
+                            <img src="/static/images/logos/logo-seo.png" alt="image">
+                        </a>
                     </div>
-        
-                </div>
+                    <div class="collapse navbar-collapse navbar-right" id="navbar-collapse">
+                        <ul class="nav navbar-nav navbar-center">
+                            <li><a class="active" href="/">Accueil</a></li>
+                            <li><a href="/community">Communauté</a></li>
+                            <li><a href="/webmaster">À propos de nous</a></li>
+                            {% if not session['idUser'] %}
+                                <li><a href="/login">Log In</a></li>
+                                <li><a href="/signin">Sign In</a></li>
+                            {% else %}
+                                <li><a href="/profil">Profil</a></li>
+                                <li><a href="/myProjects">Mes projets</a></li>
+                                <li><a href="/logout">Logout</a></li>
+                            {% endif %}
+                            {% if session['isAdmin'] %}
+                                <li><a href="/sgbd">SGBD</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% if session['idUser'] %}
+                    <div id="table_user">
+                            <div>
+                                <div style="display:flex;">
+                                    <h4 id="solde">{{session['solde']}}</h4>
+                                    <img src="\static\images\coin-monero_115225.png" id="Coin_nav">
+                                    <img id="avatar" src="/static/images/avatar/{{session['avatar']}}" alt="User Avatar">
+                                    <h5 id="user">{{ session['nom'] }}<br>{{ session['prenom'] }}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    {% endif %}
+                </nav>
             </div>
-        
-            {% endif %}
-            <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed"
-                        data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    
-                </div>
-        </ul>
-
-    </div>
-<br>
-    </header>
+        </header>
