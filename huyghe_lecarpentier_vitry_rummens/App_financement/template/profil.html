@@ -60,11 +60,11 @@
         }
 
         #coin{
-            height: 30px;
+            height:50px;
             width: auto;
             position: relative;
-            top: -100px;
-            left: 650px;
+            top: -110px;
+            left: 55%;
         }
 
     
@@ -72,23 +72,20 @@
 </head>
 
 <body class="seo_version">
-    <script>
-        window.addEventListener('DOMContentLoaded', function() {
-          window.scrollTo(0, 0);
-        });
-      </script>
+
     <!-- END LOADER -->
     {% include("layout/nav.html") %}
+    {% include("layout/info.html") %}
 
     <div style="background-image:url(/static/images/pattern-4.png);">
         <!--Page -->
         <div class="container">
             <div class="section-title text-center">
-                <h3>Votre solde</h3>
-            </div>
-            <div class="section-title text-center" id="coin_container">
-                <h3>{{session["solde"]}}</h3>  
-            </div><img src="\static\images\coin-monero_115225.png" id="coin">
+                <h3>Votre solde</h3>        
+                    <h3>{{session["solde"]}}</h3>  
+                </div>
+                <img src="\static\images\coin-monero_115225.png" id="coin">
+
         </div>
         
         <div class="container">
@@ -173,7 +170,7 @@
                                 <label>à l'aide d'un coupon cadeau Mathcoins</label>
                                 <input type="text" class="form-control"
                                     id="coupon" name="coupon"
-                                    placeholder="Numero de coupon" required>
+                                    placeholder="Numero de coupon" >
                             </div>
                             <button
                                 class="btn btn-primary btn-login fw-bold text-uppercase"
@@ -189,8 +186,8 @@
         <div id="support" class="section wb">
             <div class="container">
                 <div class="section-title text-center">
-                    <h3>Mot de passe</h3>
-                    {% include("layout/info.html") %}
+                    <h3>Information Personnelles</h3>
+                    
                     <div class="row">
                         <div class="col-md-6">
                             <div class="contact_form">
@@ -203,13 +200,12 @@
                                         <label for="old_mdp">Ancien mot
                                             de passe</label>
                                         <input style="border-color: black;" type="text" class="form-control"
-                                            id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" required
-                                            autofocus>
+                                            id="old_mdp" name="old_mdp" placeholder="Ancien mot de passe" >
                                         <div class="form-floating mb-3">
                                             <label for="new_mdp">Nouveau mot
                                                 de passe</label>
                                                 <input style="border-color: black;" type="text" class="form-control"
-                                                id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" required>
+                                                id="new_mdp" name="new_mdp" placeholder="Nouveau mot de passe" >
                                             </div>
                                             
                                             <div class="form-floating mb-3">
@@ -217,7 +213,7 @@
                                                     votre mot de passe</label>
                                                     <input style="border-color: black;" type="text" class="form-control"
                                                     id="confirm_mdp" name="confirm_mdp" placeholder="Votre mot de passe"
-                                                    required>
+                                                    >
                                                 </div>
 
                                                 <br>

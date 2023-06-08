@@ -133,8 +133,10 @@ def update_solde():
 
 @app.route("/solde_pub",methods=['POST'])
 def solde_pub():
-    session["solde"]+=20
-    bdd.update_solde(idUser=session["idUser"], newvalue=session["solde"])
+    coupon= request.form["coupon"]
+    if coupon:
+        session["solde"]+=20
+        bdd.update_solde(idUser=session["idUser"], newvalue=session["solde"])
     return redirect("/profil")
  
 
@@ -314,10 +316,16 @@ def closeProject(idProject=None):
 
 @app.route("/updateProject/<id>/<champ>", methods=['POST'])
 def updateProject(id='',champ=''):
-    #name = request.form['name']
-    #target = request.form['target']
-    #endDate = request.form['endDate']
-    
+
+    if champ == "name":
+        name = request.form['name']
+        bdd.update_projectData("name", id, name)  
+    if champ == "target":
+        target = request.form['target']
+        bdd.update_projectData("target", id, target)
+    if champ == "endDate":
+        endDate = request.form['endDate']
+        bdd.update_projectData("endDate", id, endDate)
     if champ == "description":
         description = request.form['description']
         bdd.update_projectData("description", id, description)

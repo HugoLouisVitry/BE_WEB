@@ -107,6 +107,13 @@
                               <progress value="{{project.current}}" max="{{project.target}}"></progress>
                               <br>
                             </div>
+                            <h3 style="margin-top: 20px;margin-right: 20px;" class="alignright">
+                              {% if project.isOpen == 0 %}
+                                Projet fermé
+                              {% else %}
+                                Projet ouvert
+                              {% endif %}
+                            </h3>
                             <div class="clear"></div>
                         </div>
                     </div>

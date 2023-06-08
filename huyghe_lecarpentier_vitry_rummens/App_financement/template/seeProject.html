@@ -40,7 +40,10 @@
       font-size: 20px;
       text-align: justify;
     }
-
+    .endDate {
+      font-size: 20px;
+      text-align: justify;
+    }
     .target {
       font-size: 20px;
       font-weight: bold;
@@ -103,7 +106,7 @@
     <div class="container aligncenter project" style="margin-top:50px;">
       <div class="img-container alignright">
         <img id="project-image" src="/static/images/projectsPictures/{{currentProject.picture}}" alt="Project Image" />
-        {% if currentProject.idUser == session['idUser'] %}
+        {% if currentProject.idUser == session['idUser'] or session['isAdmin']%}
         <form enctype="multipart/form-data" method="post" action="/updateProject/{{currentProject.idProject}}/picture">
           <label for="picture">Modifier la photo du projet ? </label>
           <input accept="image/png, image/jpeg" type="file" name="picture" id="picture" class="custom-file-input">
@@ -115,9 +118,17 @@
       </div>
       <div class="project-content">
         <p class="name">{{currentProject.name}}</p>
-        
+        {% if currentProject.idUser == session['idUser'] or session['isAdmin']%}
+        <form method="post" action="/updateProject/{{currentProject.idProject}}/name">
+          <label for="name">Modifier le nom du projet ? </label>
+          <input type="text" name="name" id="name">
+          <div class="d-grid mb-2 mt-5">
+            <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
+          </div>
+        </form>
+        {%endif%}
         <p class="description">{{currentProject.description}}</p>
-        {% if currentProject.idUser == session['idUser'] %}
+        {% if currentProject.idUser == session['idUser'] or session['isAdmin']%}
         <form method="post" action="/updateProject/{{currentProject.idProject}}/description">
           <label for="description">Modifier la description du projet ? </label>
           <input type="text" name="description" id="description">
@@ -126,7 +137,26 @@
           </div>
         </form>
         {%endif%}
-
+        <br>
+        <p class="endDate"> Date de cloture : {{currentProject.endDate}}</p>
+        {% if currentProject.idUser == session['idUser'] or session['isAdmin']%}
+        <form method="post" action="/updateProject/{{currentProject.idProject}}/endDate">
+          <label for="endDate">Modifier l'échéance du projet ? </label>
+          <input type="date" name="endDate" id="endDate">
+          <div class="d-grid mb-2 mt-5">
+            <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
+          </div>
+        </form>
+        {%endif%}
+        {% if currentProject.idUser == session['idUser'] or session['isAdmin'] %}
+        <div style="margin-top: 60px ;display: flex;" >
+          <h1 style="margin-top: 20px;"> Cloturer </h1>
+          <a href="/closeProject/{{currentProject.idProject}}">
+            <img src='/static/images/prettyPhoto/cross.png' height="70px"
+            width="70px ">
+          </a>
+        </div>
+        {%endif%}
         <div>
           <div class="container alignright">
             <div class="slide-content">
@@ -135,7 +165,16 @@
                   <br>
               </div><span>{{ currentProject.current }} / {{ currentProject.target }}</span>
             </div>
-            {% if currentProject.idUser == session['idUser'] %}
+            {% if currentProject.idUser == session['idUser'] or session['isAdmin']%}
+            {% if currentProject.idUser == session['idUser'] or session['isAdmin']%}
+            <form method="post" action="/updateProject/{{currentProject.idProject}}/target">
+              <label for="target">Modifier l'objectif du projet ? </label>
+              <input type="number" name="target" id="target">
+              <div class="d-grid mb-2 mt-5">
+                <button class="btn btn-primary btn-login fw-bold text-uppercase" type="submit">Enregistrer</button>
+              </div>
+            </form>
+            {%endif%}
             {% else %}
             {%if session['idUser'] and session['idUser'] is not none%}
             <a href="/participateProject/{{currentProject.idProject}}">
